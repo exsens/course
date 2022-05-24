@@ -9,8 +9,8 @@ const content = () => {
   return (
     <main className={c.inner}>
     <Routes>
-      <Route path='/profile' element={<Profile />}></Route>
-      <Route path='/dialogs' element={<Dialogs />}></Route>
+      <Route path='profile' element={<Profile />}></Route>
+      <Route path='/dialogs/*' element={<Dialogs />}></Route>
     </Routes>
 
     </main>
