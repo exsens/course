@@ -1,7 +1,14 @@
 import c from './profile-content.module.scss';
-import Description from '../../description/description'
+import Description from '../../../components/description/description'
 
 const ProfileContent = () => {
+  const info = [
+    { title: 'Date of Birth', info: '19.02.1956' },
+    { title: 'City', info: 'Minsk' },
+    { title: 'Education', info: 'SU 11' },
+    { title: 'ebsite', info: 'www.www.ru' },
+  ];
+
   return (
     <div className={c.profile__inner}>
     <div className={c.profile__img}>
@@ -14,7 +21,7 @@ const ProfileContent = () => {
     </div>
     <div className={c.profile__info}>
       <h2 className={c.profile__name}>Dmitry K</h2>
-     <Description />
+     <Description info={info}/>
     </div>
   </div>
   )

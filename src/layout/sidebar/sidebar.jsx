@@ -5,9 +5,9 @@ import c from './sidebar.module.scss'
 
 const Sidebar = () => {
   return (
-    <div className={c.sidebar}>
+    <aside className={c.sidebar}>
       <Nav />
-    </div>
+    </aside>
   )
 }
 

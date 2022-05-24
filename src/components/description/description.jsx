@@ -1,10 +1,4 @@
-const Description = () => {
-  const info = [
-    { title: 'Date of Birth', info: '19.02.1956' },
-    { title: 'City', info: 'Minsk' },
-    { title: 'Education', info: 'SU 11' },
-    { title: 'ebsite', info: 'www.www.ru' },
-  ]
+const Description = ({info}) => {
 
   return (
     info.map(el => {
