@@ -11,7 +11,7 @@ const content = () => {
     <main>
       <div className={c.inner}>
         <Sidebar />
-        <div className={c.content_box}>
+        <div style={{flex: '1 1 auto'}}>
           <Banner />
           <Profile />
         </div>

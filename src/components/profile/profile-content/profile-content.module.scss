@@ -1,0 +1,13 @@
+.profile_content {
+  &__inner {
+    display: flex;
+  }
+
+  &__img {
+    margin-right: 25px;
+  }
+
+  &__name {
+    margin-bottom: 15px;
+  }
+}

@@ -1,5 +1,4 @@
 import React from 'react';
-
 import c from './logo.module.scss';
 
 const Logo = () => {

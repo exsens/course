@@ -10,8 +10,11 @@ const Description = () => {
     info.map(el => {
       return (
         <dl key={el.title}>
-          <dt>{el.title}</dt>
-          <dd>{el.info}</dd>
+          <div className="d-flex">
+            <dt style={{marginRight: '10px'}}>{el.title}</dt>
+            <dd>{el.info}</dd>
+          </div>
+
         </dl>
       )
     })
