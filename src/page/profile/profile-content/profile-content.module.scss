@@ -1,10 +1,15 @@
 .profile_content {
   &__inner {
+    padding: 15px 0;
     display: flex;
   }
 
   &__img {
     margin-right: 25px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
   }
 
   &__name {

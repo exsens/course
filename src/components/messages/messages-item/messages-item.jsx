@@ -1,10 +1,10 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
+
+import c from './messages-item.module.scss'
 
 const MessagesItem = ({text}) => {
-  // const { id } = useParams()
   return (
-    <li>{text}</li>
+    <li className={c.messages_item}>{text}</li>
   )
 }
 

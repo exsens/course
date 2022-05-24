@@ -7,10 +7,10 @@ const MembersItem = ({ id, name }) => {
   return (
     <li className={c.members_item}>
       <NavLink to={`${id}`} className={setActive}>
-        <div className={c.members_item}>
-          <img src="https://mythemestore.com/beehive-preview/wp-content/uploads/avatars/3/1652998232-bpthumb.jpg" alt="img" />
+        <div className={c.members_item_img}>
+          <img src="https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png" alt="img" />
         </div>
-        <span className={c.members_text}>{name}</span>
+        <span className={c.members_item_text}>{name.length < 8 ? name : name.slice(0, 8) + '...'}</span>
       </NavLink>
     </li>
   )

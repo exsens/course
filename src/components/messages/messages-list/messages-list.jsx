@@ -1,16 +1,14 @@
-import { Routes, Route } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import MessagesItem from '../messages-item/messages-item'
 
 const MessagesList = ({messages}) => {
-
+  const idMessage = useParams().id;
+  const userMessages = idMessage ? messages[idMessage].text : null; 
   return (
     <ul>
-      <Routes>
-      {messages.map((message) => {
-        return <Route key={message.id} path={`${message.id}`} element={<MessagesItem text={message.text} />}/>
-      })}
-      </Routes>
-      
+      {messages ? userMessages.map((message, idx) => {
+        return <MessagesItem key={idx} text={message}/>
+      }) : <h3>Select the friend</h3>}
     </ul>
 
   )
