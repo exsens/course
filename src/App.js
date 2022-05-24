@@ -1,6 +1,7 @@
-import Header from './layout/header';
-import Content from './layout/content';
-import Footer from './layout/footer';
+import Header from './layout/header/header';
+import Content from './layout/content/content';
+import Footer from './layout/footer/footer';
+
 
 const App = () => {
   return (

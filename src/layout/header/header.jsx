@@ -1,13 +1,13 @@
 import React from 'react';
 
-import Logo from '../components/logo/logo';
-import Nav from '../components/nav/nav';
+import Logo from '../../components/logo/logo';
+
+import c from './header.module.scss';
 
 const Header = () => {
   return (
-    <header>
+    <header className={c.header}>
       <Logo />
-      <Nav />
     </header>
   )
 }
