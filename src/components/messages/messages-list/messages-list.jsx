@@ -5,7 +5,7 @@ const MessagesList = ({messages}) => {
   const idMessage = useParams().id;
   const userMessages = idMessage ? messages[idMessage].text : null; 
   return (
-    <ul>
+    <ul style={{marginBottom: '15px'}}>
       {messages ? userMessages.map((message, idx) => {
         return <MessagesItem key={idx} text={message}/>
       }) : <h3>Select the friend</h3>}
