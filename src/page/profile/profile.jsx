@@ -5,13 +5,13 @@ import ProfileForm from './profile-form/profile-form.jsx'
 
 import c from './profile.module.scss'
 
-const Profile = ({state, addPost, updateNewPost}) => {
+const Profile = ({state, dispatch}) => {
   const {profileInfo, posts, newPost} = state;
   return (
     <div className={c.profile}>
       <Banner banner={profileInfo.banner}/>
       <ProfileContent profileInfo={profileInfo}/>
-      <ProfileForm addPost={addPost} newPost={newPost} updateNewPost={updateNewPost}/>
+      <ProfileForm dispatch={dispatch} newPost={newPost}/>
       <PostList postsData={posts}/>
     </div>
   )

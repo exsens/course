@@ -1,15 +1,13 @@
 import c from './profile-form.module.scss';
 
-const ProfileForm = ({ addPost, newPost, updateNewPost }) => {
-  const handleBlur = (e) => {
-    const value = e.target.value;
-    addPost(value)
-    updateNewPost('')
+const ProfileForm = ({ newPost, dispatch }) => {
+  const handleBlur = () => {
+    dispatch({type: 'ADD_POST'})
   }
 
   const handleChange = (e) => {
     const value = e.target.value;
-    updateNewPost(value);
+    dispatch({type: 'UPDATE_NEW_POST', payload: value});
   }
 
   return (

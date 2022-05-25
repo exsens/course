@@ -1,4 +1,8 @@
 const store = {
+
+  _callSubscriber() {
+  },
+
   _state: {
     sidebar: {
       navigation: ['Profile', 'Dialogs', 'News', 'Music', 'Setting']
@@ -54,9 +58,8 @@ const store = {
     return this._state;
   },
 
-  updateNewPost(text) {
-    this._state.profileData.newPost = `${text}`;
-    this._callSubscriber(this._state);
+  subscribe(observer) {
+    this._callSubscriber = observer;
   },
 
   addPost(post) {
@@ -67,12 +70,18 @@ const store = {
     this._callSubscriber(this._state);
   },
 
-  _callSubscriber() {
-    console.log('rerender')
-  },
-
-  subscribe(observer) {
-    this._callSubscriber = observer;
+  dispatch(action) {
+    if (action.type === 'ADD_POST') {
+      this._state.profileData.posts.push({
+        avatar: 'https://n1s2.starhit.ru/6a/46/ae/6a46aeed947a183d67d1bc48211151bf/445x460_0_6a5d57baf3fab914fdfcc2cc563ed893@480x496_0xac120003_4430520541578509619.jpg',
+        text: this._state.profileData.newPost
+      });
+      this._state.profileData.newPost = '';
+      this._callSubscriber(this._state);
+    } else if (action.type === 'UPDATE_NEW_POST') {
+      this._state.profileData.newPost = action.payload;
+      this._callSubscriber(this._state);
+    }
   },
 
 }
