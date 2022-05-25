@@ -3,10 +3,10 @@ import Nav from '../../components/nav/nav';
 
 import c from './sidebar.module.scss'
 
-const Sidebar = () => {
+const Sidebar = ({state}) => {
   return (
     <aside className={c.sidebar}>
-      <Nav />
+      <Nav navigation={state.navigation}/>
     </aside>
   )
 }

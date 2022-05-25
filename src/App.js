@@ -5,14 +5,14 @@ import Content from './layout/content/content';
 import Footer from './layout/footer/footer';
 import Flex from './components/flex/flex.jsx';
 
-const App = ({store}) => {
+const App = ({state, addPost, updateNewPost}) => {
   return (
     <>
       <Container>
         <Header />
         <Flex>
-          <Sidebar />
-          <Content store={store} />
+          <Sidebar state={state.sidebar}/>
+          <Content state={state} addPost={addPost} updateNewPost={updateNewPost}/>
         </Flex>
         <Footer />
       </Container>

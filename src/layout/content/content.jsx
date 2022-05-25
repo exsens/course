@@ -5,13 +5,12 @@ import Dialogs from '../../page/dialogs/dialogs.jsx';
 
 import c from './content.module.scss';
 
-const Content = ({store}) => {
-
+const Content = ({state, addPost, updateNewPost}) => {
   return (
     <main className={c.inner}>
       <Routes>
-        <Route path='profile' element={<Profile />} />
-        <Route path='dialogs/*' element={<Dialogs store={store.dialogsData}/>} />
+        <Route path='profile' element={<Profile state={state.profileData} addPost={addPost} updateNewPost={updateNewPost}/>} />
+        <Route path='dialogs/*' element={<Dialogs state={state.dialogsData}/>} />
       </Routes>
 
     </main>

@@ -1,11 +1,12 @@
 import PostItem from './post-item/post-item.jsx'
 
-const PostList = () => {
+const PostList = ({ postsData }) => {
+
   return (
     <ul>
-        <PostItem />
-        <PostItem />
-        <PostItem />
+      {postsData.map((post, idx) => {
+        return <PostItem key={idx} postsData={post} />
+      })}
     </ul>
   )
 }
