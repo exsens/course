@@ -5,14 +5,14 @@ import Content from './layout/content/content';
 import Footer from './layout/footer/footer';
 import Flex from './components/flex/flex.jsx';
 
-const App = ({users, messages}) => {
+const App = ({store}) => {
   return (
     <>
       <Container>
         <Header />
         <Flex>
           <Sidebar />
-          <Content users={users} messages={messages}/>
+          <Content store={store} />
         </Flex>
         <Footer />
       </Container>

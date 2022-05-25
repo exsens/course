@@ -3,12 +3,12 @@ import Flex from '../../components/flex/flex.jsx'
 import MessagesContent from '../../components/messages/messages-content/messages-content.jsx';
 
 
-const Dialogs = ({ users, messages }) => {
-
+const Dialogs = ({store}) => {
+  
   return (
     <Flex style={{ justifyContent: 'space-between' }}>
-      <MembersList users={users} />
-      <MessagesContent messages={messages}/>
+      <MembersList users={store.users} />
+      <MessagesContent messages={store.messages}/>
     </Flex>
   )
 }

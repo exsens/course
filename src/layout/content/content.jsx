@@ -5,17 +5,17 @@ import Dialogs from '../../page/dialogs/dialogs.jsx';
 
 import c from './content.module.scss';
 
-const content = ({users, messages}) => {
+const Content = ({store}) => {
 
   return (
     <main className={c.inner}>
       <Routes>
         <Route path='profile' element={<Profile />} />
-        <Route path='dialogs/*' element={<Dialogs users={users} messages={messages}/>} />
+        <Route path='dialogs/*' element={<Dialogs store={store.dialogsData}/>} />
       </Routes>
 
     </main>
   )
 }
 
-export default content
+export default Content
