@@ -1,5 +1,5 @@
+import Description from '../description/description.jsx'
 import c from './profile-content.module.scss';
-import Description from '../../../components/description/description'
 
 const ProfileContent = ({profileInfo}) => {
   const {name, info, avatar} = profileInfo;

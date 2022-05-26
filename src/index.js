@@ -10,22 +10,15 @@ import './index.scss';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-const render = () => {
-  root.render(
-    <React.StrictMode>
-      <Provider store={store}>
-        <Router>
-          <App/>
-        </Router>
-      </Provider>
-    </React.StrictMode>
-  );
-};
+root.render(
+  <React.StrictMode>
+    <Provider store={store}>
+      <Router>
+        <App />
+      </Router>
+    </Provider>
+  </React.StrictMode>
+);
 
-render();
-
-store.subscribe(() => {
-  render()
-});
 
 

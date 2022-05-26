@@ -1,7 +1,7 @@
 import Banner from '../../components/banner/banner'
-import PostList from './post-list/posts-list'
-import ProfileContent from './profile-content/profile-content'
-import ProfileForm from './profile-form/profile-form.jsx'
+import PostList from '../../components/post-list/posts-list'
+import ProfileContent from '../../components/profile-content/profile-content'
+import ProfileForm from '../../components/profile-form/profile-form'
 import { connect } from 'react-redux'
 import { addPostAction, updatePostAction } from '../../store/profile/profile-action.js';
 

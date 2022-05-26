@@ -6,8 +6,9 @@ import { addMessageAction } from '../../../store/dialogs/dialogs-action.js';
 
 
 const MessagesList = ({ messages, addMessage }) => {
-  const idMessage = useParams().id < messages.length ? useParams.id : '';
-  const userMessages = idMessage ? messages[idMessage].text : null;
+  const idDialog = useParams().id;
+  const currentIdMessage = idDialog < messages.length ? idDialog : '';
+  const userMessages = currentIdMessage ? messages[currentIdMessage].text : null;
   return (
     <>
       {userMessages ?
@@ -15,7 +16,7 @@ const MessagesList = ({ messages, addMessage }) => {
           <ul style={{ marginBottom: '15px', display: 'flex', flexDirection: 'column' }}>
             {userMessages.map((message, idx) => <MessagesItem key={idx} text={message} />)}
           </ul>
-          <MessagesInput id={idMessage} addMessage={addMessage} />
+          <MessagesInput id={currentIdMessage} addMessage={addMessage} />
         </> :
         <h3>Select the friend</h3>}
     </>
