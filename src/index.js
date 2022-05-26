@@ -14,7 +14,7 @@ const render = (state) => {
   root.render(
     <React.StrictMode>
       <Router>
-        <App state={state} dispatch={store.dispatch.bind(store)}/>
+        <App state={state} dispatch={store.dispatch}/>
       </Router>
     </React.StrictMode>
   );
@@ -23,6 +23,5 @@ render(store.getState())
 
 store.subscribe(() => {
   let state = store.getState();
-
   render(state);
 })

@@ -1,14 +1,14 @@
-import { addPostAction, updatePostAction} from '../../../store/profile/profile-action.js';
 import c from './profile-form.module.scss';
 
-const ProfileForm = ({ newPost, dispatch }) => {
+const ProfileForm = ({ newPost, addPost, updatePost }) => {
   const handleBlur = () => {
-    dispatch(addPostAction());
+    addPost()
+    updatePost('');
   }
 
   const handleChange = (e) => {
     const value = e.target.value;
-    dispatch(updatePostAction(value));
+    updatePost(value)
   }
 
   return (
