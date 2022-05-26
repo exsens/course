@@ -1,13 +1,15 @@
+import { addPostAction, updatePostAction } from '../../../store.js';
+
 import c from './profile-form.module.scss';
 
 const ProfileForm = ({ newPost, dispatch }) => {
   const handleBlur = () => {
-    dispatch({type: 'ADD_POST'})
+    dispatch(addPostAction());
   }
 
   const handleChange = (e) => {
     const value = e.target.value;
-    dispatch({type: 'UPDATE_NEW_POST', payload: value});
+    dispatch(updatePostAction(value));
   }
 
   return (

@@ -1,3 +1,7 @@
+const ADD_POST = 'ADD_POST';
+const UPDATE_NEW_POST = 'UPDATE_NEW_POST';
+
+
 const store = {
 
   _callSubscriber() {
@@ -85,5 +89,8 @@ const store = {
   },
 
 }
+
+export const addPostAction = () => ({type: ADD_POST});
+export const updatePostAction = (text) => ({type: UPDATE_NEW_POST, payload: text}) 
 
 export default store;
