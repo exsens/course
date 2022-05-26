@@ -3,11 +3,11 @@ import Flex from '../../components/flex/flex.jsx'
 import MessagesContent from '../../components/messages/messages-content/messages-content.jsx';
 
 
-const Dialogs = ({state}) => {
+const Dialogs = ({state, dispatch}) => {
   return (
     <Flex style={{ justifyContent: 'space-between' }}>
       <MembersList users={state.users} />
-      <MessagesContent messages={state.messages}/>
+      <MessagesContent messages={state.messages} dispatch={dispatch}/>
     </Flex>
   )
 }

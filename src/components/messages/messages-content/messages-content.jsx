@@ -4,12 +4,12 @@ import MessagesInput from '../messages-input/messages-input.jsx';
 import MessagesList from '../messages-list/messages-list';
 
 
-const MessagesContent = ({messages}) => {
+const MessagesContent = ({messages, dispatch}) => {
   return (
-    <div>
+    <div style={{flex: '1', maxWidth: '600px'}}>
       <Routes>
         <Route path='/' element={<MessagesList style={{ flex: '1 1 auto;' }} />} />
-        <Route path='/:id' element={<MessagesList style={{ flex: '1 1 auto;' }} messages={messages} />} />
+        <Route path='/:id' element={<MessagesList style={{ flex: '1 1 auto;' }} messages={messages} dispatch={dispatch}/>} />
       </Routes>
     </div>
   )

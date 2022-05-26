@@ -10,7 +10,7 @@ const Content = ({state, dispatch}) => {
     <main className={c.inner}>
       <Routes>
         <Route path='profile' element={<Profile state={state.profileData} dispatch={dispatch}/>} />
-        <Route path='dialogs/*' element={<Dialogs state={state.dialogsData}/>} />
+        <Route path='dialogs/*' element={<Dialogs state={state.dialogsData} dispatch={dispatch}/>} />
       </Routes>
 
     </main>

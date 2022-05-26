@@ -1,6 +1,6 @@
 const ADD_POST = 'ADD_POST';
 const UPDATE_NEW_POST = 'UPDATE_NEW_POST';
-
+const ADD_MESSAGE = 'ADD_MESSAGE';
 
 const store = {
 
@@ -66,31 +66,35 @@ const store = {
     this._callSubscriber = observer;
   },
 
-  addPost(post) {
-    this._state.profileData.posts.push({
-      avatar: 'https://n1s2.starhit.ru/6a/46/ae/6a46aeed947a183d67d1bc48211151bf/445x460_0_6a5d57baf3fab914fdfcc2cc563ed893@480x496_0xac120003_4430520541578509619.jpg',
-      text: `${post}`
-    });
-    this._callSubscriber(this._state);
-  },
+  // addMessage(id, message) {
+  //   this._state.dialogsData.messages.push({
+  //     id: Math.floor(Math.random()), text: message
+  //   })
+  // }
 
   dispatch(action) {
-    if (action.type === 'ADD_POST') {
+    if (action.type === ADD_POST) {
       this._state.profileData.posts.push({
         avatar: 'https://n1s2.starhit.ru/6a/46/ae/6a46aeed947a183d67d1bc48211151bf/445x460_0_6a5d57baf3fab914fdfcc2cc563ed893@480x496_0xac120003_4430520541578509619.jpg',
         text: this._state.profileData.newPost
       });
       this._state.profileData.newPost = '';
       this._callSubscriber(this._state);
-    } else if (action.type === 'UPDATE_NEW_POST') {
+    } else if (action.type === UPDATE_NEW_POST) {
       this._state.profileData.newPost = action.payload;
+      this._callSubscriber(this._state);
+    } else if (action.type === ADD_MESSAGE) {
+      const userId = this._state.dialogsData.messages
+        .findIndex((el) => el.id === action.payload.id);
+      this._state.dialogsData.messages[userId].text.push(action.payload.text)
       this._callSubscriber(this._state);
     }
   },
 
 }
 
-export const addPostAction = () => ({type: ADD_POST});
-export const updatePostAction = (text) => ({type: UPDATE_NEW_POST, payload: text}) 
+export const addPostAction = () => ({ type: ADD_POST });
+export const updatePostAction = (text) => ({ type: UPDATE_NEW_POST, payload: text })
+export const addMessageAction = ({id, text}) => ({type: ADD_MESSAGE, payload: {id, text}});
 
 export default store;
