@@ -1,14 +1,13 @@
 import { useRef } from 'react';
-import { addMessageAction } from '../../../store/dialogs/dialogs-action.js';
 
 import c from './messages-input.module.scss';
 
-const MessagesInput = ({ id, dispatch }) => {
+const MessagesInput = ({ id, addMessage }) => {
   const inputRef = useRef(null);
 
   const handleSubmit = () => {
     const text = inputRef.current.value;
-    dispatch(addMessageAction({ id, text }))
+    addMessage({id, text})
     inputRef.current.value = '';
   }
 

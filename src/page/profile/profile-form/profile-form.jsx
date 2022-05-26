@@ -2,14 +2,14 @@ import c from './profile-form.module.scss';
 
 const ProfileForm = ({ newPost, addPost, updatePost }) => {
   const handleBlur = () => {
-    addPost()
+    addPost();
     updatePost('');
-  }
+  };
 
   const handleChange = (e) => {
     const value = e.target.value;
-    updatePost(value)
-  }
+    updatePost(value);
+  };
 
   return (
     <div className={c.profile_form}>
@@ -17,7 +17,6 @@ const ProfileForm = ({ newPost, addPost, updatePost }) => {
       <form onSubmit={(e) => e.preventDefault()}>
         <input
           type="text"
-          value={newPost}
           onChange={handleChange}
           onBlur={handleBlur}
         />

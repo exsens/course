@@ -1,3 +1,5 @@
+import { connect } from 'react-redux';
+
 import { NavLink } from 'react-router-dom'
 import c from './nav.module.scss';
 
@@ -20,4 +22,10 @@ const Nav = ({ navigation }) => {
   )
 }
 
-export default Nav;
+const mapStateToProps = ({sidebar}) => {
+  return {
+    navigation: sidebar.navigation,
+  }
+}
+
+export default connect(mapStateToProps, null)(Nav);

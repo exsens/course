@@ -5,12 +5,12 @@ import Dialogs from '../../page/dialogs/dialogs.jsx';
 
 import c from './content.module.scss';
 
-const Content = ({state, dispatch}) => {
+const Content = () => {
   return (
     <main className={c.inner}>
       <Routes>
-        <Route path='profile' element={<Profile state={state.profileData} dispatch={dispatch}/>} />
-        <Route path='dialogs/*' element={<Dialogs state={state.dialogsData} dispatch={dispatch}/>} />
+        <Route path='profile' element={<Profile/>} />
+        <Route path='dialogs/*' element={<Dialogs/>} />
       </Routes>
 
     </main>

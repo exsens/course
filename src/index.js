@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import store from './store/redux-store.js';
 
@@ -9,19 +10,22 @@ import './index.scss';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-const render = (state) => {
-
+const render = () => {
   root.render(
     <React.StrictMode>
-      <Router>
-        <App state={state} dispatch={store.dispatch}/>
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <App/>
+        </Router>
+      </Provider>
     </React.StrictMode>
   );
-}
-render(store.getState())
+};
+
+render();
 
 store.subscribe(() => {
-  let state = store.getState();
-  render(state);
-})
+  render()
+});
+
+

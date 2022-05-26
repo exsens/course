@@ -17,12 +17,19 @@ const initialState = {
 export const dialogsReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case ADD_MESSAGE: {
-      const userId = state.messages
-        .findIndex((el) => el.id === payload.id);
-      state.messages[userId].text.push(payload.text)
-
-      return state;
-    };
+      return {
+        ...state,
+        messages: state.messages.map((message) => {
+          if (message.id === payload.id) {
+            return {
+              ...message,
+              text: [...message.text, payload.text]
+            }
+          }
+          return message;
+        })
+      }
+    }
 
     default:
       return state;

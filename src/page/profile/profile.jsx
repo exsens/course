@@ -1,20 +1,41 @@
 import Banner from '../../components/banner/banner'
 import PostList from './post-list/posts-list'
 import ProfileContent from './profile-content/profile-content'
-import ProfileFormContainer from './profile-form/profile-form-container.jsx'
+import ProfileForm from './profile-form/profile-form.jsx'
+import { connect } from 'react-redux'
+import { addPostAction, updatePostAction } from '../../store/profile/profile-action.js';
 
 import c from './profile.module.scss'
 
-const Profile = ({state, dispatch}) => {
-  const {profileInfo, posts, newPost} = state;
+const Profile = (state) => {
+  const {profileInfo, posts, newPost, addPost, updatePost} = state;
   return (
     <div className={c.profile}>
       <Banner banner={profileInfo.banner}/>
       <ProfileContent profileInfo={profileInfo}/>
-      <ProfileFormContainer dispatch={dispatch} newPost={newPost}/>
+      <ProfileForm newPost={newPost} addPost={addPost} updatePost={updatePost}/>
       <PostList postsData={posts}/>
     </div>
   )
-}
+};
 
-export default Profile
+const mapStateToProps = ({profileData}) => {
+  return {
+    profileInfo: profileData.profileInfo,
+    posts: profileData.posts,
+    newPost: profileData.newPost,
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addPost: () => {
+      dispatch(addPostAction())
+    },
+    updatePost: (value) => {
+      dispatch(updatePostAction(value))
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile)

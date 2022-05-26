@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux'
 import MembersItem from '../members-item/members-item.jsx';
 
 import c from './members-list.module.scss'
@@ -11,6 +12,10 @@ const MembersList = ({users}) => {
       })}
     </ul>
   )
-}
+};
 
-export default MembersList
+const mapStateToProps = (state) => ({
+  users: state.dialogsData.users,
+});
+
+export default connect(mapStateToProps, null)(MembersList);
