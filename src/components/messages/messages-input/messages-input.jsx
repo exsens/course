@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { addMessageAction } from '../../../store.js';
+import { addMessageAction } from '../../../store/dialogs/dialogs-action.js';
 
 import c from './messages-input.module.scss';
 

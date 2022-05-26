@@ -1,6 +1,5 @@
-import { Routes, Route, useParams } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
-import MessagesInput from '../messages-input/messages-input.jsx';
 import MessagesList from '../messages-list/messages-list';
 
 
