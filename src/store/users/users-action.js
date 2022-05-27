@@ -14,3 +14,11 @@ export const setUsers = (data) => {
     payload: data,
   }
 }
+
+// export const loadUsers = () => (dispatch, _, { client, api }) => {
+//   client.get(api.getUsers())
+//     .then((data) => dispatch(setUsers(data)))
+//     .catch((error) => console.error(error))
+
+//   console.log('load')
+// }
