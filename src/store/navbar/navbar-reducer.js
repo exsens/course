@@ -1,5 +1,5 @@
 const initialState = {
-  navigation: ['Profile', 'Dialogs', 'News', 'Music', 'Setting']
+  navigation: ['Profile', 'Dialogs', 'News', 'Users', 'Music', 'Setting']
 };
 
 export const navbarReducer = (state = initialState, {type, payload}) => {
