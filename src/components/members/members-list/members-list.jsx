@@ -9,7 +9,7 @@ const MembersList = ({users}) => {
     <ul className={c.members_list}>
        {users.map(user => {
         return <MembersItem key={user.id} {...user}/>
-      })}
+      })}   
     </ul>
   )
 };
@@ -17,5 +17,6 @@ const MembersList = ({users}) => {
 const mapStateToProps = (state) => ({
   users: state.dialogsData.users,
 });
+
 
 export default connect(mapStateToProps, null)(MembersList);
