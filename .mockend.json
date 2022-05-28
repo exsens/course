@@ -37,9 +37,9 @@
         "min": "2022-05-24T00:00:00Z",
         "max": "2022-05-28T20:59:59Z"
       }
-    },
-    "totalUsers": {"int": { "min": 15, "max": 100 }}
+    }
   },
+  "totalUser": {"int": { "min": 15, "max": 100 }},
   "Message": {
     "text": { "loremParagraphs": { "minLength": 15, "maxLength": 30 } }
   }
