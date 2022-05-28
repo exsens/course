@@ -24,7 +24,5 @@
     "post": {
       "belongsTo": "Post"
     }
-  },
-  "Users": [{ "name": { "regexp": "[A-Z][a-z]{5,10}" } }],
-  "Messages": [{"text": "string"}]
+  }
 }
