@@ -14,7 +14,7 @@
   },
 
   "Post": {
-    "title": { "string": {} },
+    "title": { "loremParagraphs": { "minLength": 10, "maxLength": 100 } },
     "comments": {
       "hasMany": "Comment"
     }
@@ -40,6 +40,6 @@
     }
   },
   "Message": {
-    "text": { "loremSentences": { "minLength": 3, "maxLength": 8 } }
+    "text": { "loremParagraphs": { "minLength": 15, "maxLength": 30 } }
   }
 }
