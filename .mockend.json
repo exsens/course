@@ -1,6 +1,6 @@
 {
   "Profile": {
-    "name": { "string": {} },
+    "name": { "regexp": "[A-Z][a-z]{5,10}" },
     "banner": { "regexp": "https://picsum\\.photos/seed/[0-9]{5}/1920/1080" },
     "avatar": { "regexp": "https://i\\.pravatar\\.cc/150\\?u=[0-9]{5}" },
     "City": {},
@@ -14,7 +14,7 @@
   },
 
   "Post": {
-    "title": { "string": {} },
+    "title": { "loremParagraphs": { "minLength": 10, "maxLength": 100 } },
     "comments": {
       "hasMany": "Comment"
     }
@@ -25,6 +25,26 @@
       "belongsTo": "Post"
     }
   },
-  "Users": [{ "name": { "regexp": "[A-Z][a-z]{5,10}" } }],
-  "Messages": [{"text": "string"}]
+  "User": {
+    "name": { "regexp": "[A-Z][a-z]{5,10}" },
+    "avatar": { "regexp": "https://i\\.pravatar\\.cc/150\\?u=[0-9]{5}" },
+    "followed": { "boolean": {} },
+    "status": {
+      "loremSentences": { "minLength": 3, "maxLength": 6 }
+    },
+    "online": {
+      "dateTime": {
+        "min": "2022-05-24T00:00:00Z",
+        "max": "2022-05-28T20:59:59Z"
+      }
+    }
+  },
+  "Total": {
+    "users": { "int": { "min": 15, "max": 100 } },
+    "messages": { "int": { "min": 15, "max": 100 } },
+    "posts": { "int": { "min": 15, "max": 100 } }
+  },
+  "Message": {
+    "text": { "loremParagraphs": { "minLength": 15, "maxLength": 30 } }
+  }
 }

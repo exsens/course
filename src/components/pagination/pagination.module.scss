@@ -1,0 +1,17 @@
+.item {
+  padding: 10px;
+  cursor: pointer;
+
+  &:not(:last-child) {
+    margin-right: 10px;
+  }
+}
+
+.active {
+  font-weight: bold;
+  font-size: 18px;
+  
+  &:not(:last-child) {
+    margin-right: 10px;
+  }
+}
