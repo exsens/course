@@ -39,7 +39,7 @@
       }
     }
   },
-  "totalUser": {"int": { "min": 15, "max": 100 }},
+  "TotalUser": {"int": { "min": 15, "max": 100 }},
   "Message": {
     "text": { "loremParagraphs": { "minLength": 15, "maxLength": 30 } }
   }
