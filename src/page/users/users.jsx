@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import UsersList from "../../components/users-list/users-list.jsx"
+import UserListContainer from "../../components/users-list/users-list-container.jsx"
 import { loadUsers } from '../../store/users/users-action.js';
 
 const Users = () => {
@@ -14,7 +14,7 @@ const Users = () => {
   return (
     <div style={{ flex: '1' }}>
       <h2>Users</h2>
-      <UsersList />
+      <UserListContainer />
     </div>
   )
 }
