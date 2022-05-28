@@ -39,7 +39,11 @@
       }
     }
   },
-  "Total": {"int": { "min": 15, "max": 100 }},
+  "Total": {
+    "users": { "int": { "min": 15, "max": 100 } },
+    "messages": { "int": { "min": 15, "max": 100 } },
+    "posts": { "int": { "min": 15, "max": 100 } }
+  },
   "Message": {
     "text": { "loremParagraphs": { "minLength": 15, "maxLength": 30 } }
   }
