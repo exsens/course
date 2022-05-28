@@ -1,6 +1,6 @@
 {
   "Profile": {
-    "name": { "string": {} },
+    "name": { "regexp": "[A-Z][a-z]{5,10}" },
     "banner": { "regexp": "https://picsum\\.photos/seed/[0-9]{5}/1920/1080" },
     "avatar": { "regexp": "https://i\\.pravatar\\.cc/150\\?u=[0-9]{5}" },
     "City": {},
@@ -19,10 +19,27 @@
       "hasMany": "Comment"
     }
   },
-  "Comment": {
+  "Comments": {
     "body": { "string": {} },
     "post": {
       "belongsTo": "Post"
     }
+  },
+  "Users": {
+    "name": { "regexp": "[A-Z][a-z]{5,10}" },
+    "avatar": { "regexp": "https://i\\.pravatar\\.cc/150\\?u=[0-9]{5}" },
+    "followed": { "boolean": {} },
+    "status": {
+      "loremSentences": { "minLength": 3, "maxLength": 6 }
+    },
+    "online": {
+      "dateTime": {
+        "min": "2022-05-24T00:00:00Z",
+        "max": "2022-05-28T20:59:59Z"
+      }
+    }
+  },
+  "Messages": {
+    "text": { "loremSentences": { "minLength": 3, "maxLength": 8 } }
   }
 }
