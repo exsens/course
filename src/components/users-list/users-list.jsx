@@ -28,8 +28,14 @@ const UsersList = ({
 
 const getPagination = (pagesTotal) => {
   const pages = [];
-  for (let i = 1; i < pagesTotal; i++) {
-    pages.push(i);
+  for (let i = 1; i < 6; i++) {
+    if (i <= 3) {
+      pages.push(i);
+    } else if (i === 4) {
+      pages.push('...')
+    } else {
+      pages.push(pagesTotal)
+    }
   }
   return pages;
 };

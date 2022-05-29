@@ -13,17 +13,18 @@ const UsersItem = ({
   status,
   online,
 }) => {
-  const getTime = (date) => {
-    const currentTime = new Date();
 
-    return Math.floor((currentTime - new Date(date)) / 1000 / 60 / 60);
-  };
+  // const getTime = (date) => {
+  //   const currentTime = new Date();
+
+  //   return Math.floor((currentTime - new Date(date)) / 1000 / 60 / 60);
+  // };
 
   return (
     <li className={c.user_item}>
       <Flex>
         <div className={c.user_control}>
-          <Link to={`${id}`} className={c.img}>
+          <Link to={`/profile/${id}`} className={c.img}>
             <img
               src={
                 avatar ||
@@ -41,9 +42,9 @@ const UsersItem = ({
             <h3 style={{ marginBottom: "15px" }}>{name}</h3>
             <p>{status}</p>
           </div>
-          <div className="user-box">
+          {/* <div className="user-box">
             <div>{getTime(online)} ч назад</div>
-          </div>
+          </div> */}
         </div>
       </Flex>
     </li>

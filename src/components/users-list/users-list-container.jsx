@@ -19,19 +19,22 @@ class UserListContainer extends Component {
     const { setUsers, setTotalUsers } = this.props;
 
     this.loadUsers(axios, api)
-      .then((data) => setUsers(data.data))
+      .then((response) => {
+        setUsers(response.data.items);
+        setTotalUsers(response.data.totalCount)
+      })
       .catch((error) => console.error(error));
 
-    axios
-      .get(api.getTotalUsers())
-      .then((data) => setTotalUsers(data.data[0].users))
-      .catch((error) => console.error(error));
+    // axios
+    //   .get(api.getTotalUsers())
+    //   .then((data) => setTotalUsers(data.data[0].users))
+    //   .catch((error) => console.error(error));
   }
 
   loadUsers = async (client, api) => {
     this.props.setLoading();
     const data = await client.get(
-      api.getUsersLimit(this.props.pageSize, this.props.currentPage)
+      api.getUsersPage(this.props.currentPage, this.props.pageSize)
     );
     return await data;
   };
@@ -40,7 +43,7 @@ class UserListContainer extends Component {
     this.props.selectPage(id);
 
     this.loadUsers(axios, api)
-      .then((data) => this.props.setUsers(data.data))
+      .then((response) => this.props.setUsers(response.data.items))
       .catch((error) => console.error(error));
   };
 

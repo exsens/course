@@ -2,7 +2,9 @@ import { ADD_POST, UPDATE_NEW_POST } from "./profile-action.js";
 
 const initialState = {
   profileInfo: {
-    name: 'Dmitry K',
+    id: 24242,
+    aboutMe: '',
+    fullName: '',
     banner: 'https://img3.goodfon.com/original/4368x2912/1/2f/ozero-gory-lesa-derevya.jpg',
     avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Good_dog.jpg/1200px-Good_dog.jpg',
     info: [

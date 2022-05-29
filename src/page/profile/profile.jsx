@@ -6,8 +6,12 @@ import { connect } from 'react-redux'
 import { addPostAction, updatePostAction } from '../../store/profile/profile-action.js';
 
 import c from './profile.module.scss'
+import { useParams } from 'react-router-dom'
 
 const Profile = (state) => {
+  const id = useParams()
+  console.log(id)
+
   const {profileInfo, posts, newPost, addPost, updatePost} = state;
   return (
     <div className={c.profile}>
