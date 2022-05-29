@@ -1,16 +1,167 @@
 {
   "Profile": {
-    "name": { "regexp": "[A-Z][a-z]{5,10}" },
-    "banner": { "regexp": "https://picsum\\.photos/seed/[0-9]{5}/1920/1080" },
-    "avatar": { "regexp": "https://i\\.pravatar\\.cc/150\\?u=[0-9]{5}" },
-    "City": {},
-    "birthDay": {
-      "dateTime": {
-        "min": "1950-01-01T00:00:00Z",
-        "max": "2010-12-31T23:59:59Z"
-      }
-    },
-    "email": { "regexp": "[a-z]{5,10}@[a-z]{5}\\.[a-z]{2,3}" }
+    "items": [
+      {
+        "name": "Ded-Samurai",
+        "contacts": {
+          "facebook": { "regexp": "[a-z]{5,10}@[a-z]{5}\\.[a-z]{2,3}" },
+          "website": { "regexp": "[a-z]{5,10}@[a-z]{5}\\.[a-z]{2,3}" },
+          "vk": { "regexp": "[a-z]{5,10}@[a-z]{5}\\.[a-z]{2,3}" }
+        },
+        "birthDay": {
+          "dateTime": {
+            "min": "1950-01-01T00:00:00Z",
+            "max": "2010-12-31T23:59:59Z"
+          }
+        },
+        "banner": {
+          "regexp": "https://picsum\\.photos/seed/[0-9]{5}/1920/1080"
+        },
+        "avatar": { "regexp": "https://i\\.pravatar\\.cc/150\\?u=[0-9]{5}" },
+        "userId": 1,
+        "status": { "loremParagraphs": { "minLength": 15, "maxLength": 30 } }
+      },
+      {
+        "name": "polorion",
+        "contacts": {
+          "facebook": { "regexp": "[a-z]{5,10}@[a-z]{5}\\.[a-z]{2,3}" },
+          "website": { "regexp": "[a-z]{5,10}@[a-z]{5}\\.[a-z]{2,3}" },
+          "vk": { "regexp": "[a-z]{5,10}@[a-z]{5}\\.[a-z]{2,3}" }
+        },
+        "birthDay": {
+          "dateTime": {
+            "min": "1950-01-01T00:00:00Z",
+            "max": "2010-12-31T23:59:59Z"
+          }
+        },
+        "banner": {
+          "regexp": "https://picsum\\.photos/seed/[0-9]{5}/1920/1080"
+        },
+        "avatar": { "regexp": "https://i\\.pravatar\\.cc/150\\?u=[0-9]{5}" },
+        "userId": 1,
+        "status": { "loremParagraphs": { "minLength": 15, "maxLength": 30 } }
+      },
+      {
+        "name": "SomeNewUser",
+        "contacts": {
+          "facebook": { "regexp": "[a-z]{5,10}@[a-z]{5}\\.[a-z]{2,3}" },
+          "website": { "regexp": "[a-z]{5,10}@[a-z]{5}\\.[a-z]{2,3}" },
+          "vk": { "regexp": "[a-z]{5,10}@[a-z]{5}\\.[a-z]{2,3}" }
+        },
+        "birthDay": {
+          "dateTime": {
+            "min": "1950-01-01T00:00:00Z",
+            "max": "2010-12-31T23:59:59Z"
+          }
+        },
+        "banner": {
+          "regexp": "https://picsum\\.photos/seed/[0-9]{5}/1920/1080"
+        },
+        "avatar": { "regexp": "https://i\\.pravatar\\.cc/150\\?u=[0-9]{5}" },
+        "userId": 1,
+        "status": { "loremParagraphs": { "minLength": 15, "maxLength": 30 } }
+      },
+      {
+        "name": "Some",
+        "contacts": {
+          "facebook": { "regexp": "[a-z]{5,10}@[a-z]{5}\\.[a-z]{2,3}" },
+          "website": { "regexp": "[a-z]{5,10}@[a-z]{5}\\.[a-z]{2,3}" },
+          "vk": { "regexp": "[a-z]{5,10}@[a-z]{5}\\.[a-z]{2,3}" }
+        },
+        "birthDay": {
+          "dateTime": {
+            "min": "1950-01-01T00:00:00Z",
+            "max": "2010-12-31T23:59:59Z"
+          }
+        },
+        "banner": {
+          "regexp": "https://picsum\\.photos/seed/[0-9]{5}/1920/1080"
+        },
+        "avatar": { "regexp": "https://i\\.pravatar\\.cc/150\\?u=[0-9]{5}" },
+        "userId": 1,
+        "status": { "loremParagraphs": { "minLength": 15, "maxLength": 30 } }
+      },
+      {
+        "name": "just-sain",
+        "contacts": {
+          "facebook": { "regexp": "[a-z]{5,10}@[a-z]{5}\\.[a-z]{2,3}" },
+          "website": { "regexp": "[a-z]{5,10}@[a-z]{5}\\.[a-z]{2,3}" },
+          "vk": { "regexp": "[a-z]{5,10}@[a-z]{5}\\.[a-z]{2,3}" }
+        },
+        "birthDay": {
+          "dateTime": {
+            "min": "1950-01-01T00:00:00Z",
+            "max": "2010-12-31T23:59:59Z"
+          }
+        },
+        "banner": {
+          "regexp": "https://picsum\\.photos/seed/[0-9]{5}/1920/1080"
+        },
+        "avatar": { "regexp": "https://i\\.pravatar\\.cc/150\\?u=[0-9]{5}" },
+        "userId": 1,
+        "status": { "loremParagraphs": { "minLength": 15, "maxLength": 30 } }
+      },
+      {
+        "name": "Ded-Samurai",
+        "contacts": {
+          "facebook": { "regexp": "[a-z]{5,10}@[a-z]{5}\\.[a-z]{2,3}" },
+          "website": { "regexp": "[a-z]{5,10}@[a-z]{5}\\.[a-z]{2,3}" },
+          "vk": { "regexp": "[a-z]{5,10}@[a-z]{5}\\.[a-z]{2,3}" }
+        },
+        "birthDay": {
+          "dateTime": {
+            "min": "1950-01-01T00:00:00Z",
+            "max": "2010-12-31T23:59:59Z"
+          }
+        },
+        "banner": {
+          "regexp": "https://picsum\\.photos/seed/[0-9]{5}/1920/1080"
+        },
+        "avatar": { "regexp": "https://i\\.pravatar\\.cc/150\\?u=[0-9]{5}" },
+        "userId": 1,
+        "status": { "loremParagraphs": { "minLength": 15, "maxLength": 30 } }
+      },
+      {
+        "name": "Ded-Samurai",
+        "contacts": {
+          "facebook": { "regexp": "[a-z]{5,10}@[a-z]{5}\\.[a-z]{2,3}" },
+          "website": { "regexp": "[a-z]{5,10}@[a-z]{5}\\.[a-z]{2,3}" },
+          "vk": { "regexp": "[a-z]{5,10}@[a-z]{5}\\.[a-z]{2,3}" }
+        },
+        "birthDay": {
+          "dateTime": {
+            "min": "1950-01-01T00:00:00Z",
+            "max": "2010-12-31T23:59:59Z"
+          }
+        },
+        "banner": {
+          "regexp": "https://picsum\\.photos/seed/[0-9]{5}/1920/1080"
+        },
+        "avatar": { "regexp": "https://i\\.pravatar\\.cc/150\\?u=[0-9]{5}" },
+        "userId": 1,
+        "status": { "loremParagraphs": { "minLength": 15, "maxLength": 30 } }
+      },
+      {
+        "name": "Ded-Samurai",
+        "contacts": {
+          "facebook": { "regexp": "[a-z]{5,10}@[a-z]{5}\\.[a-z]{2,3}" },
+          "website": { "regexp": "[a-z]{5,10}@[a-z]{5}\\.[a-z]{2,3}" },
+          "vk": { "regexp": "[a-z]{5,10}@[a-z]{5}\\.[a-z]{2,3}" }
+        },
+        "birthDay": {
+          "dateTime": {
+            "min": "1950-01-01T00:00:00Z",
+            "max": "2010-12-31T23:59:59Z"
+          }
+        },
+        "banner": {
+          "regexp": "https://picsum\\.photos/seed/[0-9]{5}/1920/1080"
+        },
+        "avatar": { "regexp": "https://i\\.pravatar\\.cc/150\\?u=[0-9]{5}" },
+        "userId": 1,
+        "status": { "loremParagraphs": { "minLength": 15, "maxLength": 30 } }
+      },
+    ]
   },
 
   "Post": {
@@ -25,20 +176,156 @@
       "belongsTo": "Post"
     }
   },
-  "User": {
-    "name": { "regexp": "[A-Z][a-z]{5,10}" },
-    "avatar": { "regexp": "https://i\\.pravatar\\.cc/150\\?u=[0-9]{5}" },
-    "followed": { "boolean": {} },
-    "status": {
-      "loremSentences": { "minLength": 3, "maxLength": 6 }
-    },
-    "online": {
-      "dateTime": {
-        "min": "2022-05-24T00:00:00Z",
-        "max": "2022-05-28T20:59:59Z"
+  "users": {
+    "items": [
+      {
+        "name": "Ded-Samurai",
+        "id": 1,
+        "uniqueUrlName": null,
+        "photos": {
+          "avatar": { "regexp": "https://i\\.pravatar\\.cc/150\\?u=[0-9]{5}" },
+          "banner": {
+            "regexp": "https://picsum\\.photos/seed/[0-9]{5}/1920/1080"
+          }
+        },
+        "status": { "loremSentences": { "minLength": 3, "maxLength": 6 } },
+        "followed": { "boolean": {} }
+      },
+      {
+        "name": "polorion",
+        "id": 2,
+        "uniqueUrlName": null,
+        "photos": {
+          "avatar": { "regexp": "https://i\\.pravatar\\.cc/150\\?u=[0-9]{5}" },
+          "banner": {
+            "regexp": "https://picsum\\.photos/seed/[0-9]{5}/1920/1080"
+          }
+        },
+        "status": { "loremSentences": { "minLength": 3, "maxLength": 6 } },
+        "followed": { "boolean": {} }
+      },
+      {
+        "name": "SomeNewUser",
+        "id": 3,
+        "uniqueUrlName": null,
+        "photos": {
+          "avatar": { "regexp": "https://i\\.pravatar\\.cc/150\\?u=[0-9]{5}" },
+          "banner": {
+            "regexp": "https://picsum\\.photos/seed/[0-9]{5}/1920/1080"
+          }
+        },
+        "status": "new status",
+        "followed": { "boolean": {} }
+      },
+      {
+        "name": "Some",
+        "id": 4,
+        "uniqueUrlName": null,
+        "photos": {
+          "avatar": { "regexp": "https://i\\.pravatar\\.cc/150\\?u=[0-9]{5}" },
+          "banner": {
+            "regexp": "https://picsum\\.photos/seed/[0-9]{5}/1920/1080"
+          }
+        },
+        "status": {
+          "loremSentences": { "minLength": 3, "maxLength": 6 }
+        },
+        "followed": { "boolean": {} }
+      },
+      {
+        "name": "just-sain",
+        "id": 5,
+        "uniqueUrlName": null,
+        "photos": {
+          "avatar": { "regexp": "https://i\\.pravatar\\.cc/150\\?u=[0-9]{5}" },
+          "banner": {
+            "regexp": "https://picsum\\.photos/seed/[0-9]{5}/1920/1080"
+          }
+        },
+        "status": {
+          "loremSentences": { "minLength": 3, "maxLength": 6 }
+        },
+        "followed": { "boolean": {} }
+      },
+      {
+        "name": "vany-sergey",
+        "id": 6,
+        "uniqueUrlName": null,
+        "photos": {
+          "avatar": { "regexp": "https://i\\.pravatar\\.cc/150\\?u=[0-9]{5}" },
+          "banner": {
+            "regexp": "https://picsum\\.photos/seed/[0-9]{5}/1920/1080"
+          }
+        },
+        "status": {
+          "loremSentences": { "minLength": 3, "maxLength": 6 }
+        },
+        "followed": { "boolean": {} }
+      },
+      {
+        "name": "arstyle95",
+        "id": 24236,
+        "uniqueUrlName": null,
+        "photos": {
+          "avatar": { "regexp": "https://i\\.pravatar\\.cc/150\\?u=[0-9]{5}" },
+          "banner": {
+            "regexp": "https://picsum\\.photos/seed/[0-9]{5}/1920/1080"
+          }
+        },
+        "status": {
+          "loremSentences": { "minLength": 3, "maxLength": 6 }
+        },
+        "followed": { "boolean": {} }
+      },
+      {
+        "name": "kasper29",
+        "id": 24235,
+        "uniqueUrlName": null,
+        "photos": {
+          "avatar": { "regexp": "https://i\\.pravatar\\.cc/150\\?u=[0-9]{5}" },
+          "banner": {
+            "regexp": "https://picsum\\.photos/seed/[0-9]{5}/1920/1080"
+          }
+        },
+        "status": {
+          "loremSentences": { "minLength": 3, "maxLength": 6 }
+        },
+        "followed": { "boolean": {} }
+      },
+      {
+        "name": "Yuhee",
+        "id": 24234,
+        "uniqueUrlName": null,
+        "photos": {
+          "avatar": { "regexp": "https://i\\.pravatar\\.cc/150\\?u=[0-9]{5}" },
+          "banner": {
+            "regexp": "https://picsum\\.photos/seed/[0-9]{5}/1920/1080"
+          }
+        },
+        "status": {
+          "loremSentences": { "minLength": 3, "maxLength": 6 }
+        },
+        "followed": { "boolean": {} }
+      },
+      {
+        "name": "darkwater",
+        "id": 24233,
+        "uniqueUrlName": null,
+        "photos": {
+          "avatar": { "regexp": "https://i\\.pravatar\\.cc/150\\?u=[0-9]{5}" },
+          "banner": {
+            "regexp": "https://picsum\\.photos/seed/[0-9]{5}/1920/1080"
+          }
+        },
+        "status": {
+          "loremSentences": { "minLength": 3, "maxLength": 6 }
+        },
+        "followed": { "boolean": {} }
       }
-    }
+    ]
   },
+  "totalCount": 15,
+  "error": null,
   "Total": {
     "users": { "int": { "min": 15, "max": 100 } },
     "messages": { "int": { "min": 15, "max": 100 } },
@@ -48,3 +335,5 @@
     "text": { "loremParagraphs": { "minLength": 15, "maxLength": 30 } }
   }
 }
+
+
