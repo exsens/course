@@ -1,10 +1,11 @@
-import { TOGGLE_FOLLOW, SET_USERS, SET_TOTAL_USERS, SET_CURRENT_PAGE } from "./users-action.js";
+import { TOGGLE_FOLLOW, SET_USERS, SET_TOTAL_USERS, SET_CURRENT_PAGE, SET_LOADING } from "./users-action.js";
 
 const initialState = {
   users: [],
-  total: 0,
+  totalUsersCount: 0,
   pageSize: 5,
   currentPage: 1,
+  status: 'loading',
 };
 
 export const usersReducer = (state = initialState, { type, payload }) => {
@@ -12,8 +13,16 @@ export const usersReducer = (state = initialState, { type, payload }) => {
     case SET_USERS: {
       return {
         ...state,
-        users: payload
+        users: payload,
+        status: 'fulfilled',
       };
+    }
+
+    case SET_LOADING: {
+      return {
+        ...state,
+        status: 'loading',
+      }
     }
 
     case TOGGLE_FOLLOW: {
@@ -26,7 +35,7 @@ export const usersReducer = (state = initialState, { type, payload }) => {
     case SET_TOTAL_USERS: {
       return {
         ...state,
-        total: payload
+        totalUsersCount: payload
       }
     }
 

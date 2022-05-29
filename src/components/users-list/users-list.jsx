@@ -7,21 +7,15 @@ const UsersList = ({
   pageSize,
   totalUsers,
   currentPage,
-  onSelectPage
+  onSelectPage,
 }) => {
   const pagesTotal = Math.ceil(totalUsers / pageSize);
   const paginations = getPagination(pagesTotal);
 
-  if (!users) <h3>Loading...</h3>;
-
   return (
     <>
       {paginations.map((pagination, idx) => (
-        <Pagination
-          key={idx}
-          currentPage={currentPage}
-          onClick={onSelectPage}
-        >
+        <Pagination key={idx} currentPage={currentPage} onClick={onSelectPage}>
           {pagination}
         </Pagination>
       ))}

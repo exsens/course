@@ -8,16 +8,17 @@ import {
   toggleFollow,
   setTotalUsers,
   selectPage,
+  setLoading,
 } from "../../store/users/users-action.js";
 
 import UsersList from "./users-list.jsx";
+import Preloader from "../preloader/preloader.jsx";
 
 class UserListContainer extends Component {
   componentDidMount() {
-    const { setUsers, setTotalUsers, pageSize, currentPage } = this.props;
+    const { setUsers, setTotalUsers } = this.props;
 
-    axios
-      .get(api.getUsersLimit(pageSize, currentPage))
+    this.loadUsers(axios, api)
       .then((data) => setUsers(data.data))
       .catch((error) => console.error(error));
 
@@ -27,26 +28,41 @@ class UserListContainer extends Component {
       .catch((error) => console.error(error));
   }
 
+  loadUsers = async (client, api) => {
+    this.props.setLoading();
+    const data = await client.get(
+      api.getUsersLimit(this.props.pageSize, this.props.currentPage)
+    );
+    return await data;
+  };
+
   onSelectPage = (id) => {
     this.props.selectPage(id);
 
-    axios
-      .get(api.getUsersLimit(this.props.pageSize, this.props.currentPage))
+    this.loadUsers(axios, api)
       .then((data) => this.props.setUsers(data.data))
       .catch((error) => console.error(error));
-  }
+  };
 
   render() {
-    return <UsersList onSelectPage={this.onSelectPage} {...this.props}/>;
+    const { status } = this.props;
+
+    return (
+      <>
+        {status === "loading"  && <Preloader />}
+        <UsersList onSelectPage={this.onSelectPage} {...this.props} />
+      </>
+    );
   }
 }
 
 const mapStateToProps = ({ usersData }) => {
   return {
     users: usersData.users,
-    totalUsers: usersData.total,
+    totalUsers: usersData.totalUsersCount,
     pageSize: usersData.pageSize,
     currentPage: usersData.currentPage,
+    status: usersData.status,
   };
 };
 
@@ -55,6 +71,7 @@ const mapStateToDispatch = {
   toggleFollow,
   setTotalUsers,
   selectPage,
+  setLoading,
 };
 
 export default connect(mapStateToProps, mapStateToDispatch)(UserListContainer);

@@ -2,6 +2,7 @@ export const TOGGLE_FOLLOW = 'TOGGLE_FOLLOW';
 export const SET_USERS = 'SET_USERS';
 export const SET_TOTAL_USERS = 'SET_TOTAL_USERS';
 export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
+export const SET_LOADING = 'SET_LOADING';
 
 export const toggleFollow = (id) => {
   return {
@@ -28,6 +29,12 @@ export const selectPage = (page) => {
   return {
     type: SET_CURRENT_PAGE,
     payload: page
+  }
+}
+
+export const setLoading = () => {
+  return {
+    type: SET_LOADING,
   }
 }
 
