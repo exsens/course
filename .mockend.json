@@ -160,7 +160,7 @@
         "avatar": { "regexp": "https://i\\.pravatar\\.cc/150\\?u=[0-9]{5}" },
         "userId": 1,
         "status": { "loremParagraphs": { "minLength": 15, "maxLength": 30 } }
-      },
+      }
     ]
   },
 
