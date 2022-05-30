@@ -1,14 +1,23 @@
-import c from './profile-form.module.scss';
+import {addPost, updatePost} from '../../store/profile/profile-action.js'
+import { useDispatch } from 'react-redux';
 
-const ProfileForm = ({ newPost, addPost, updatePost }) => {
-  const handleBlur = () => {
-    addPost();
-    updatePost('');
+import c from './profile-form.module.scss';
+import { useState } from 'react';
+
+const ProfileForm = () => {
+  const [inputPost, setInputPost] = useState('');
+
+  const dispatch = useDispatch();
+
+  const handleBlur = (e) => {
+    const value = e.target.value;
+    dispatch(addPost(value));
+    setInputPost('');
   };
 
   const handleChange = (e) => {
     const value = e.target.value;
-    updatePost(value);
+    setInputPost(value);
   };
 
   return (
@@ -19,6 +28,7 @@ const ProfileForm = ({ newPost, addPost, updatePost }) => {
           type="text"
           onChange={handleChange}
           onBlur={handleBlur}
+          value={inputPost}
         />
       </form>
     </div>

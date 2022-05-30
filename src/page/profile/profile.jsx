@@ -2,44 +2,35 @@ import Banner from '../../components/banner/banner'
 import PostList from '../../components/post-list/posts-list'
 import ProfileContent from '../../components/profile-content/profile-content'
 import ProfileForm from '../../components/profile-form/profile-form'
-import { connect } from 'react-redux'
-import { addPostAction, updatePostAction } from '../../store/profile/profile-action.js';
+import { loadProfile } from '../../store/profile/profile-action.js'
 
 import c from './profile.module.scss'
 import { useParams } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectProfileData } from '../../store/profile/profile-selector.js'
+import Preloader from '../../components/preloader/preloader.jsx'
 
-const Profile = (state) => {
-  const id = useParams()
-  console.log(id)
+const Profile = () => {
+  const dispatch = useDispatch();
+  const profile = useSelector(selectProfileData);
+  const {posts, profileInfo, status} = profile;
+  const {id} = useParams();
 
-  const {profileInfo, posts, newPost, addPost, updatePost} = state;
+  useEffect(function loadProfileInfo() {
+    dispatch(loadProfile(id))
+  }, [id, dispatch]);
+
   return (
     <div className={c.profile}>
-      <Banner banner={profileInfo.banner}/>
+    {status === 'loading' && <Preloader />}
+      {/* <Banner banner={profileInfo.banner}/> */}
       <ProfileContent profileInfo={profileInfo}/>
-      <ProfileForm newPost={newPost} addPost={addPost} updatePost={updatePost}/>
+      <ProfileForm />
       <PostList postsData={posts}/>
     </div>
   )
 };
 
-const mapStateToProps = ({profileData}) => {
-  return {
-    profileInfo: profileData.profileInfo,
-    posts: profileData.posts,
-    newPost: profileData.newPost,
-  }
-};
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addPost: () => {
-      dispatch(addPostAction())
-    },
-    updatePost: (value) => {
-      dispatch(updatePostAction(value))
-    }
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Profile)
+export default Profile;

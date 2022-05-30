@@ -25,10 +25,6 @@ class UserListContainer extends Component {
       })
       .catch((error) => console.error(error));
 
-    // axios
-    //   .get(api.getTotalUsers())
-    //   .then((data) => setTotalUsers(data.data[0].users))
-    //   .catch((error) => console.error(error));
   }
 
   loadUsers = async (client, api) => {
