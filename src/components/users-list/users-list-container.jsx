@@ -21,16 +21,17 @@ class UserListContainer extends Component {
     this.loadUsers(axios, api)
       .then((response) => {
         setUsers(response.data.items);
-        setTotalUsers(response.data.totalCount)
+        setTotalUsers(response.data.totalCount);
       })
       .catch((error) => console.error(error));
-
   }
 
   loadUsers = async (client, api) => {
     this.props.setLoading();
     const data = await client.get(
-      api.getUsersPage(this.props.currentPage, this.props.pageSize)
+      api.getUsersPage(this.props.currentPage, this.props.pageSize), {
+        withCredentials: true,
+      }, 
     );
     return await data;
   };
@@ -48,7 +49,7 @@ class UserListContainer extends Component {
 
     return (
       <>
-        {status === "loading"  && <Preloader />}
+        {status === "loading" && <Preloader />}
         <UsersList onSelectPage={this.onSelectPage} {...this.props} />
       </>
     );

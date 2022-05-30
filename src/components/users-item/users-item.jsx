@@ -3,22 +3,27 @@ import { Link } from "react-router-dom";
 import Button from "../button/button";
 
 import c from "./user-item.module.scss";
+import { useDispatch } from "react-redux";
+import { followUser, unFollowUser } from "../../store/users/users-action.js";
 
 const UsersItem = ({
-  toggleFollow,
   id,
   avatar,
   followed,
   name,
   status,
-  online,
 }) => {
 
-  // const getTime = (date) => {
-  //   const currentTime = new Date();
+  const dispatch = useDispatch();
 
-  //   return Math.floor((currentTime - new Date(date)) / 1000 / 60 / 60);
-  // };
+  const handleToggleFollow = (id) => {
+    if (followed) {
+      dispatch(followUser(id))
+    } else {
+      dispatch(unFollowUser(id))
+    }
+  }
+
 
   return (
     <li className={c.user_item}>
@@ -33,8 +38,8 @@ const UsersItem = ({
               alt={name}
             />
           </Link>
-          <Button onClick={() => toggleFollow(id)} type="button">
-            {followed ? "follow" : "unfollow"}
+          <Button onClick={() => handleToggleFollow(id)} type="button">
+            {!followed ? "follow" : "unfollow"}
           </Button>
         </div>
         <div className={c.user_info}>
@@ -42,9 +47,6 @@ const UsersItem = ({
             <h3 style={{ marginBottom: "15px" }}>{name}</h3>
             <p>{status}</p>
           </div>
-          {/* <div className="user-box">
-            <div>{getTime(online)} ч назад</div>
-          </div> */}
         </div>
       </Flex>
     </li>

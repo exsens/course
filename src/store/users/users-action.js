@@ -45,3 +45,35 @@ export const setLoading = () => {
 
 //   console.log('load')
 // }
+
+export const followUser = (id) => async (dispatch, _, {client, api}) => {
+  try {
+    const request = await client.delete(api.followUser(id), {
+      withCredentials: true,
+      headers: {
+        "API-KEY": '7a305640-b547-4a06-b77e-c4e9d81c2dbc'
+      }
+    })
+    if (request.data.resultCode === 0) {
+      dispatch(toggleFollow(id))
+    }
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export const unFollowUser = (id) => async (dispatch, _, {client, api}) => {
+  try {
+    const request = await client.post(api.followUser(id), {}, {
+      withCredentials: true,
+      headers: {
+        "API-KEY": '7a305640-b547-4a06-b77e-c4e9d81c2dbc'
+      }
+    })
+    if (request.data.resultCode === 0) {
+      dispatch(toggleFollow(id))
+    }
+  } catch (error) {
+    console.error(error)
+  }
+}
