@@ -4,7 +4,7 @@ import Button from "../button/button";
 
 import c from "./user-item.module.scss";
 import { useDispatch } from "react-redux";
-import { followUser, unFollowUser } from "../../store/users/users-action.js";
+import { followUser, unFollowUser, toggleFollowingProgress } from "../../store/users/users-action.js";
 
 const UsersItem = ({
   id,
@@ -12,6 +12,7 @@ const UsersItem = ({
   followed,
   name,
   status,
+  followingInProgress
 }) => {
 
   const dispatch = useDispatch();
@@ -19,11 +20,12 @@ const UsersItem = ({
   const handleToggleFollow = (id) => {
     if (followed) {
       dispatch(followUser(id))
+      dispatch(toggleFollowingProgress(id))
     } else {
       dispatch(unFollowUser(id))
+      dispatch(toggleFollowingProgress(id))
     }
   }
-
 
   return (
     <li className={c.user_item}>
@@ -38,7 +40,10 @@ const UsersItem = ({
               alt={name}
             />
           </Link>
-          <Button onClick={() => handleToggleFollow(id)} type="button">
+          <Button 
+          disabled={followingInProgress.some((el) => el === id)}
+          onClick={() => handleToggleFollow(id)} 
+          type="button">
             {!followed ? "follow" : "unfollow"}
           </Button>
         </div>

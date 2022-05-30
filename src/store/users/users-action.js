@@ -1,8 +1,10 @@
-export const TOGGLE_FOLLOW = "users/TOGGLE_FOLLOW";
 export const SET_USERS = "users/SET_USERS";
 export const SET_TOTAL_USERS = "users/SET_TOTAL_USERS";
 export const SET_CURRENT_PAGE = "users/SET_CURRENT_PAGE";
 export const SET_LOADING = "users/SET_LOADING";
+export const TOGGLE_FOLLOW = "users/TOGGLE_FOLLOW";
+export const TOGGLE_FOLLOW_PROGRESS = "users/TOGGLE_FOLLOW_PROGRESS";
+
 
 export const toggleFollow = (id) => {
   return {
@@ -38,12 +40,20 @@ export const setLoading = () => {
   };
 };
 
+export const toggleFollowingProgress = (id) => {
+  return {
+    type: TOGGLE_FOLLOW_PROGRESS,
+    payload: id,
+  }
+}
+
 // thunk
 
 export const followUser =
   (id) =>
   async (dispatch, _, { client, api }) => {
     try {
+      dispatch(setLoading())
       const request = await client.delete(api.followUser(id), {
         withCredentials: true,
         headers: {
@@ -52,6 +62,7 @@ export const followUser =
       });
       if (request.data.resultCode === 0) {
         dispatch(toggleFollow(id));
+        dispatch(toggleFollowingProgress(id));
       }
     } catch (error) {
       console.error(error);
@@ -62,6 +73,7 @@ export const unFollowUser =
   (id) =>
   async (dispatch, _, { client, api }) => {
     try {
+      dispatch(setLoading())
       const request = await client.post(
         api.followUser(id),
         {},
@@ -74,6 +86,7 @@ export const unFollowUser =
       );
       if (request.data.resultCode === 0) {
         dispatch(toggleFollow(id));
+        dispatch(toggleFollowingProgress(id));
       }
     } catch (error) {
       console.error(error);

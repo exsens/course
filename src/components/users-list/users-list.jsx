@@ -10,7 +10,7 @@ import Pagination from "../pagination/pagination.jsx";
 
 const UsersList = () => {
   const dispatch = useDispatch();
-  const {pageSize, currentPage, totalUsersCount, users, status} = useSelector(selectUsers)
+  const {pageSize, currentPage, totalUsersCount, users, status, followingInProgress} = useSelector(selectUsers)
   const pagesTotal = Math.ceil(totalUsersCount / pageSize);
   const paginations = getPagination(pagesTotal);
 
@@ -31,7 +31,7 @@ const UsersList = () => {
         </Pagination>
       ))}
       {users.map((user) => (
-        <UsersItem key={user.id} toggleFollow={toggleFollow} {...user} />
+        <UsersItem key={user.id} toggleFollow={toggleFollow} followingInProgress={followingInProgress} {...user} />
       ))}
     </>
   );
