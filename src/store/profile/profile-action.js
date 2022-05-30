@@ -1,7 +1,7 @@
-export const ADD_POST = "ADD_POST";
-export const UPDATE_NEW_POST = "UPDATE_NEW_POST";
-export const SET_PROFILE = "SET_PROFILE";
-export const SET_LOADING = "SET_LOADING";
+export const ADD_POST = "profile/ADD_POST";
+export const UPDATE_NEW_POST = "profile/UPDATE_NEW_POST";
+export const SET_PROFILE = "profile/SET_PROFILE";
+export const SET_LOADING = "profile/SET_LOADING";
 
 export const addPost = (text) => ({ type: ADD_POST, payload: text });
 
