@@ -6,9 +6,9 @@ const WithRequireAuth = ({ children }) => {
   const auth = useSelector(selectIsAuth);
   const location = useLocation();
 
-  if (!auth) {
-    return <Navigate to="/login" state={{ from: location }} />;
-  }
+  // if (!auth) {
+  //   return <Navigate to="/login" state={{ from: location }} />;
+  // }
 
   return children;
 };

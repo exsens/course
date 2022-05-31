@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { updateStatus } from "../../store/profile/profile-action.js";
 
-const ProfileStatus = ({status = 'Your status'}) => {
+const ProfileStatus = ({status = ''}) => {
   const dispatch = useDispatch();
-  const [statusValue, setStatusValue] = useState(status);
+  const [statusValue, setStatusValue] = useState('');
   const [activeEditMode, setActiveEditMode] = useState(false);
 
   const handleToggleEditStatus = () => {
@@ -20,7 +20,11 @@ const ProfileStatus = ({status = 'Your status'}) => {
     const value = e.target.value;
     dispatch(updateStatus(value))
     setActiveEditMode(!activeEditMode);
-  }
+  };
+
+  useEffect(function getStatusValue() {
+    setStatusValue(status)
+  }, [status])
 
   return (
     <div>
