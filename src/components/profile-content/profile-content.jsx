@@ -1,4 +1,5 @@
 import Description from '../description/description.jsx'
+import ProfileStatus from '../profile-status/profile-status.jsx';
 import c from './profile-content.module.scss';
 
 const ProfileContent = ({profileInfo}) => {
@@ -16,6 +17,7 @@ const ProfileContent = ({profileInfo}) => {
       </div>
       <div className={c.profile__info}>
         <h2 className={c.profile__name}>{fullName}</h2>
+        <ProfileStatus />
         {/* <Description info={info} /> */}
       </div>
     </div>

@@ -4,7 +4,7 @@ import Profile from "../../page/profile/profile.jsx";
 import Dialogs from "../../page/dialogs/dialogs.jsx";
 import Users from "../../page/users/users.jsx";
 import Login from "../../page/login/login.jsx";
-import RequireAuth from "../../hoc/requireAuth.jsx";
+import WithRequireAuth from "../../hoc/withRequireAuth.jsx";
 
 import c from "./content.module.scss";
 
@@ -15,25 +15,25 @@ const Content = () => {
         <Route
           path="profile/*"
           element={
-            <RequireAuth>
+            <WithRequireAuth>
               <Profile />
-            </RequireAuth>
+            </WithRequireAuth>
           }
         />
         <Route
           path="profile/:id"
           element={
-            <RequireAuth>
+            <WithRequireAuth>
               <Profile />
-            </RequireAuth>
+            </WithRequireAuth>
           }
         />
         <Route
           path="dialogs/*"
           element={
-            <RequireAuth>
+            <WithRequireAuth>
               <Dialogs />
-            </RequireAuth>
+            </WithRequireAuth>
           }
         />
         <Route path="users" element={<Users />} />

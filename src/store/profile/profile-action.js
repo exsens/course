@@ -2,12 +2,15 @@ export const ADD_POST = "profile/ADD_POST";
 export const UPDATE_NEW_POST = "profile/UPDATE_NEW_POST";
 export const SET_PROFILE = "profile/SET_PROFILE";
 export const SET_LOADING = "profile/SET_LOADING";
+export const SET_STATUS = "profile/SET_STATUS";
 
 export const addPost = (text) => ({ type: ADD_POST, payload: text });
 
 const setProfile = (data) => ({ type: SET_PROFILE, payload: data });
 
 const setLoading = () => ({ type: SET_LOADING });
+
+const setStatus = (text) => ({type: SET_STATUS, payload: text});
 
 export const loadProfile =
   (id) =>
