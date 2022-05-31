@@ -4,7 +4,7 @@ import { getAuth } from '../../store/auth/auth-action.js';
 import { selectIsAuth } from '../../store/auth/auth-select.js';
 
 import Logo from '../../components/logo/logo';
-import Login from '../../components/login/login.jsx';
+import LoginBar from '../../components/login-bar/login-bar.jsx';
 
 import c from './header.module.scss';
 
@@ -19,7 +19,7 @@ const Header = () => {
   return (
     <header className={c.header}>
       <Logo />
-      <Login isAuth={isAuth}/>
+      <LoginBar isAuth={isAuth}/>
     </header>
   )
 }

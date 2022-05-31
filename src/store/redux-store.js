@@ -3,6 +3,7 @@ import thunk from "redux-thunk";
 import axios from "axios";
 import * as api from "../api/config";
 
+import { reducer as formReducer } from 'redux-form';
 import { profileReducer } from "./profile/profile-reducer.js";
 import { dialogsReducer } from "./dialogs/dialogs-reducer.js";
 import { navbarReducer } from "./navbar/navbar-reducer.js";
@@ -10,6 +11,7 @@ import { usersReducer } from "./users/users-reducer.js";
 import { authReducer } from "./auth/auth-reducer.js";
 
 const rootReducers = combineReducers({
+  form: formReducer,
   profileData: profileReducer,
   dialogsData: dialogsReducer,
   sidebar: navbarReducer,

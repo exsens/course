@@ -1,16 +1,14 @@
-import Button from "../../components/button/button.jsx";
-import Input from "../../components/input/input.jsx";
-
-import c from "./login.module.scss";
+import LoginForm from '../../components/login-form/login-form.jsx';
+import c from './login.module.scss'
 
 const Login = () => {
+  const onSubmit = (formData) => {
+    console.log(formData)
+  }
+
   return (
     <div className={c.login}>
-      <form className={c.form}>
-        <Input style={{marginBottom: '25px'}} type={"text"} placeholder={"login?"} name={"login"} />
-        <Input type={"password"} placeholder={"password"} name={"password"} />
-        <Button>Sign in</Button>
-      </form>
+     <LoginForm onSubmit={onSubmit}/>
     </div>
   );
 };

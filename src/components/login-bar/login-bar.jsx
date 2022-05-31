@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 
-const Login = ({ isAuth }) => {
+const LoginBar = ({ isAuth }) => {
   return (
     <>{!isAuth ? <Link to="/login">Login</Link> : <span>Quit</span>}</>
   );
 };
 
-export default Login;
+export default LoginBar;
