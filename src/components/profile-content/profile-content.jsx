@@ -3,8 +3,7 @@ import ProfileStatus from '../profile-status/profile-status.jsx';
 import c from './profile-content.module.scss';
 
 const ProfileContent = ({profileInfo}) => {
-  const {fullName, avatar, info} = profileInfo;
-
+  const {fullName, avatar, info, status} = profileInfo;
   return (
     <div className={c.profile_content__inner}>
       <div className={c.profile_content__img}>
@@ -17,7 +16,7 @@ const ProfileContent = ({profileInfo}) => {
       </div>
       <div className={c.profile__info}>
         <h2 className={c.profile__name}>{fullName}</h2>
-        <ProfileStatus />
+        <ProfileStatus status={status}/>
         {/* <Description info={info} /> */}
       </div>
     </div>

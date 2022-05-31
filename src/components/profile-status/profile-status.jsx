@@ -1,27 +1,26 @@
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { selectProfileInfo } from "../../store/profile/profile-selector.js";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { updateStatus } from "../../store/profile/profile-action.js";
 
-const ProfileStatus = () => {
+const ProfileStatus = ({status = 'Your status'}) => {
   const dispatch = useDispatch();
-  const { status = '' } = useSelector(selectProfileInfo);
   const [statusValue, setStatusValue] = useState(status);
   const [activeEditMode, setActiveEditMode] = useState(false);
 
   const handleToggleEditStatus = () => {
     setActiveEditMode(!activeEditMode);
-    
   };
 
   const handleInputStatus = (e) => {
     const value = e.target.value;
-    setStatusValue(value);
+    setStatusValue(value)
   };
 
-
-  useEffect(() => {
-    setStatusValue(status)
-  }, [status])
+  const handleUpdateStatus = (e) => {
+    const value = e.target.value;
+    dispatch(updateStatus(value))
+    setActiveEditMode(!activeEditMode);
+  }
 
   return (
     <div>
@@ -32,10 +31,10 @@ const ProfileStatus = () => {
           type="text"
           placeholder="status?"
           onChange={handleInputStatus}
-          onBlur={handleToggleEditStatus}
+          onBlur={handleUpdateStatus}
         />
       ) : (
-        <span onDoubleClick={handleToggleEditStatus}>{statusValue}</span>
+        <span onDoubleClick={handleToggleEditStatus}>{status || 'your status'}</span>
       )}
     </div>
   );

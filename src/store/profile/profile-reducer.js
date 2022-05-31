@@ -8,7 +8,7 @@ import {
 
 const initialState = {
   profileInfo: {
-    id: 24242,
+    id: 24252,
     fullName: "",
     banner:
       "https://img3.goodfon.com/original/4368x2912/1/2f/ozero-gory-lesa-derevya.jpg",
@@ -20,7 +20,7 @@ const initialState = {
     //   { title: 'Education', info: 'SU 11' },
     //   { title: 'website', info: 'www.www.ru' },
     // ],
-    status: "blabla"
+    status: "",
   },
 
   posts: [
