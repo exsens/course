@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../button/button.jsx";
+import Button from "../../button/button.jsx";
 import { Field, reduxForm } from "redux-form";
 
 import c from "./login-form.module.scss";
