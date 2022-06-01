@@ -12,10 +12,11 @@ const Login = () => {
   const dispatch = useDispatch();
   const isAuth = useSelector(selectIsAuth);
 
-  const handleSubmit = ({ email, password, rememberMe }) => {
+  const handleSubmit = ({ email, password, rememberMe}) => {
     dispatch(logIn(email, password, rememberMe));
+    console.log(1)
   };
-  
+
   if (isAuth) {
     return <Navigate to={location || "/profile"} />;
   }
@@ -26,5 +27,9 @@ const Login = () => {
     </div>
   );
 };
+
+const fn = (s) => {
+  console.log(s)
+}
 
 export default Login;

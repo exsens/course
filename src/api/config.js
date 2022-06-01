@@ -8,7 +8,10 @@ export const updateUserStatus = () => `${BASE_URL}profile/status`;
 export const getAuthMe = () => `${BASE_URL}auth/me`;
 export const getAuthLogin = () => `${BASE_URL}auth/login`;
 
-export const followUser = (id) => `${BASE_URL}follow/${id}`
+export const getCaptcha = () => `${BASE_URL}security/get-captcha-url`
+
+export const followUser = (id) => `${BASE_URL}follow/${id}`;
+
 
 // export const getUsersLimit = (limit, offset) => `${BASE_URL}users?limit=${limit}&${offset}`
 // export const getUsersLimit = (limit, offset) => `${BASE_URL}users?limit=${limit}&${offset}`

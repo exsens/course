@@ -1,18 +1,22 @@
+import { stopSubmit } from "redux-form";
+
 export const SET_AUTH_DATA = "auth/SET_AUTH_DATA";
 export const RESET_AUTH_DATA = "auth/RESET_AUTH_DATA";
 
-const setAuthData = ({ id: userId , email, login, isAuth = true}) => {
+const setAuthData = ({ id: userId, email, login, isAuth = true }) => {
   return {
     type: SET_AUTH_DATA,
-    payload: { userId, email, login, isAuth},
+    payload: { userId, email, login, isAuth },
   };
 };
 
 const resetAuthData = () => {
   return {
     type: RESET_AUTH_DATA,
-  }
-}
+  };
+};
+
+//           thunk
 
 export const getAuth =
   () =>
@@ -22,7 +26,7 @@ export const getAuth =
         withCredentials: true,
       });
       if (request.data.resultCode === 0) {
-        dispatch(setAuthData({...request.data.data }));
+        dispatch(setAuthData({ ...request.data.data }));
       }
     } catch (error) {
       console.error(error);
@@ -48,22 +52,31 @@ export const logIn =
         }
       );
       if (data.resultCode === 0) {
-        dispatch(getAuth())
+        dispatch(getAuth());
+      } else if (data.resultCode === 10) {
+        const {data: {messages = 'send captcha', url}} = await client.get(api.getCaptcha())
+        dispatch(stopSubmit("login", { _error: {url, messages}}))
+      } else {
+        let messages = data.messages.length ? data.messages[0] : "Some error";
+        dispatch(stopSubmit("login", { _error: {messages} }));
       }
-
     } catch (error) {
       console.log(error);
     }
   };
 
-export const logOut = () => async (dispatch, _, {client, api}) => {
-  try {
-    const { data: {resultCode, messages} } = await client.delete(api.getAuthLogin())
+export const logOut =
+  () =>
+  async (dispatch, _, { client, api }) => {
+    try {
+      const {
+        data: { resultCode, messages },
+      } = await client.delete(api.getAuthLogin());
 
-    if (!resultCode) {
-      dispatch(resetAuthData())
+      if (!resultCode) {
+        dispatch(resetAuthData());
+      }
+    } catch (error) {
+      console.error(error);
     }
-  } catch (error) {
-    console.error(error)
-  }
-}
+  };
