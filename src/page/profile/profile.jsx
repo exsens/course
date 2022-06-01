@@ -2,12 +2,12 @@ import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectProfileData } from "../../store/profile/profile-selector.js";
-import { getStatus, loadProfile } from "../../store/profile/profile-action.js";
+import { getStatus, loadProfile, addPost } from "../../store/profile/profile-action.js";
 
 import Banner from "../../components/banner/banner";
 import PostList from "../../components/post-list/posts-list";
 import ProfileContent from "../../components/profile-content/profile-content";
-import ProfileForm from "../../components/forms/profile-form/profile-form";
+import PostForm from "../../components/forms/post-form/post-form";
 import Preloader from "../../components/preloader/preloader.jsx";
 
 import c from "./profile.module.scss";
@@ -17,6 +17,11 @@ const Profile = () => {
   const profile = useSelector(selectProfileData);
   const { posts, profileInfo, status } = profile;
   const { id = 24252 } = useParams();
+
+  const handleSubmitPost = (formData) => {
+    const value = formData.currentTarget.value;
+    dispatch(addPost(value));
+  }
 
   useEffect(
     function loadProfileInfo() {
@@ -38,7 +43,7 @@ const Profile = () => {
       {/* <Banner banner={profileInfo.banner}/> */}
       <ProfileContent profileInfo={profileInfo} />
       <h3>My posts</h3>
-      <ProfileForm />
+      <PostForm onBlur={handleSubmitPost}/>
       <PostList postsData={posts} />
     </div>
   );

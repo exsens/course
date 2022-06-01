@@ -1,6 +1,6 @@
 import Flex from "../flex/flex.jsx";
 import { Link } from "react-router-dom";
-import Button from "../button/button";
+import Button from "../common/button/button.jsx"
 
 import c from "./user-item.module.scss";
 import { useDispatch } from "react-redux";

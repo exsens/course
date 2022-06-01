@@ -19,3 +19,10 @@
   display: block;
   padding: 7px 0;
 }
+
+.warning {
+  color: red;
+  input {
+    border-color: red;
+  }
+}
