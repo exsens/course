@@ -5,7 +5,8 @@ export const getProfileById = (id) => `${BASE_URL}profile/${id}`;
 export const getUserStatusById = (id) => `${BASE_URL}profile/status/${id}`;
 export const updateUserStatus = () => `${BASE_URL}profile/status`;
 
-export const authMe = () => `${BASE_URL}auth/me/`;
+export const getAuthMe = () => `${BASE_URL}auth/me`;
+export const getAuthLogin = () => `${BASE_URL}auth/login`;
 
 export const followUser = (id) => `${BASE_URL}follow/${id}`
 

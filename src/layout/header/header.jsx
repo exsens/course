@@ -14,7 +14,7 @@ const Header = () => {
 
   useEffect(function loadAuthData(){
     dispatch(getAuth())
-  }, [isAuth, dispatch])
+  }, [])
 
   return (
     <header className={c.header}>

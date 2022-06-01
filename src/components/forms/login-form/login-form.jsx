@@ -11,26 +11,26 @@ import c from "./login-form.module.scss";
 
 
 const LoginForm = (props) => {
-  const { handleSubmit } = props;
+  const {handleSubmit} = props;
 
   return (
-    <form className={c.form} onSubmit={handleSubmit}>
+    <form className={c.form} onSubmit={handleSubmit} >
       <Field
         className={c.input}
-        name="login"
+        name="email"
         component={Input}
         type="text"
         warn={required}
-        placeholder="Login?"
-        validate={[required, minLength5, maxLength10]}
+        placeholder="email?"
+        validate={[required]}
       />
       <Field
         className={c.input}
         name="password"
         component={Input}
         type="password"
-        placeholder="Password?"
-        validate={[required, minLength5, maxLength10]}
+        placeholder="password?"
+        validate={[required, minLength5]}
       />
       <label className={c.checkbox_label} htmlFor="remember">
         <Field name="remember" component="input" type="checkbox" />
@@ -41,7 +41,6 @@ const LoginForm = (props) => {
   );
 };
 
-const maxLength10 = maxLength(10);
 const minLength5 = minLength(5)
 
 export default reduxForm({

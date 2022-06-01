@@ -1,8 +1,7 @@
-import { SET_AUTH_DATA } from "./auth-action.js";
+import { SET_AUTH_DATA, RESET_AUTH_DATA } from "./auth-action.js";
 
 const initialState = {
   userId: null,
-  login: null,
   email: null,
   isAuth: false,
 }
@@ -13,8 +12,10 @@ export const authReducer = (state = initialState, {type, payload}) => {
       return {
         ...state ,
         ...payload,
-        isAuth: true,
       }
+
+    case RESET_AUTH_DATA: 
+      return initialState;
 
     default:
       return state;
