@@ -11,12 +11,14 @@ import PostForm from "../../components/forms/post-form/post-form";
 import Preloader from "../../components/preloader/preloader.jsx";
 
 import c from "./profile.module.scss";
+import { selectUserId } from "../../store/auth/auth-select.js";
 
 const Profile = () => {
   const dispatch = useDispatch();
   const profile = useSelector(selectProfileData);
+  const userId = useSelector(selectUserId)
   const { posts, profileInfo, status } = profile;
-  const { id = 24252 } = useParams();
+  const id = useParams().id || userId;
 
   const handleSubmitPost = (formData) => {
     const value = formData.currentTarget.value;

@@ -9,8 +9,10 @@ import { dialogsReducer } from "./dialogs/dialogs-reducer.js";
 import { navbarReducer } from "./navbar/navbar-reducer.js";
 import { usersReducer } from "./users/users-reducer.js";
 import { authReducer } from "./auth/auth-reducer.js";
+import { appReducer } from "./app/app-reducer.js";
 
 const rootReducers = combineReducers({
+  app: appReducer,
   form: formReducer,
   profileData: profileReducer,
   dialogsData: dialogsReducer,

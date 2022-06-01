@@ -8,13 +8,12 @@ import { selectIsAuth } from "../../store/auth/auth-select.js";
 import c from "./login.module.scss";
 
 const Login = () => {
-  const location = useLocation().state.from.pathname;
+  const location = useLocation().state?.from?.pathname;
   const dispatch = useDispatch();
   const isAuth = useSelector(selectIsAuth);
 
   const handleSubmit = ({ email, password, rememberMe}) => {
     dispatch(logIn(email, password, rememberMe));
-    console.log(1)
   };
 
   if (isAuth) {

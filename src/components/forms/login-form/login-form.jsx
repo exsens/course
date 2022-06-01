@@ -14,7 +14,7 @@ import c from "./login-form.module.scss";
 
 const LoginForm = (props) => {
   const { handleSubmit, error } = props;
-  console.log(error);
+  
   return (
     <form className={c.form} onSubmit={handleSubmit}>
       <Field

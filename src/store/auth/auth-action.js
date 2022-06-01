@@ -54,11 +54,13 @@ export const logIn =
       if (data.resultCode === 0) {
         dispatch(getAuth());
       } else if (data.resultCode === 10) {
-        const {data: {messages = 'send captcha', url}} = await client.get(api.getCaptcha())
-        dispatch(stopSubmit("login", { _error: {url, messages}}))
+        const {
+          data: { messages = "send captcha", url },
+        } = await client.get(api.getCaptcha());
+        dispatch(stopSubmit("login", { _error: { url, messages } }));
       } else {
         let messages = data.messages.length ? data.messages[0] : "Some error";
-        dispatch(stopSubmit("login", { _error: {messages} }));
+        dispatch(stopSubmit("login", { _error: { messages } }));
       }
     } catch (error) {
       console.log(error);
@@ -71,7 +73,12 @@ export const logOut =
     try {
       const {
         data: { resultCode, messages },
-      } = await client.delete(api.getAuthLogin());
+      } = await client.delete(api.getAuthLogin(), {
+        withCredentials: true,
+        headers: {
+          "API-KEY": "7a305640-b547-4a06-b77e-c4e9d81c2dbc",
+        },
+      });
 
       if (!resultCode) {
         dispatch(resetAuthData());
