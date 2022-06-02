@@ -27,8 +27,4 @@ const Login = () => {
   );
 };
 
-const fn = (s) => {
-  console.log(s)
-}
-
 export default Login;

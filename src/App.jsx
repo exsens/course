@@ -7,7 +7,7 @@ import { selectIsAuth } from "./store/auth/auth-select.js";
 
 
 import Preloader from "./components/preloader/preloader.jsx";
-import Container from "./components/container/container.jsx";
+import Container from "./components/common/container/container.jsx"
 import Header from "./layout/header/header";
 import Sidebar from "./layout/sidebar/sidebar.jsx";
 import Content from "./layout/content/content";

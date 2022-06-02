@@ -1,3 +1,7 @@
+.list {
+  display: flex;
+}
+
 .item {
   padding: 10px;
   cursor: pointer;
@@ -9,7 +13,6 @@
 
 .active {
   font-weight: bold;
-  font-size: 18px;
   
   &:not(:last-child) {
     margin-right: 10px;

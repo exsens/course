@@ -27,7 +27,7 @@ export const setTotalUsers = (data) => {
   };
 };
 
-export const selectPage = (page) => {
+export const selectUserPage = (page) => {
   return {
     type: SET_CURRENT_PAGE,
     payload: page,
