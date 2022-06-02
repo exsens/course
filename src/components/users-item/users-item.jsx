@@ -1,10 +1,16 @@
+import { useDispatch, useSelector } from "react-redux";
+import {
+  followUser,
+  unFollowUser,
+  toggleFollowingProgress,
+} from "../../store/users/users-action.js";
+import { selectIsAuth } from "../../store/auth/auth-select.js";
+
 import Flex from "../flex/flex.jsx";
 import { Link } from "react-router-dom";
-import Button from "../common/button/button.jsx"
+import Button from "../common/button/button.jsx";
 
 import c from "./user-item.module.scss";
-import { useDispatch } from "react-redux";
-import { followUser, unFollowUser, toggleFollowingProgress } from "../../store/users/users-action.js";
 
 const UsersItem = ({
   id,
@@ -12,20 +18,20 @@ const UsersItem = ({
   followed,
   name,
   status,
-  followingInProgress
+  followingInProgress,
 }) => {
-
   const dispatch = useDispatch();
+  const isAuth = useSelector(selectIsAuth);
 
   const handleToggleFollow = (id) => {
     if (followed) {
-      dispatch(followUser(id))
-      dispatch(toggleFollowingProgress(id))
+      dispatch(followUser(id));
+      dispatch(toggleFollowingProgress(id));
     } else {
-      dispatch(unFollowUser(id))
-      dispatch(toggleFollowingProgress(id))
+      dispatch(unFollowUser(id));
+      dispatch(toggleFollowingProgress(id));
     }
-  }
+  };
 
   return (
     <li className={c.user_item}>
@@ -40,12 +46,15 @@ const UsersItem = ({
               alt={name}
             />
           </Link>
-          <Button 
-          disabled={followingInProgress.some((el) => el === id)}
-          onClick={() => handleToggleFollow(id)} 
-          type="button">
-            {!followed ? "follow" : "unfollow"}
-          </Button>
+          {isAuth && (
+            <Button
+              disabled={followingInProgress.some((el) => el === id)}
+              onClick={() => handleToggleFollow(id)}
+              type="button"
+            >
+              {!followed ? "follow" : "unfollow"}
+            </Button>
+          )}
         </div>
         <div className={c.user_info}>
           <div className="user-box">

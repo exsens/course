@@ -20,11 +20,6 @@ const Profile = () => {
   const { posts, profileInfo, status } = profile;
   const id = useParams().id || userId;
 
-  const handleSubmitPost = (formData) => {
-    const value = formData.currentTarget.value;
-    dispatch(addPost(value));
-  }
-
   useEffect(
     function loadProfileInfo() {
       dispatch(loadProfile(id));
@@ -45,7 +40,7 @@ const Profile = () => {
       {/* <Banner banner={profileInfo.banner}/> */}
       <ProfileContent profileInfo={profileInfo} />
       <h3>My posts</h3>
-      <PostForm onBlur={handleSubmitPost}/>
+      <PostForm/>
       <PostList postsData={posts} />
     </div>
   );
