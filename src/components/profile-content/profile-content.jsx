@@ -1,26 +1,41 @@
-import Description from '../description/description.jsx'
-import ProfileStatus from '../profile-status/profile-status.jsx';
-import c from './profile-content.module.scss';
+import { useDispatch } from "react-redux";
+import { loadUserAvatar } from "../../store/profile/profile-action.js";
+// import Description from "../description/description.jsx";
+import ProfileStatus from "../profile-status/profile-status.jsx";
+import c from "./profile-content.module.scss";
 
-const ProfileContent = ({profileInfo}) => {
-  const {fullName, avatar, info, status} = profileInfo;
+const ProfileContent = ({ profileInfo }) => {
+  const dispatch = useDispatch();
+  const { fullName, photos, info, status } = profileInfo;
+
+  const handleChangeAvatar = (e) => {
+    if (e.target.files.length) {
+      dispatch(loadUserAvatar(e.target.files[0]));
+    }
+  };
+
   return (
-    <div className={c.profile_content__inner}>
-      <div className={c.profile_content__img}>
+    <div>
+      <div className={c.profile__info}>
+        <h2 className={c.profile__name}>{fullName}</h2>
+        <ProfileStatus status={status} />
+        {/* <Description info={info} /> */}
+      </div>
+      <div className={c.profile_content__img_control}>
         <img
-          src={avatar || 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Good_dog.jpg/1200px-Good_dog.jpg'}
+          src={
+            photos?.small ||
+            "https://yur-info.ru/media/k2/items/cache/e02fde07d49ee258cc3f6d1b19207757_XL.jpg"
+          }
           alt="dog"
           width="50"
           height="50"
-          style={{ width: '100px', height: '100px' }} />
-      </div>
-      <div className={c.profile__info}>
-        <h2 className={c.profile__name}>{fullName}</h2>
-        <ProfileStatus status={status}/>
-        {/* <Description info={info} /> */}
+          style={{ width: "100px", height: "100px" }}
+        />
+        <input type="file" onChange={handleChangeAvatar} />
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default ProfileContent;

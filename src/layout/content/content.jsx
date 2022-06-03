@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 import Dialogs from "../../page/dialogs/dialogs.jsx";
 import Users from "../../page/users/users.jsx";
@@ -7,8 +7,8 @@ import WithRequireAuth from "../../hoc/withRequireAuth.jsx";
 
 import c from "./content.module.scss";
 
-const Profile = React.lazy(() => import("../../page/profile/profile.jsx"));
-const Login = React.lazy(() => import("../../page/login/login.jsx"));
+const Profile = lazy(() => import("../../page/profile/profile.jsx"));
+const Login = lazy(() => import("../../page/login/login.jsx"));
 
 const Content = () => {
   return (

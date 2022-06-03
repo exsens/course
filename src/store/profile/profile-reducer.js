@@ -3,7 +3,8 @@ import {
   UPDATE_NEW_POST,
   SET_PROFILE,
   SET_LOADING,
-  SET_STATUS
+  SET_STATUS,
+  SET_AVATAR
 } from "./profile-action.js";
 
 const initialState = {
@@ -12,8 +13,6 @@ const initialState = {
     fullName: "",
     banner:
       "https://img3.goodfon.com/original/4368x2912/1/2f/ozero-gory-lesa-derevya.jpg",
-    avatar:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Good_dog.jpg/1200px-Good_dog.jpg",
     // info: [
     //   { title: 'Date of Birth', info: '19.02.1956' },
     //   { title: 'City', info: 'Minsk' },
@@ -87,6 +86,13 @@ export const profileReducer = (state = initialState, { type, payload }) => {
         ...state,
         status: "loading",
       };
+    }
+
+    case SET_AVATAR: {
+      return {
+        ...state,
+        profileInfo: {...state.profileInfo, photos: payload}
+      }
     }
 
     default:
