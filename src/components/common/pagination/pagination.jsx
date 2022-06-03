@@ -1,33 +1,57 @@
+import { useState } from "react";
+import Flex from "../../flex/flex.jsx";
+
 import c from "./pagination.module.scss";
 
 export const Pagination = ({
-  pageInfo: { totalItemsCount, pageSize, currentPage },
+  pageInfo: { totalItemsCount, pageSize, currentPage, portionSize = 10 },
   onSelectPage,
 }) => {
+  const [portionNumber, setPortionNumber] = useState(1);
   const pagesTotal = Math.ceil(totalItemsCount / pageSize);
-  const paginations = getPagination(pagesTotal);
+  const portionTotal = Math.ceil(pagesTotal / portionSize);
+  const leftPortionNumber = (portionNumber - 1) * portionSize + 1;
+  const rightPortionNumber = portionNumber * portionSize;
+  const paginations = getPagination(totalItemsCount);
 
   return (
-    <ul className={c.list}>
-      {paginations.map((pagination, idx) => (
-        <li className={currentPage === pagination ? `${c.item} ${c.active}` : c.item} key={idx} onClick={() => onSelectPage(pagination)}>
-        {pagination}
-        </li>
-      ))}
-    </ul>
+    <Flex style={{alignItems: 'center'}}>
+      {leftPortionNumber > 1 && <button type="button" onClick={() => setPortionNumber(portionNumber - 1)}>Prev</button>}
+      <ul className={c.list}>
+        {paginations
+          .filter(
+            (pagination) =>
+              pagination >= leftPortionNumber &&
+              pagination <= rightPortionNumber
+          )
+          .map((pagination, idx) => (
+            <li
+              className={
+                currentPage === pagination ? `${c.item} ${c.active}` : c.item
+              }
+              key={idx}
+              onClick={() => onSelectPage(pagination)}
+            >
+              {pagination}
+            </li>
+          ))}
+      </ul>
+      {rightPortionNumber < portionTotal && (
+        <button
+          type="button"
+          onClick={() => setPortionNumber(portionNumber + 1)}
+        >
+          Next
+        </button>
+      )}
+    </Flex>
   );
 };
 
-const getPagination = (pagesTotal) => {
+const getPagination = (totalItemsCount) => {
   const pages = [];
-  for (let i = 1; i < 6; i++) {
-    if (i <= 3) {
-      pages.push(i);
-    } else if (i === 4) {
-      pages.push("...");
-    } else {
-      pages.push(pagesTotal);
-    }
+  for (let i = 1; i <= totalItemsCount; i++) {
+    pages.push(i);
   }
   return pages;
 };
