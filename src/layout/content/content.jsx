@@ -1,12 +1,14 @@
+import React, { Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
-
-import Profile from "../../page/profile/profile.jsx";
 import Dialogs from "../../page/dialogs/dialogs.jsx";
 import Users from "../../page/users/users.jsx";
-import Login from "../../page/login/login.jsx";
+import Preloader from "../../components/preloader/preloader.jsx";
 import WithRequireAuth from "../../hoc/withRequireAuth.jsx";
 
 import c from "./content.module.scss";
+
+const Profile = React.lazy(() => import("../../page/profile/profile.jsx"));
+const Login = React.lazy(() => import("../../page/login/login.jsx"));
 
 const Content = () => {
   return (
@@ -15,17 +17,21 @@ const Content = () => {
         <Route
           path="profile/*"
           element={
-            <WithRequireAuth>
-              <Profile />
-            </WithRequireAuth>
+            <Suspense fallback={<Preloader />}>
+              <WithRequireAuth>
+                <Profile />
+              </WithRequireAuth>
+            </Suspense>
           }
         />
         <Route
           path="profile/:id"
           element={
-            <WithRequireAuth>
-              <Profile />
-            </WithRequireAuth>
+            <Suspense fallback={<Preloader />}>
+              <WithRequireAuth>
+                <Profile />
+              </WithRequireAuth>
+            </Suspense>
           }
         />
         <Route
@@ -37,7 +43,14 @@ const Content = () => {
           }
         />
         <Route path="users" element={<Users />} />
-        <Route path="login" element={<Login />} />
+        <Route
+          path="login"
+          element={
+            <Suspense fallback={<Preloader />}>
+              <Login />
+            </Suspense>
+          }
+        />
       </Routes>
     </main>
   );
