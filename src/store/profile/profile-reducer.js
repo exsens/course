@@ -9,7 +9,7 @@ import {
 
 const initialState = {
   profileInfo: {
-    id: 24252,
+    id: '',
     fullName: "",
     banner:
       "https://img3.goodfon.com/original/4368x2912/1/2f/ozero-gory-lesa-derevya.jpg",

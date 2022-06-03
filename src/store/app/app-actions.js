@@ -1,4 +1,5 @@
 import { getAuth } from "../auth/auth-action.js";
+import { loadProfile } from "../profile/profile-action.js";
 
 export const INITIALIZED_SUCCESS = "app/INITIALIZED_SUCCESS";
 
@@ -9,7 +10,7 @@ export const setInitializedSuccess = () => {
 };
 
 export const initializedApp = () => async (dispatch) => {
-  await dispatch(getAuth());
+  await Promise.all([dispatch(getAuth())]);
 
   dispatch(setInitializedSuccess());
 };

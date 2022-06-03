@@ -71,7 +71,7 @@ export const loadUserAvatar =
   (img) =>
   async (dispatch, _, { client, api }) => {
     const newImg = new FormData();
-    newImg.append('image', img)
+    newImg.append("image", img);
     const { data } = await client.post(api.putAvatar(), newImg, {
       withCredentials: true,
       headers: {
@@ -79,8 +79,13 @@ export const loadUserAvatar =
         "Content-Type": "multipart/form-data",
       },
     });
-    if (data.resultCode === 0) {
-      console.log(data.data.photos)
-      dispatch(setAvatar(data.data.photos));
+
+    try {
+      if (data.resultCode === 0) {
+        console.log(data.data.photos);
+        dispatch(setAvatar(data.data.photos));
+      }
+    } catch (error) {
+      console.log(error);
     }
   };

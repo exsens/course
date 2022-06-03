@@ -2,7 +2,11 @@ import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectProfileData } from "../../store/profile/profile-selector.js";
-import { getStatus, loadProfile, addPost } from "../../store/profile/profile-action.js";
+import {
+  getStatus,
+  loadProfile,
+  addPost,
+} from "../../store/profile/profile-action.js";
 
 import Banner from "../../components/banner/banner";
 import PostList from "../../components/post-list/posts-list";
@@ -16,7 +20,7 @@ import { selectUserId } from "../../store/auth/auth-select.js";
 const Profile = () => {
   const dispatch = useDispatch();
   const profile = useSelector(selectProfileData);
-  const userId = useSelector(selectUserId)
+  const userId = useSelector(selectUserId);
   const { posts, profileInfo, status } = profile;
   const id = useParams().id || userId;
 
@@ -31,6 +35,7 @@ const Profile = () => {
     function loadStatus() {
       dispatch(getStatus(id));
     },
+    
     [id, dispatch]
   );
 
@@ -38,9 +43,9 @@ const Profile = () => {
     <div className={c.profile}>
       {status === "loading" && <Preloader />}
       {/* <Banner banner={profileInfo.banner}/> */}
-      <ProfileContent profileInfo={profileInfo} />
+      <ProfileContent profileInfo={profileInfo} id={id} />
       <h3>My posts</h3>
-      <PostForm/>
+      <PostForm />
       <PostList postsData={posts} />
     </div>
   );
