@@ -46,7 +46,7 @@ const Profile = () => {
       <ProfileContent profileInfo={profileInfo} id={id} />
       <h3>My posts</h3>
       <PostForm />
-      <PostList postsData={posts} />
+      <PostList postsData={posts} avatar={profileInfo.photos?.small}/>
     </div>
   );
 };

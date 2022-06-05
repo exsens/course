@@ -4,12 +4,12 @@ import {
   SET_PROFILE,
   SET_LOADING,
   SET_STATUS,
-  SET_AVATAR
+  SET_AVATAR,
 } from "./profile-action.js";
 
 const initialState = {
   profileInfo: {
-    id: '',
+    id: "",
     fullName: "",
     banner:
       "https://img3.goodfon.com/original/4368x2912/1/2f/ozero-gory-lesa-derevya.jpg",
@@ -24,18 +24,12 @@ const initialState = {
 
   posts: [
     {
-      avatar:
-        "https://n1s2.starhit.ru/6a/46/ae/6a46aeed947a183d67d1bc48211151bf/445x460_0_6a5d57baf3fab914fdfcc2cc563ed893@480x496_0xac120003_4430520541578509619.jpg",
       text: "Lorem ipsum dolor sit amet.",
     },
     {
-      avatar:
-        "https://n1s2.starhit.ru/6a/46/ae/6a46aeed947a183d67d1bc48211151bf/445x460_0_6a5d57baf3fab914fdfcc2cc563ed893@480x496_0xac120003_4430520541578509619.jpg",
       text: "lor sit amet",
     },
     {
-      avatar:
-        "https://n1s2.starhit.ru/6a/46/ae/6a46aeed947a183d67d1bc48211151bf/445x460_0_6a5d57baf3fab914fdfcc2cc563ed893@480x496_0xac120003_4430520541578509619.jpg",
       text: "ipsum dolor",
     },
   ],
@@ -69,7 +63,7 @@ export const profileReducer = (state = initialState, { type, payload }) => {
     case SET_PROFILE: {
       return {
         ...state,
-        profileInfo: {...state.profileInfo, ...payload},
+        profileInfo: { ...state.profileInfo, ...payload },
         status: "fulfilled",
       };
     }
@@ -77,8 +71,8 @@ export const profileReducer = (state = initialState, { type, payload }) => {
     case SET_STATUS: {
       return {
         ...state,
-        profileInfo: { ...state.profileInfo, status: payload}
-      }
+        profileInfo: { ...state.profileInfo, status: payload },
+      };
     }
 
     case SET_LOADING: {
@@ -91,8 +85,8 @@ export const profileReducer = (state = initialState, { type, payload }) => {
     case SET_AVATAR: {
       return {
         ...state,
-        profileInfo: {...state.profileInfo, photos: payload}
-      }
+        profileInfo: { ...state.profileInfo, photos: payload },
+      };
     }
 
     default:

@@ -11,7 +11,6 @@ import Pagination from "../common/pagination/pagination.jsx";
 const UsersList = () => {
   const dispatch = useDispatch();
   const {pageSize, currentPage, totalUsersCount, users, status, followingInProgress} = useSelector(selectUsers)
-
   const onSelectPage = (id) => {
     dispatch(selectUserPage(id));
   }

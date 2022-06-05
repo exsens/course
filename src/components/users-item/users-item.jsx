@@ -4,7 +4,7 @@ import {
   unFollowUser,
   toggleFollowingProgress,
 } from "../../store/users/users-action.js";
-import { selectIsAuth } from "../../store/auth/auth-select.js";
+import { selectAuthData } from "../../store/auth/auth-select.js";
 
 import Flex from "../flex/flex.jsx";
 import { Link } from "react-router-dom";
@@ -14,15 +14,16 @@ import c from "./user-item.module.scss";
 
 const UsersItem = ({
   id,
-  avatar,
+  photos: { small: avatar },
   followed,
   name,
   status,
   followingInProgress,
 }) => {
   const dispatch = useDispatch();
-  const isAuth = useSelector(selectIsAuth);
-
+  const {isAuth, userId} = useSelector(selectAuthData);
+  const isSelfUser = userId === id; 
+  
   const handleToggleFollow = (id) => {
     if (followed) {
       dispatch(followUser(id));
@@ -41,14 +42,14 @@ const UsersItem = ({
             <img
               src={
                 avatar ||
-                "https://static2.tgstat.ru/channels/_0/88/889f639f5169595cae856b41688b8d9b.jpg"
+                "https://yur-info.ru/media/k2/items/cache/e02fde07d49ee258cc3f6d1b19207757_XL.jpg"
               }
               alt={name}
             />
           </Link>
           {isAuth && (
             <Button
-              disabled={followingInProgress.some((el) => el === id)}
+              disabled={isSelfUser || followingInProgress.some((el) => el === id)}
               onClick={() => handleToggleFollow(id)}
               type="button"
             >
