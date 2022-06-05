@@ -12,8 +12,8 @@ const Login = () => {
   const dispatch = useDispatch();
   const isAuth = useSelector(selectIsAuth);
 
-  const handleSubmit = ({ email, password, rememberMe}) => {
-    dispatch(logIn(email, password, rememberMe));
+  const handleSubmit = ({ email, password, rememberMe, captcha}) => {
+    dispatch(logIn(email, password, rememberMe, captcha));
   };
 
   if (isAuth) {

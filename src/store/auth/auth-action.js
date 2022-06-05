@@ -34,7 +34,7 @@ export const getAuth =
   };
 
 export const logIn =
-  (email, password, rememberMe = false) =>
+  (email, password, rememberMe = false, captcha) =>
   async (dispatch, _, { client, api }) => {
     try {
       const { data } = await client.post(
@@ -43,6 +43,7 @@ export const logIn =
           email,
           password,
           rememberMe,
+          captcha
         },
         {
           withCredentials: true,

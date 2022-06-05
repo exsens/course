@@ -92,7 +92,8 @@ export const loadUserAvatar =
 
 export const updateProfileInfo =
   (formData) =>
-  async (dispatch, _, { client, api }) => {
+  async (dispatch, getState, { client, api }) => {
+    const userId = getState().auth.userId
     const { data } = await client.put(api.updateProfileInfo(), formData, {
       withCredentials: true,
       headers: {
@@ -101,9 +102,8 @@ export const updateProfileInfo =
     });
     try {
       if (data.resultCode === 0) {
-        console.log(data)
-        console.log(formData)
-        dispatch(setProfile(formData));
+       
+        dispatch(loadProfile(userId));
       } else {
         console.error(data.resultCode)
       }
