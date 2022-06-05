@@ -23,6 +23,7 @@ const Profile = () => {
   const userId = useSelector(selectUserId);
   const { posts, profileInfo, status } = profile;
   const id = useParams().id || userId;
+  const isSelfUser = userId === id;
 
   useEffect(
     function loadProfileInfo() {
@@ -35,18 +36,20 @@ const Profile = () => {
     function loadStatus() {
       dispatch(getStatus(id));
     },
-    
+
     [id, dispatch]
   );
-
   return (
     <div className={c.profile}>
       {status === "loading" && <Preloader />}
       {/* <Banner banner={profileInfo.banner}/> */}
-      <ProfileContent profileInfo={profileInfo} id={id} />
+      <ProfileContent
+        profileInfo={{ ...profileInfo, id }}
+        isSelfUser={isSelfUser}
+      />
       <h3>My posts</h3>
-      <PostForm />
-      <PostList postsData={posts} avatar={profileInfo.photos?.small}/>
+      {isSelfUser && <PostForm />}
+      <PostList postsData={posts} avatar={profileInfo.photos?.small} />
     </div>
   );
 };

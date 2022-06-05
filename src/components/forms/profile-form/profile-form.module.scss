@@ -1,0 +1,23 @@
+.form {
+  padding: 10px 0;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+
+  &:not(:last-child) {
+    margin-bottom: 7px;
+  }
+}
+
+.span {
+  flex-basis: 30%;
+}
+
+.input {
+  display: inline-block;
+  border: 1px solid black;
+  border-radius: 4px;
+  width: 50%;
+}

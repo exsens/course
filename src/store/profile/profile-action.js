@@ -89,3 +89,25 @@ export const loadUserAvatar =
       console.log(error);
     }
   };
+
+export const updateProfileInfo =
+  (formData) =>
+  async (dispatch, _, { client, api }) => {
+    const { data } = await client.put(api.updateProfileInfo(), formData, {
+      withCredentials: true,
+      headers: {
+        "API-KEY": "7a305640-b547-4a06-b77e-c4e9d81c2dbc",
+      },
+    });
+    try {
+      if (data.resultCode === 0) {
+        console.log(data)
+        console.log(formData)
+        dispatch(setProfile(formData));
+      } else {
+        console.error(data.resultCode)
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };

@@ -2,7 +2,7 @@ import { useState,useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { updateStatus } from "../../store/profile/profile-action.js";
 
-const ProfileStatus = ({status = ''}) => {
+const ProfileStatus = ({status = '', isSelfUser}) => {
   const dispatch = useDispatch();
   const [statusValue, setStatusValue] = useState('');
   const [activeEditMode, setActiveEditMode] = useState(false);
@@ -28,7 +28,7 @@ const ProfileStatus = ({status = ''}) => {
 
   return (
     <div>
-      {activeEditMode ? (
+      {(activeEditMode && isSelfUser) ? (
         <input
           autoFocus={true}
           value={statusValue}

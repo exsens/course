@@ -1,21 +1,27 @@
-import c from './discription.module.scss';
+import c from "./description.module.scss";
 
-const Description = ({info}) => {
-
+const Description = ({ info }) => {
   return (
-    info.map(el => {
-      return (
-        <dl key={el.title} className={c.description}>
-          <div className="d-flex">
-            <dt style={{marginRight: '10px'}}>{el.title}</dt>
+    <dl className={c.description}>
+      {info.map((el) => {
+        if (el.title === "lookingForAJob") {
+          return (
+            <div key={el.title} className="d-flex">
+              <dt style={{ marginRight: "10px" }}>{el.title}</dt>
+              <dd>{el.info ? "YES" : "NO"}</dd>
+            </div>
+          );
+        }
+
+        return (
+          <div key={el.title} className="d-flex">
+            <dt style={{ marginRight: "10px" }}>{el.title}</dt>
             <dd>{el.info}</dd>
           </div>
-
-        </dl>
-      )
-    })
-  )
-
-}
+        );
+      })}
+    </dl>
+  );
+};
 
 export default Description;

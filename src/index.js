@@ -17,6 +17,3 @@ root.render(
       </Router>
     </Provider>
 );
-
-
-
