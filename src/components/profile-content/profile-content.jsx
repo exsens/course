@@ -3,8 +3,6 @@ import ProfileStatus from "../profile-status/profile-status.jsx";
 import c from "./profile-content.module.scss";
 
 const ProfileContent = ({ profileInfo, isSelfUser }) => {
-  console.log(profileInfo)
-
   return (
     <div>
       <div className={c.profile__info}>

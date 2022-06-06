@@ -3,16 +3,16 @@ import { useLocation, Navigate } from "react-router-dom";
 
 import LoginForm from "../../components/forms/login-form/login-form.jsx";
 import { logIn } from "../../store/auth/auth-action.js";
-import { selectIsAuth } from "../../store/auth/auth-select.js";
+import { selectAuthData, selectIsAuth } from "../../store/auth/auth-select.js";
 
 import c from "./login.module.scss";
 
 const Login = () => {
   const location = useLocation().state?.from?.pathname;
   const dispatch = useDispatch();
-  const isAuth = useSelector(selectIsAuth);
+  const { isAuth, captchaUrl } = useSelector(selectAuthData);
 
-  const handleSubmit = ({ email, password, rememberMe, captcha}) => {
+  const handleSubmit = ({ email, password, rememberMe, captcha = null }) => {
     dispatch(logIn(email, password, rememberMe, captcha));
   };
 
@@ -22,7 +22,7 @@ const Login = () => {
 
   return (
     <div className={c.login}>
-      <LoginForm onSubmit={handleSubmit} />
+      <LoginForm onSubmit={handleSubmit} captchaUrl={captchaUrl}/>
     </div>
   );
 };

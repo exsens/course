@@ -2,6 +2,7 @@ import { stopSubmit } from "redux-form";
 
 export const SET_AUTH_DATA = "auth/SET_AUTH_DATA";
 export const RESET_AUTH_DATA = "auth/RESET_AUTH_DATA";
+export const SET_CAPTCHA_URL = "auth/SET_CAPTCHA_URL";
 
 const setAuthData = ({ id: userId, email, login, isAuth = true }) => {
   return {
@@ -13,6 +14,13 @@ const setAuthData = ({ id: userId, email, login, isAuth = true }) => {
 const resetAuthData = () => {
   return {
     type: RESET_AUTH_DATA,
+  };
+};
+
+const setCaptchaUrl = (url) => {
+  return {
+    type: SET_CAPTCHA_URL,
+    payload: url,
   };
 };
 
@@ -43,7 +51,7 @@ export const logIn =
           email,
           password,
           rememberMe,
-          captcha
+          captcha,
         },
         {
           withCredentials: true,
@@ -58,10 +66,11 @@ export const logIn =
         const {
           data: { messages = "send captcha", url },
         } = await client.get(api.getCaptcha());
-        dispatch(stopSubmit("login", { _error: { url, messages } }));
+        dispatch(setCaptchaUrl(url))
+        dispatch(stopSubmit("login", { _error:  messages  }));
       } else {
         let messages = data.messages.length ? data.messages[0] : "Some error";
-        dispatch(stopSubmit("login", { _error: { messages } }));
+        dispatch(stopSubmit("login", { _error:  messages  }));
       }
     } catch (error) {
       console.log(error);

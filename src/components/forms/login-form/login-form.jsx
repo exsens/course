@@ -6,15 +6,15 @@ import {
   required,
   maxLength,
   minLength,
-} from "../../../utils/validation/validation.js"
+} from "../../../utils/validation/validation.js";
 
 import Button from "../../common/button/button.jsx";
 
 import c from "./login-form.module.scss";
 
 const LoginForm = (props) => {
-  const { handleSubmit, error } = props;
-  
+  const { handleSubmit, error, captchaUrl = null } = props;
+
   return (
     <form className={c.form} onSubmit={handleSubmit}>
       <Field
@@ -39,12 +39,12 @@ const LoginForm = (props) => {
         <span>remember me?</span>
       </label>
       <Button>Sign in</Button>
-      {error && <p className={c.error}>{error.messages}</p>}
-      {error?.url && (
+      {error && <p className={c.error}>{error}</p>}
+      {captchaUrl && (
         <>
           <img
             style={{ width: "150px", height: "150px", objectFit: "contain" }}
-            src={error.url}
+            src={captchaUrl}
             alt="captcha"
           />
           <Field
