@@ -3,7 +3,7 @@ import { useLocation, Navigate } from "react-router-dom";
 
 import LoginForm from "../../components/forms/login-form/login-form.jsx";
 import { logIn } from "../../store/auth/auth-action.js";
-import { selectAuthData, selectIsAuth } from "../../store/auth/auth-select.js";
+import { selectAuthData } from "../../store/auth/auth-select.js";
 
 import c from "./login.module.scss";
 

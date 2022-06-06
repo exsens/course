@@ -4,7 +4,6 @@ import { Field, reduxForm } from "redux-form";
 import { Input } from "../../common/form-controls/form-controls.jsx";
 import {
   required,
-  maxLength,
   minLength,
 } from "../../../utils/validation/validation.js";
 

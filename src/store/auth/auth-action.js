@@ -28,7 +28,7 @@ const setCaptchaUrl = (url) => {
 
 export const getAuth =
   () =>
-  async (dispatch, _, { client, api }) => {
+  async (dispatch, _, { client, api}) => {
     try {
       const request = await client.get(api.getAuthMe(), {
         withCredentials: true,
@@ -82,7 +82,7 @@ export const logOut =
   async (dispatch, _, { client, api }) => {
     try {
       const {
-        data: { resultCode, messages },
+        data: { resultCode },
       } = await client.delete(api.getAuthLogin(), {
         withCredentials: true,
         headers: {

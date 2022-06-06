@@ -2,13 +2,8 @@ import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectProfileData } from "../../store/profile/profile-selector.js";
-import {
-  getStatus,
-  loadProfile,
-  addPost,
-} from "../../store/profile/profile-action.js";
+import { getStatus, loadProfile } from "../../store/profile/profile-action.js";
 
-import Banner from "../../components/banner/banner";
 import PostList from "../../components/post-list/posts-list";
 import ProfileContent from "../../components/profile-content/profile-content";
 import PostForm from "../../components/forms/post-form/post-form";
@@ -42,7 +37,6 @@ const Profile = () => {
   return (
     <div className={c.profile}>
       {status === "loading" && <Preloader />}
-      {/* <Banner banner={profileInfo.banner}/> */}
       <ProfileContent
         profileInfo={{ ...profileInfo, id }}
         isSelfUser={isSelfUser}

@@ -1,5 +1,7 @@
 import React, { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
+
+import Page404 from "../../page/page-404/page-404.jsx";
 import Dialogs from "../../page/dialogs/dialogs.jsx";
 import Users from "../../page/users/users.jsx";
 import Preloader from "../../components/preloader/preloader.jsx";
@@ -51,6 +53,7 @@ const Content = () => {
             </Suspense>
           }
         />
+        <Route path="*" element={<Page404 />} />
       </Routes>
     </main>
   );

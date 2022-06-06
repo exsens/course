@@ -1,5 +1,4 @@
 import { getAuth } from "../auth/auth-action.js";
-import { loadProfile } from "../profile/profile-action.js";
 
 export const INITIALIZED_SUCCESS = "app/INITIALIZED_SUCCESS";
 
