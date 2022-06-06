@@ -82,7 +82,6 @@ export const loadUserAvatar =
 
     try {
       if (data.resultCode === 0) {
-        console.log(data.data.photos);
         dispatch(setAvatar(data.data.photos));
       }
     } catch (error) {

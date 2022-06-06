@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Flex from "../../flex/flex.jsx";
+import cn from "classnames";
 
 import c from "./pagination.module.scss";
 
@@ -15,8 +16,15 @@ export const Pagination = ({
   const paginations = getPagination(totalItemsCount);
 
   return (
-    <Flex style={{alignItems: 'center'}}>
-      {leftPortionNumber > 1 && <button type="button" onClick={() => setPortionNumber(portionNumber - 1)}>Prev</button>}
+    <Flex style={{ alignItems: "center" }}>
+      {leftPortionNumber > 1 && (
+        <button
+          type="button"
+          onClick={() => setPortionNumber(portionNumber - 1)}
+        >
+          Prev
+        </button>
+      )}
       <ul className={c.list}>
         {paginations
           .filter(
@@ -26,9 +34,9 @@ export const Pagination = ({
           )
           .map((pagination, idx) => (
             <li
-              className={
-                currentPage === pagination ? `${c.item} ${c.active}` : c.item
-              }
+              className={cn(c.item, {
+                [c.active]: currentPage === pagination,
+              })}
               key={idx}
               onClick={() => onSelectPage(pagination)}
             >
