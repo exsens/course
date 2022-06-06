@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { selectIsAuth } from "../../store/auth/auth-select.js";
-import { logOut } from "../../store/auth/auth-action.js"
+import { selectIsAuth } from "../../store/auth/auth-select";
+import { logOut } from "../../store/auth/auth-action"
 
 
 const LoginBar = () => {

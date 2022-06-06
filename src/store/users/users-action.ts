@@ -1,3 +1,5 @@
+import { Users } from "./users-reducer";
+
 export const SET_USERS = "users/SET_USERS";
 export const SET_TOTAL_USERS = "users/SET_TOTAL_USERS";
 export const SET_CURRENT_PAGE = "users/SET_CURRENT_PAGE";
@@ -5,55 +7,84 @@ export const SET_LOADING = "users/SET_LOADING";
 export const TOGGLE_FOLLOW = "users/TOGGLE_FOLLOW";
 export const TOGGLE_FOLLOW_PROGRESS = "users/TOGGLE_FOLLOW_PROGRESS";
 
+type ToggleFollow = {
+  type: typeof TOGGLE_FOLLOW;
+  payload: number;
+};
 
-export const toggleFollow = (id) => {
+type SetUsers = {
+  type: typeof SET_USERS;
+  payload: Users;
+};
+
+type SetTotalUsers = {
+  type: typeof SET_TOTAL_USERS;
+  payload: number;
+};
+
+type SelectUserPage = {
+  type: typeof SET_CURRENT_PAGE;
+  payload: number;
+};
+
+type SetLoading = {
+  type: typeof SET_LOADING;
+};
+
+type ToggleFollowingProgress = {
+  type: typeof TOGGLE_FOLLOW_PROGRESS;
+  payload: number;
+};
+export const toggleFollow = (id: number): ToggleFollow => {
   return {
     type: TOGGLE_FOLLOW,
     payload: id,
   };
 };
 
-export const setUsers = (data) => {
+export const setUsers = (data: Users): SetUsers => {
   return {
     type: SET_USERS,
     payload: data,
   };
 };
 
-export const setTotalUsers = (data) => {
+export const setTotalUsers = (data: number): SetTotalUsers => {
   return {
     type: SET_TOTAL_USERS,
     payload: data,
   };
 };
 
-export const selectUserPage = (page) => {
+export const selectUserPage = (page: number): SelectUserPage => {
   return {
     type: SET_CURRENT_PAGE,
     payload: page,
   };
 };
 
-export const setLoading = () => {
+export const setLoading = (): SetLoading => {
   return {
     type: SET_LOADING,
   };
 };
 
-export const toggleFollowingProgress = (id) => {
+export const toggleFollowingProgress = (
+  id: number
+): ToggleFollowingProgress => {
   return {
     type: TOGGLE_FOLLOW_PROGRESS,
     payload: id,
-  }
-}
+  };
+};
 
 // thunk
 
 export const followUser =
-  (id) =>
-  async (dispatch, _, { client, api }) => {
+  (id: number) =>
+  async (dispatch: any, _: any, { client, api }: any) => {
     try {
-      dispatch(setLoading())
+      dispatch(setLoading());
       const request = await client.delete(api.followUser(id), {
         withCredentials: true,
         headers: {
@@ -70,10 +101,10 @@ export const followUser =
   };
 
 export const unFollowUser =
-  (id) =>
-  async (dispatch, _, { client, api }) => {
+  (id: number) =>
+  async (dispatch: any, _: any, { client, api }: any) => {
     try {
-      dispatch(setLoading())
+      dispatch(setLoading());
       const request = await client.post(
         api.followUser(id),
         {},
@@ -94,17 +125,14 @@ export const unFollowUser =
   };
 
 export const loadUsers =
-  (currentPage, pageSize) =>
-  async (dispatch, _, { client, api }) => {
+  (currentPage: number, pageSize: number) =>
+  async (dispatch: any, _: any, { client, api }: any) => {
     try {
       dispatch(setLoading());
 
-      const data = await client.get(
-        api.getUsersPage(currentPage, pageSize),
-        {
-          withCredentials: true,
-        }
-      );
+      const data = await client.get(api.getUsersPage(currentPage, pageSize), {
+        withCredentials: true,
+      });
       dispatch(setUsers(data.data.items));
       dispatch(setTotalUsers(data.data.totalCount));
     } catch (error) {

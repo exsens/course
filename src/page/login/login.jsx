@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, Navigate } from "react-router-dom";
 
-import LoginForm from "../../components/forms/login-form/login-form.jsx";
-import { logIn } from "../../store/auth/auth-action.js";
-import { selectAuthData } from "../../store/auth/auth-select.js";
+import LoginForm from "../../components/forms/login-form/login-form";
+import { logIn } from "../../store/auth/auth-action";
+import { selectAuthData } from "../../store/auth/auth-select";
 
 import c from "./login.module.scss";
 

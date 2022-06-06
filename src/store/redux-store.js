@@ -6,7 +6,7 @@ import * as api from "../api/config";
 import { reducer as formReducer } from "redux-form";
 import { profileReducer } from "./profile/profile-reducer";
 import { dialogsReducer } from "./dialogs/dialogs-reducer";
-import { navbarReducer } from "./navbar/navbar-reducer.js";
+import { navbarReducer } from "./navbar/navbar-reducer";
 import { usersReducer } from "./users/users-reducer";
 import { authReducer } from "./auth/auth-reducer";
 import { appReducer } from "./app/app-reducer";

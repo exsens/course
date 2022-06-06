@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { addPost } from "../../../store/profile/profile-action.js";
+import { addPost } from "../../../store/profile/profile-action";
 
 import c from "./post-form.module.scss";
 

@@ -5,18 +5,31 @@ import {
   SET_TOTAL_USERS,
   SET_CURRENT_PAGE,
   SET_LOADING,
-} from "./users-action.js";
+} from "./users-action";
+
+import { Photos } from "../profile/profile-reducer";
+
+export type Users = {
+  name: string | null;
+  id: number | null;
+  uniqueUrlName: string | null;
+  photos: Photos;
+  status: string | null;
+  followed: boolean;
+};
 
 const initialState = {
-  users: [],
+  users: [] as Array<Users> ,
   totalUsersCount: 0,
   pageSize: 5,
   currentPage: 1,
   status: "loading",
-  followingInProgress: [],
+  followingInProgress: [] as Array<number>, // array users ids
 };
 
-export const usersReducer = (state = initialState, { type, payload }) => {
+type InitialState = typeof initialState;
+
+export const usersReducer = (state = initialState, { type, payload }: any): InitialState=> {
   switch (type) {
     case SET_USERS: {
       return {
@@ -39,7 +52,7 @@ export const usersReducer = (state = initialState, { type, payload }) => {
         users: state.users.map((user) =>
           user.id === payload ? { ...user, followed: !user.followed } : user
         ),
-        status: 'fulfilled',
+        status: "fulfilled",
       };
     }
 
@@ -47,9 +60,9 @@ export const usersReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         followingInProgress:
-          state.status === "loading" ? 
-          [...state.followingInProgress, payload] : 
-          state.followingInProgress.filter((id) => id !== payload),
+          state.status === "loading"
+            ? [...state.followingInProgress, payload]
+            : state.followingInProgress.filter((id) => id !== payload),
       };
     }
 

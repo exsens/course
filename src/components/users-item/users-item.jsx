@@ -3,12 +3,12 @@ import {
   followUser,
   unFollowUser,
   toggleFollowingProgress,
-} from "../../store/users/users-action.js";
-import { selectAuthData } from "../../store/auth/auth-select.js";
+} from "../../store/users/users-action";
+import { selectAuthData } from "../../store/auth/auth-select";
 
-import Flex from "../flex/flex.jsx";
+import Flex from "../flex/flex";
 import { Link } from "react-router-dom";
-import Button from "../common/button/button.jsx";
+import Button from "../common/button/button";
 
 import c from "./user-item.module.scss";
 

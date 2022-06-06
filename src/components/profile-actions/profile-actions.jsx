@@ -3,11 +3,11 @@ import { useDispatch } from "react-redux";
 import {
   loadUserAvatar,
   updateProfileInfo,
-} from "../../store/profile/profile-action.js";
-import Button from "../common/button/button.jsx";
-import Description from "../description/description.jsx";
+} from "../../store/profile/profile-action";
+import Button from "../common/button/button";
+import Description from "../description/description";
 
-import ProfileForm from "../forms/profile-form/profile-form.jsx";
+import ProfileForm from "../forms/profile-form/profile-form";
 
 const ProfileActions = ({ profileInfo, isSelfUser }) => {
   const [editMode, setEditMode] = useState(false);

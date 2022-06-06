@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { loadUsers, selectUserPage, toggleFollow } from "../../store/users/users-action.js";
-import { selectUsers } from "../../store/users/users-selector.js";
+import { loadUsers, selectUserPage, toggleFollow } from "../../store/users/users-action";
+import { selectUsers } from "../../store/users/users-selector";
 
-import UsersItem from "../users-item/users-item.jsx";
-import Preloader from "../preloader/preloader.jsx";
-import Pagination from "../common/pagination/pagination.jsx";
+import UsersItem from "../users-item/users-item";
+import Preloader from "../preloader/preloader";
+import Pagination from "../common/pagination/pagination";
 
 const UsersList = () => {
   const dispatch = useDispatch();

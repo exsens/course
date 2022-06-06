@@ -4,32 +4,46 @@ export const SET_AUTH_DATA = "auth/SET_AUTH_DATA";
 export const RESET_AUTH_DATA = "auth/RESET_AUTH_DATA";
 export const SET_CAPTCHA_URL = "auth/SET_CAPTCHA_URL";
 
-type AuthData = {
-  userId: number,
-  email: string,
-  login: string,
-  isAuth: boolean
+export type AuthData = {
+  userId: number;
+  email: string;
+  login: string;
+  isAuth: boolean;
 };
 
 type SetAuthData = {
-  type: typeof SET_AUTH_DATA,
-  payload: AuthData,
-}
+  type: typeof SET_AUTH_DATA;
+  payload: AuthData;
+};
 
-const setAuthData = ({ userId , email, login, isAuth = true }: AuthData): SetAuthData =>  {
+type ResetAuthData = {
+  type: typeof RESET_AUTH_DATA;
+};
+
+type SetCaptchaUrl = {
+  type: typeof SET_CAPTCHA_URL;
+  payload: string;
+};
+
+const setAuthData = (
+  userId: number,
+  email: string,
+  login: string,
+  isAuth = true,
+): SetAuthData => {
   return {
     type: SET_AUTH_DATA,
     payload: { userId, email, login, isAuth },
   };
 };
 
-const resetAuthData = () => {
+const resetAuthData = (): ResetAuthData => {
   return {
     type: RESET_AUTH_DATA,
   };
 };
 
-const setCaptchaUrl = (url) => {
+const setCaptchaUrl = (url: string): SetCaptchaUrl => {
   return {
     type: SET_CAPTCHA_URL,
     payload: url,
@@ -40,13 +54,13 @@ const setCaptchaUrl = (url) => {
 
 export const getAuth =
   () =>
-  async (dispatch, _, { client, api}) => {
+  async (dispatch: Function, _: any, { client, api }: any) => {
     try {
-      const request = await client.get(api.getAuthMe(), {
+      const {data} = await client.get(api.getAuthMe(), {
         withCredentials: true,
       });
-      if (request.data.resultCode === 0) {
-        dispatch(setAuthData({ ...request.data.data }));
+      if (data.resultCode === 0) {
+        dispatch(setAuthData( data.data.id, data.data.email, data.data.login ));
       }
     } catch (error) {
       console.error(error);
@@ -54,8 +68,8 @@ export const getAuth =
   };
 
 export const logIn =
-  (email, password, rememberMe = false, captcha) =>
-  async (dispatch, _, { client, api }) => {
+  (email: string, password: string, rememberMe = false, captcha: string) =>
+  async (dispatch: Function, _: any, { client, api }: any) => {
     try {
       const { data } = await client.post(
         api.getAuthLogin(),
@@ -78,11 +92,11 @@ export const logIn =
         const {
           data: { messages = "send captcha", url },
         } = await client.get(api.getCaptcha());
-        dispatch(setCaptchaUrl(url))
-        dispatch(stopSubmit("login", { _error:  messages  }));
+        dispatch(setCaptchaUrl(url));
+        dispatch(stopSubmit("login", { _error: messages }));
       } else {
         let messages = data.messages.length ? data.messages[0] : "Some error";
-        dispatch(stopSubmit("login", { _error:  messages  }));
+        dispatch(stopSubmit("login", { _error: messages }));
       }
     } catch (error) {
       console.log(error);
@@ -91,7 +105,7 @@ export const logIn =
 
 export const logOut =
   () =>
-  async (dispatch, _, { client, api }) => {
+  async (dispatch: Function, _: any, { client, api }: any) => {
     try {
       const {
         data: { resultCode },
