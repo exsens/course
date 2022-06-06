@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom'
 import MessagesInput from '../messages-input/messages-input.jsx';
 import MessagesItem from '../messages-item/messages-item'
 import { connect } from 'react-redux';
-import { addMessageAction } from '../../../store/dialogs/dialogs-action.js';
+import { addMessageAction } from '../../../store/dialogs/dialogs-action.ts'
 
 
 const MessagesList = ({ messages, addMessage }) => {

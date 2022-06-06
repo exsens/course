@@ -1,18 +1,18 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 
-import { initializedApp } from "./store/app/app-actions.js";
-import { selectInitialized } from "./store/app/app-selectors.js";
-import { selectIsAuth } from "./store/auth/auth-select.js";
+import { initializedApp } from "./store/app/app-actions";
+import { selectInitialized } from "./store/app/app-selectors";
+import { selectIsAuth } from "./store/auth/auth-select";
 
 
-import Preloader from "./components/preloader/preloader.jsx";
-import Container from "./components/common/container/container.jsx"
+import Preloader from "./components/preloader/preloader";
+import Container from "./components/common/container/container"
 import Header from "./layout/header/header";
-import Sidebar from "./layout/sidebar/sidebar.jsx";
+import Sidebar from "./layout/sidebar/sidebar";
 import Content from "./layout/content/content";
 import Footer from "./layout/footer/footer";
-import Flex from "./components/flex/flex.jsx";
+import Flex from "./components/flex/flex";
 
 const App = () => {
   const dispatch = useDispatch(); 

@@ -4,7 +4,19 @@ export const SET_AUTH_DATA = "auth/SET_AUTH_DATA";
 export const RESET_AUTH_DATA = "auth/RESET_AUTH_DATA";
 export const SET_CAPTCHA_URL = "auth/SET_CAPTCHA_URL";
 
-const setAuthData = ({ id: userId, email, login, isAuth = true }) => {
+type AuthData = {
+  userId: number,
+  email: string,
+  login: string,
+  isAuth: boolean
+};
+
+type SetAuthData = {
+  type: typeof SET_AUTH_DATA,
+  payload: AuthData,
+}
+
+const setAuthData = ({ userId , email, login, isAuth = true }: AuthData): SetAuthData =>  {
   return {
     type: SET_AUTH_DATA,
     payload: { userId, email, login, isAuth },
