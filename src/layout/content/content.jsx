@@ -1,16 +1,16 @@
 import React, { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 
-import Page404 from "../../page/page-404/page-404.jsx";
-import Dialogs from "../../page/dialogs/dialogs.jsx";
-import Users from "../../page/users/users.jsx";
-import Preloader from "../../components/preloader/preloader.jsx";
-import WithRequireAuth from "../../hoc/withRequireAuth.jsx";
+import Page404 from "../../page/page-404/page-404";
+import Dialogs from "../../page/dialogs/dialogs";
+import Users from "../../page/users/users";
+import Preloader from "../../components/preloader/preloader";
+import WithRequireAuth from "../../hoc/withRequireAuth";
 
 import c from "./content.module.scss";
 
-const Profile = lazy(() => import("../../page/profile/profile.jsx"));
-const Login = lazy(() => import("../../page/login/login.jsx"));
+const Profile = lazy(() => import("../../page/profile/profile"));
+const Login = lazy(() => import("../../page/login/login"));
 
 const Content = () => {
   return (

@@ -1,79 +1,46 @@
-import { Users } from "./users-reducer";
+import { Dispatch, AnyAction } from "redux";
+import { ThunkAction } from "redux-thunk";
+import { Users, UserAction, UserActionType } from "../types/users";
+import { RootState } from "../redux-store";
+import { Extra } from "../redux-store";
 
-export const SET_USERS = "users/SET_USERS";
-export const SET_TOTAL_USERS = "users/SET_TOTAL_USERS";
-export const SET_CURRENT_PAGE = "users/SET_CURRENT_PAGE";
-export const SET_LOADING = "users/SET_LOADING";
-export const TOGGLE_FOLLOW = "users/TOGGLE_FOLLOW";
-export const TOGGLE_FOLLOW_PROGRESS = "users/TOGGLE_FOLLOW_PROGRESS";
-
-type ToggleFollow = {
-  type: typeof TOGGLE_FOLLOW;
-  payload: number;
-};
-
-type SetUsers = {
-  type: typeof SET_USERS;
-  payload: Users;
-};
-
-type SetTotalUsers = {
-  type: typeof SET_TOTAL_USERS;
-  payload: number;
-};
-
-type SelectUserPage = {
-  type: typeof SET_CURRENT_PAGE;
-  payload: number;
-};
-
-type SetLoading = {
-  type: typeof SET_LOADING;
-};
-
-type ToggleFollowingProgress = {
-  type: typeof TOGGLE_FOLLOW_PROGRESS;
-  payload: number;
-};
-export const toggleFollow = (id: number): ToggleFollow => {
+export const toggleFollow = (id: number): UserAction => {
   return {
-    type: TOGGLE_FOLLOW,
+    type: UserActionType.TOGGLE_FOLLOW,
     payload: id,
   };
 };
 
-export const setUsers = (data: Users): SetUsers => {
+export const setUsers = (data: Users[]): UserAction => {
   return {
-    type: SET_USERS,
+    type: UserActionType.SET_USERS,
     payload: data,
   };
 };
 
-export const setTotalUsers = (data: number): SetTotalUsers => {
+export const setTotalUsers = (data: number): UserAction => {
   return {
-    type: SET_TOTAL_USERS,
+    type: UserActionType.SET_TOTAL_USERS,
     payload: data,
   };
 };
 
-export const selectUserPage = (page: number): SelectUserPage => {
+export const selectUserPage = (page: number): UserAction => {
   return {
-    type: SET_CURRENT_PAGE,
+    type: UserActionType.SET_CURRENT_PAGE,
     payload: page,
   };
 };
 
-export const setLoading = (): SetLoading => {
+export const setLoading = (): UserAction => {
   return {
-    type: SET_LOADING,
+    type: UserActionType.SET_LOADING,
   };
 };
 
-export const toggleFollowingProgress = (
-  id: number
-): ToggleFollowingProgress => {
+export const toggleFollowingProgress = (id: number): UserAction => {
   return {
-    type: TOGGLE_FOLLOW_PROGRESS,
+    type: UserActionType.TOGGLE_FOLLOW_PROGRESS,
     payload: id,
   };
 };
@@ -125,16 +92,24 @@ export const unFollowUser =
   };
 
 export const loadUsers =
-  (currentPage: number, pageSize: number) =>
-  async (dispatch: any, _: any, { client, api }: any) => {
+  (currentPage: number, pageSize: number): any =>
+  async (
+    dispatch: Dispatch<UserAction>,
+    _: RootState,
+    { client, api }: Extra
+  ) => {
     try {
       dispatch(setLoading());
-
-      const data = await client.get(api.getUsersPage(currentPage, pageSize), {
-        withCredentials: true,
-      });
-      dispatch(setUsers(data.data.items));
-      dispatch(setTotalUsers(data.data.totalCount));
+      const { data } = await client.get(
+        api.getUsersPage(currentPage, pageSize),
+        {
+          withCredentials: true,
+        }
+      );
+      if (!data.error) {
+        dispatch(setUsers(data.items));
+        dispatch(setTotalUsers(data.totalCount));
+      }
     } catch (error) {
       console.error(error);
     }

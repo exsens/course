@@ -1,17 +1,19 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
 
-import { loadUsers, selectUserPage, toggleFollow } from "../../store/users/users-action";
+import { loadUsers, selectUserPage } from "../../store/users/users-action";
 import { selectUsers } from "../../store/users/users-selector";
 
 import UsersItem from "../users-item/users-item";
 import Preloader from "../preloader/preloader";
 import Pagination from "../common/pagination/pagination";
 
-const UsersList = () => {
+const UsersList: React.FC = () => {
   const dispatch = useDispatch();
-  const {pageSize, currentPage, totalUsersCount, users, status, followingInProgress} = useSelector(selectUsers)
-  const onSelectPage = (id) => {
+  const {pageSize, currentPage, totalUsersCount, users, status, followingInProgress} = useTypedSelector(selectUsers)
+  
+  const onSelectPage = (id:number) => {
     dispatch(selectUserPage(id));
   }
 
@@ -24,7 +26,7 @@ const UsersList = () => {
       {status === "loading" && <Preloader />}
       <Pagination onSelectPage={onSelectPage} pageInfo={{pageSize, currentPage, totalItemsCount: totalUsersCount}}/>
       {users.map((user) => (
-        <UsersItem key={user.id} toggleFollow={toggleFollow} followingInProgress={followingInProgress} {...user} />
+        <UsersItem key={user.id} followingInProgress={followingInProgress} {...user} />
       ))}
     </>
   );

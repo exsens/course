@@ -1,8 +1,6 @@
-
-import UserList from "../../components/users-list/users-list.jsx"
+import UserList from "../../components/users-list/users-list"
 
 const Users = () => {
-
   return (
     <div style={{ flex: '1' }}>
       <h2>Users</h2>

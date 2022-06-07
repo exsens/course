@@ -9,10 +9,15 @@ import { selectAuthData } from "../../store/auth/auth-select";
 import Flex from "../flex/flex";
 import { Link } from "react-router-dom";
 import Button from "../common/button/button";
+import { Users } from '../../store/types/users'
 
 import c from "./user-item.module.scss";
 
-const UsersItem = ({
+interface UserItemProps extends Users {
+  followingInProgress: number | number[]
+}
+
+const UsersItem: React.FC<UserItemProps> = ({
   id,
   photos: { small: avatar },
   followed,
@@ -24,12 +29,12 @@ const UsersItem = ({
   const {isAuth, userId} = useSelector(selectAuthData);
   const isSelfUser = userId === id; 
   
-  const handleToggleFollow = (id) => {
+  const handleToggleFollow = (id: number) => {
     if (followed) {
-      dispatch(followUser(id));
+      dispatch(followUser(id:number));
       dispatch(toggleFollowingProgress(id));
     } else {
-      dispatch(unFollowUser(id));
+      dispatch(unFollowUser(id: number));
       dispatch(toggleFollowingProgress(id));
     }
   };

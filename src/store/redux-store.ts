@@ -1,6 +1,8 @@
-import { createStore, combineReducers, applyMiddleware, compose } from "redux";
-import thunk from "redux-thunk";
-import axios from "axios";
+import { createStore, combineReducers, applyMiddleware } from "redux";
+import { composeWithDevTools } from "@redux-devtools/extension";
+
+import thunk, { ThunkMiddleware } from "redux-thunk";
+import axios, { AxiosStatic } from "axios";
 import * as api from "../api/config";
 
 import { reducer as formReducer } from "redux-form";
@@ -21,20 +23,25 @@ const rootReducers = combineReducers({
   auth: authReducer,
 });
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+export type RootState = ReturnType<typeof rootReducers>;
+
+export type Extra = {
+  client: AxiosStatic;
+  api: any;
+};
 
 const store = createStore(
   rootReducers,
-  composeEnhancers(
+  composeWithDevTools(
     applyMiddleware(
       thunk.withExtraArgument({
         client: axios,
         api,
-      })
+      } as Extra)
     )
   )
 );
 
-// const store = createStore(rootReducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+export type AppDispatch = typeof store.dispatch
 
 export default store;

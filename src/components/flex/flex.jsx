@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
 
-const Flex = ({ children }) => {
+const Flex = ({ children, style = '' }) => {
   return (
-    <div style={{ display: 'flex', flex: "1 1 auto" }}>
+    <div style={{ display: "flex", flex: "1 1 auto", ...style }}>
       {children}
     </div>
-  )
-}
+  );
+};
 
-export default Flex
+export default Flex;

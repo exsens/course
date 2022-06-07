@@ -1,37 +1,20 @@
-import {
-  TOGGLE_FOLLOW,
-  TOGGLE_FOLLOW_PROGRESS,
-  SET_USERS,
-  SET_TOTAL_USERS,
-  SET_CURRENT_PAGE,
-  SET_LOADING,
-} from "./users-action";
+import { InitialState, UserAction, UserActionType } from "../types/users";
 
-import { Photos } from "../profile/profile-reducer";
-
-export type Users = {
-  name: string | null;
-  id: number | null;
-  uniqueUrlName: string | null;
-  photos: Photos;
-  status: string | null;
-  followed: boolean;
-};
-
-const initialState = {
-  users: [] as Array<Users> ,
+const initialState: InitialState = {
+  users: [],
   totalUsersCount: 0,
   pageSize: 5,
   currentPage: 1,
   status: "loading",
-  followingInProgress: [] as Array<number>, // array users ids
+  followingInProgress: [], // array users ids
 };
 
-type InitialState = typeof initialState;
-
-export const usersReducer = (state = initialState, { type, payload }: any): InitialState=> {
+export const usersReducer = (
+  state = initialState,
+  { type, payload }: UserAction
+): InitialState => {
   switch (type) {
-    case SET_USERS: {
+    case UserActionType.SET_USERS: {
       return {
         ...state,
         users: payload,
@@ -39,24 +22,24 @@ export const usersReducer = (state = initialState, { type, payload }: any): Init
       };
     }
 
-    case SET_LOADING: {
+    case UserActionType.SET_LOADING: {
       return {
         ...state,
         status: "loading",
       };
     }
 
-    case TOGGLE_FOLLOW: {
+    case UserActionType.TOGGLE_FOLLOW: {
       return {
         ...state,
         users: state.users.map((user) =>
           user.id === payload ? { ...user, followed: !user.followed } : user
         ),
-        status: "fulfilled",
+        status: 'fulfilled',
       };
     }
 
-    case TOGGLE_FOLLOW_PROGRESS: {
+    case UserActionType.TOGGLE_FOLLOW_PROGRESS: {
       return {
         ...state,
         followingInProgress:
@@ -66,14 +49,14 @@ export const usersReducer = (state = initialState, { type, payload }: any): Init
       };
     }
 
-    case SET_TOTAL_USERS: {
+    case UserActionType.SET_TOTAL_USERS: {
       return {
         ...state,
         totalUsersCount: payload,
       };
     }
 
-    case SET_CURRENT_PAGE: {
+    case UserActionType.SET_CURRENT_PAGE: {
       return {
         ...state,
         currentPage: payload,
