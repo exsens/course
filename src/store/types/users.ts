@@ -1,4 +1,4 @@
-import { Photos } from '../profile/profile-reducer'
+import { Photos } from '../types/profile'
 
 export enum UserActionType {
   SET_USERS = "users/SET_USERS",
@@ -8,6 +8,15 @@ export enum UserActionType {
   TOGGLE_FOLLOW = "users/TOGGLE_FOLLOW",
   TOGGLE_FOLLOW_PROGRESS = "users/TOGGLE_FOLLOW_PROGRESS",
 };
+
+export interface InitialState {
+  users: Users[] | [];
+  totalUsersCount: number;
+  pageSize: number;
+  currentPage: number;
+  status: string | null;
+  followingInProgress: number[] | [];
+}
 
 export type Users = {
   name: string | null;
@@ -26,14 +35,6 @@ export type UserAction =
   | SetLoading
   | ToggleFollowingProgress;
 
-export interface InitialState {
-  users: Users[] | [];
-  totalUsersCount: number;
-  pageSize: number;
-  currentPage: number;
-  status: string | null;
-  followingInProgress: number[] | [];
-}
 
 interface ToggleFollow {
   type: UserActionType.TOGGLE_FOLLOW;

@@ -1,6 +1,6 @@
-import MembersList from '../../components/members/members-list/members-list.jsx';
-import Flex from '../../components/flex/flex.jsx'
-import MessagesContent from '../../components/messages/messages-content/messages-content.jsx';
+import MembersList from '../../components/members/members-list/members-list';
+import Flex from '../../components/flex/flex'
+import MessagesContent from '../../components/messages/messages-content/messages-content';
 
 const Dialogs = ({users}) => {
   return (

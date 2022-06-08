@@ -3,6 +3,7 @@ import { ThunkAction } from "redux-thunk";
 import { Users, UserAction, UserActionType } from "../types/users";
 import { RootState } from "../redux-store";
 import { Extra } from "../redux-store";
+import { usersApi } from "../../api/config";
 
 export const toggleFollow = (id: number): UserAction => {
   return {
@@ -96,16 +97,10 @@ export const loadUsers =
   async (
     dispatch: Dispatch<UserAction>,
     _: RootState,
-    { client, api }: Extra
   ) => {
     try {
       dispatch(setLoading());
-      const { data } = await client.get(
-        api.getUsersPage(currentPage, pageSize),
-        {
-          withCredentials: true,
-        }
-      );
+      const {data} = await usersApi.getUsersPage(currentPage, pageSize);
       if (!data.error) {
         dispatch(setUsers(data.items));
         dispatch(setTotalUsers(data.totalCount));

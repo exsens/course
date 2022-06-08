@@ -1,44 +1,8 @@
-import {
-  ADD_POST,
-  SET_PROFILE,
-  SET_LOADING,
-  SET_STATUS,
-  SET_AVATAR,
-} from "./profile-action";
-
-type Contacts = {
-  github: string;
-  vk: string;
-  facebook: string;
-  instagram: string;
-  twitter: string;
-  website: string;
-  youtube: string;
-  mainLink: string;
-};
-
-export type Photos = {
-  small: string | null,
-  large: string | null,
-}
-
-export type ProfileInfo = {
-  id: number;
-  fullName: string;
-  status: string;
-  userId: number;
-  lookingForAJob: boolean;
-  lookingForAJobDescription: string;
-  contacts: Contacts;
-  photos: Photos;
-};
-
-type Posts = {
-  text: string;
-};
+import { ProfileActionType, ProfileActions, ProfileInfo, Posts } from "../types/profile";
+import { Nullable } from "../types/common";
 
 const initialState = {
-  profileInfo: null as ProfileInfo | null,
+  profileInfo: null as Nullable<ProfileInfo>,
 
   posts: [
     {
@@ -50,19 +14,19 @@ const initialState = {
     {
       text: "ipsum dolor",
     },
-  ] as Array<Posts>,
+  ] as Nullable<Posts[]>,
 
   status: "",
 };
 
-export type InitialState = typeof initialState;
+type StateType = typeof initialState;
 
 export const profileReducer = (
   state = initialState,
-  { type, payload }: any
-): InitialState => {
+  { type, payload }: ProfileActions
+): StateType => {
   switch (type) {
-    case ADD_POST: {
+    case ProfileActionType.ADD_POST: {
       return {
         ...state,
         posts: [
@@ -74,7 +38,7 @@ export const profileReducer = (
       };
     }
 
-    case SET_PROFILE: {
+    case ProfileActionType.SET_PROFILE: {
       return {
         ...state,
         profileInfo: { ...state.profileInfo, ...payload },
@@ -82,24 +46,24 @@ export const profileReducer = (
       };
     }
 
-    case SET_STATUS: {
+    case ProfileActionType.SET_STATUS: {
       return {
         ...state,
-        profileInfo: { ...state.profileInfo, status: payload } as ProfileInfo,
+        profileInfo: { ...state.profileInfo, status: payload },
       };
     }
 
-    case SET_LOADING: {
+    case ProfileActionType.SET_LOADING: {
       return {
         ...state,
         status: "loading",
       };
     }
 
-    case SET_AVATAR: {
+    case ProfileActionType.SET_AVATAR: {
       return {
         ...state,
-        profileInfo: { ...state.profileInfo, photos: payload } as ProfileInfo,
+        profileInfo: { ...state.profileInfo, photos: payload },
       };
     }
 

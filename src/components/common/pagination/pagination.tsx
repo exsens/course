@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Flex from "../../flex/flex.jsx";
+import Flex from "../../flex/flex";
 import cn from "classnames";
 import c from "./pagination.module.scss";
 

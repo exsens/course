@@ -13,7 +13,7 @@ import { usersReducer } from "./users/users-reducer";
 import { authReducer } from "./auth/auth-reducer";
 import { appReducer } from "./app/app-reducer";
 
-const rootReducers = combineReducers({
+export const rootReducers = combineReducers({
   app: appReducer,
   form: formReducer,
   profileData: profileReducer,
@@ -22,13 +22,6 @@ const rootReducers = combineReducers({
   usersData: usersReducer,
   auth: authReducer,
 });
-
-export type RootState = ReturnType<typeof rootReducers>;
-
-export type Extra = {
-  client: AxiosStatic;
-  api: any;
-};
 
 const store = createStore(
   rootReducers,
@@ -42,6 +35,9 @@ const store = createStore(
   )
 );
 
-export type AppDispatch = typeof store.dispatch
+export type Extra = {
+  client: AxiosStatic;
+  api: any;
+};
 
 export default store;
