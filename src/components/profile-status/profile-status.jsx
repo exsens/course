@@ -1,6 +1,6 @@
 import { useState,useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { updateStatus } from "../../store/profile/profile-action";
+import { updateStatus } from "../../store/profile/profile-thunk";
 
 const ProfileStatus = ({status = '', isSelfUser}) => {
   const dispatch = useDispatch();

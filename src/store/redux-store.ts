@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import { composeWithDevTools } from "@redux-devtools/extension";
 
-import thunk, { ThunkMiddleware } from "redux-thunk";
+import thunk  from "redux-thunk";
 import axios, { AxiosStatic } from "axios";
 import * as api from "../api/config";
 

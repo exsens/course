@@ -1,8 +1,10 @@
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
+import { selectUserId } from "../../store/auth/auth-select";
 import { selectProfileData } from "../../store/profile/profile-selector";
-import { getStatus, loadProfile } from "../../store/profile/profile-action";
+import { getStatus, loadProfile } from "../../store/profile/profile-thunk";
 
 import PostList from "../../components/post-list/posts-list";
 import ProfileContent from "../../components/profile-content/profile-content";
@@ -10,7 +12,6 @@ import PostForm from "../../components/forms/post-form/post-form";
 import Preloader from "../../components/preloader/preloader";
 
 import c from "./profile.module.scss";
-import { selectUserId } from "../../store/auth/auth-select";
 
 const Profile = () => {
   const dispatch = useDispatch();

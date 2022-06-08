@@ -17,17 +17,12 @@ const initialState = {
   captchaUrl: null as string | null,
 };
 
-export type InitialState = typeof initialState;
-
-// type Actions = {
-//   type: typeof SET_AUTH_DATA | typeof SET_CAPTCHA_URL | typeof RESET_AUTH_DATA,
-//   payload: AuthData | string
-// }
+export type InitialStateType = typeof initialState;
 
 export const authReducer = (
   state = initialState,
   { type, payload }: any
-): InitialState => {
+): InitialStateType => {
   switch (type) {
     case SET_AUTH_DATA:
       return {

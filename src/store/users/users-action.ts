@@ -1,7 +1,7 @@
 import { Dispatch, AnyAction } from "redux";
 import { ThunkAction } from "redux-thunk";
 import { Users, UserAction, UserActionType } from "../types/users";
-import { RootState } from "../redux-store";
+import { RootState } from "../types/store";
 import { Extra } from "../redux-store";
 import { usersApi } from "../../api/config";
 

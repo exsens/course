@@ -1,8 +1,7 @@
-import { ProfileActionType, ProfileActions, ProfileInfo, Posts } from "../types/profile";
-import { Nullable } from "../types/common";
+import { ProfileActionType, ProfileAction, ProfileInfo, Posts } from "../types/profile";
 
 const initialState = {
-  profileInfo: null as Nullable<ProfileInfo>,
+  profileInfo: [] as ProfileInfo | [],
 
   posts: [
     {
@@ -14,7 +13,7 @@ const initialState = {
     {
       text: "ipsum dolor",
     },
-  ] as Nullable<Posts[]>,
+  ] as Posts[] | [],
 
   status: "",
 };
@@ -23,16 +22,16 @@ type StateType = typeof initialState;
 
 export const profileReducer = (
   state = initialState,
-  { type, payload }: ProfileActions
+  action : ProfileAction
 ): StateType => {
-  switch (type) {
+  switch (action.type) {
     case ProfileActionType.ADD_POST: {
       return {
         ...state,
         posts: [
           ...state.posts,
           {
-            text: payload,
+            text: action.payload,
           },
         ],
       };
@@ -41,7 +40,7 @@ export const profileReducer = (
     case ProfileActionType.SET_PROFILE: {
       return {
         ...state,
-        profileInfo: { ...state.profileInfo, ...payload },
+        profileInfo: { ...state.profileInfo, ...action.payload },
         status: "fulfilled",
       };
     }
@@ -49,7 +48,7 @@ export const profileReducer = (
     case ProfileActionType.SET_STATUS: {
       return {
         ...state,
-        profileInfo: { ...state.profileInfo, status: payload },
+        profileInfo: { ...state.profileInfo, status: action.payload },
       };
     }
 
@@ -63,7 +62,7 @@ export const profileReducer = (
     case ProfileActionType.SET_AVATAR: {
       return {
         ...state,
-        profileInfo: { ...state.profileInfo, photos: payload },
+        profileInfo: { ...state.profileInfo, photos: action.payload },
       };
     }
 

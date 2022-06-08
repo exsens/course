@@ -1,8 +1,7 @@
-import { ThunkAction } from 'redux-thunk'
-import { RootState } from '../types/store';
+import * as actions from '../profile/profile-action';
 
-export type ThunkType = ThunkAction<void, RootState, unknown, ProfileActions>
-// export const getThunkType = (Actions) => ThunkAction<void, RootState, unknown, ProfileActions>
+type ActionReturnType<T> = T extends {[key: string]: (...args: any[]) => infer R}  ? R : never;
+export type ProfileAction = ActionReturnType<typeof actions>;
 
 export enum ProfileActionType {
   ADD_POST = "profile/ADD_POST",
@@ -12,12 +11,6 @@ export enum ProfileActionType {
   SET_STATUS = "profile/SET_STATUS",
   SET_AVATAR = "profile/SET_AVATAR",
 }
-
-// export interface InitialState {
-//   profileInfo: ProfileInfo | {};
-//   posts: Posts[];
-//   status: string | null;
-// }
 
 export interface ProfileInfo {
   id: number;
@@ -35,13 +28,6 @@ export interface Photos {
   large: string | null;
 }
 
-export type ProfileActions =
-  | Addpost
-  | SetProfile
-  | SetLoading
-  | SetStatus
-  | SetAvatar;
-
 interface Contacts {
   github: string | null;
   vk: string | null;
@@ -57,27 +43,40 @@ export interface Posts {
   text: string;
 }
 
-interface Addpost {
-  type: typeof ProfileActionType.ADD_POST;
-  payload: string;
-}
+// export interface InitialState {
+//   profileInfo: ProfileInfo | {};
+//   posts: Posts[];
+//   status: string | null;
+// }
 
-interface SetProfile {
-  type: typeof ProfileActionType.SET_PROFILE;
-  payload: ProfileInfo;
-}
+// export type ProfileActions =
+//   | Addpost
+//   | SetProfile
+//   | SetLoading
+//   | SetStatus
+//   | SetAvatar;
 
-interface SetLoading {
-  type: typeof ProfileActionType.SET_LOADING;
-  payload?: null;
-}
+// interface Addpost {
+//   type: typeof ProfileActionType.ADD_POST;
+//   payload: string;
+// }
 
-interface SetStatus {
-  type: typeof ProfileActionType.SET_STATUS;
-  payload: string;
-}
+// interface SetProfile {
+//   type: typeof ProfileActionType.SET_PROFILE;
+//   payload: ProfileInfo;
+// }
 
-interface SetAvatar {
-  type: typeof ProfileActionType.SET_AVATAR;
-  payload: Photos;
-}
+// interface SetLoading {
+//   type: typeof ProfileActionType.SET_LOADING;
+//   payload?: null;
+// }
+
+// interface SetStatus {
+//   type: typeof ProfileActionType.SET_STATUS;
+//   payload: string;
+// }
+
+// interface SetAvatar {
+//   type: typeof ProfileActionType.SET_AVATAR;
+//   payload: Photos;
+// }

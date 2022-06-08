@@ -3,10 +3,10 @@ import { useDispatch } from "react-redux";
 import {
   loadUserAvatar,
   updateProfileInfo,
-} from "../../store/profile/profile-action";
+} from "../../store/profile/profile-thunk";
+
 import Button from "../common/button/button";
 import Description from "../description/description";
-
 import ProfileForm from "../forms/profile-form/profile-form";
 
 const ProfileActions = ({ profileInfo, isSelfUser }) => {
@@ -54,10 +54,9 @@ const ProfileActions = ({ profileInfo, isSelfUser }) => {
     lookingForAJobDescription,
     aboutMe,
   }) => {
-    
     const data = {
       userId,
-      lookingForAJob: Boolean(lookingForAJob), 
+      lookingForAJob: Boolean(lookingForAJob),
       lookingForAJobDescription,
       fullName,
       aboutMe,
