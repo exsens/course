@@ -1,4 +1,5 @@
 import { Photos } from '../types/profile'
+import * as actions from '../users/users-action'
 
 export enum UserActionType {
   SET_USERS = "users/SET_USERS",
@@ -27,41 +28,5 @@ export type Users = {
   followed: boolean;
 };
 
-export type UserAction =
-  | ToggleFollow
-  | SetUsers
-  | SetTotalUsers
-  | SelectUserPage
-  | SetLoading
-  | ToggleFollowingProgress;
-
-
-interface ToggleFollow {
-  type: UserActionType.TOGGLE_FOLLOW;
-  payload: number;
-}
-
-interface SetUsers {
-  type: UserActionType.SET_USERS;
-  payload: Users[];
-}
-
-interface SetTotalUsers {
-  type: UserActionType.SET_TOTAL_USERS;
-  payload: number;
-}
-
-interface SelectUserPage {
-  type: UserActionType.SET_CURRENT_PAGE;
-  payload: number;
-}
-
-interface SetLoading {
-  type: UserActionType.SET_LOADING;
-  payload?: null;
-}
-
-interface ToggleFollowingProgress {
-  type: UserActionType.TOGGLE_FOLLOW_PROGRESS;
-  payload: number;
-}
+type ActionReturnType<T> = T extends {[key: string]: (...args: any[]) => infer R}  ? R : never;
+export type UserAction = ActionReturnType<typeof actions>;

@@ -1,4 +1,4 @@
-import { InitialState, UserAction, UserActionType } from "../types/users";
+import { InitialState, UserAction, UserActionType} from "../types/users";
 
 const initialState: InitialState = {
   users: [],
@@ -11,13 +11,13 @@ const initialState: InitialState = {
 
 export const usersReducer = (
   state = initialState,
-  { type, payload }: UserAction
+  action: UserAction
 ): InitialState => {
-  switch (type) {
+  switch (action.type) {
     case UserActionType.SET_USERS: {
       return {
         ...state,
-        users: payload,
+        users: action.payload,
         status: "fulfilled",
       };
     }
@@ -33,7 +33,7 @@ export const usersReducer = (
       return {
         ...state,
         users: state.users.map((user) =>
-          user.id === payload ? { ...user, followed: !user.followed } : user
+          user.id === action.payload ? { ...user, followed: !user.followed } : user
         ),
         status: 'fulfilled',
       };
@@ -44,22 +44,22 @@ export const usersReducer = (
         ...state,
         followingInProgress:
           state.status === "loading"
-            ? [...state.followingInProgress, payload]
-            : state.followingInProgress.filter((id) => id !== payload),
+            ? [...state.followingInProgress, action.payload]
+            : state.followingInProgress.filter((id) => id !== action.payload),
       };
     }
 
     case UserActionType.SET_TOTAL_USERS: {
       return {
         ...state,
-        totalUsersCount: payload,
+        totalUsersCount: action.payload,
       };
     }
 
     case UserActionType.SET_CURRENT_PAGE: {
       return {
         ...state,
-        currentPage: payload,
+        currentPage: action.payload,
       };
     }
 

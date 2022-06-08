@@ -9,13 +9,6 @@ const instance = axios.create({
 
 const BASE_URL = "https://social-network.samuraijs.com/api/1.0/";
 
-export const getProfileById = (id) => `${BASE_URL}profile/${id}`;
-export const getUserStatusById = (id) => `${BASE_URL}profile/status/${id}`;
-
-export const updateUserStatus = () => `${BASE_URL}profile/status`;
-export const updateProfileInfo = () => `${BASE_URL}/profile`;
-export const putAvatar = () => `${BASE_URL}/profile/photo`;
-
 export const getAuthMe = () => `${BASE_URL}auth/me`;
 export const getAuthLogin = () => `${BASE_URL}auth/login`;
 
@@ -23,10 +16,18 @@ export const getCaptcha = () => `${BASE_URL}security/get-captcha-url`;
 
 export const followUser = (id) => `${BASE_URL}follow/${id}`;
 
+export const authApi = {
+  getAuthMe: () =>  instance.get(`auth/me`),
+  getAuthLogin: () => instance.get(`auth/login`),
+  getCaptcha: () => instance.get(`security/get-captcha-url`)
+};
+
 export const usersApi = {
-  getUsersPage(page, count) {
-    return instance.get(`users?page=${page}&count=${count}`);
-  },
+  getUsersPage: (page, count) => instance.get(`users?page=${page}&count=${count}`),
+  followUser: (id, method) =>{
+    console.log(method)
+    return instance[`${method}`](`follow/${id}`)
+  }, 
 };
 
 export const profileApi = {

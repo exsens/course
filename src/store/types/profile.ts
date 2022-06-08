@@ -1,8 +1,5 @@
 import * as actions from '../profile/profile-action';
 
-type ActionReturnType<T> = T extends {[key: string]: (...args: any[]) => infer R}  ? R : never;
-export type ProfileAction = ActionReturnType<typeof actions>;
-
 export enum ProfileActionType {
   ADD_POST = "profile/ADD_POST",
   UPDATE_NEW_POST = "profile/UPDATE_NEW_POST",
@@ -11,6 +8,9 @@ export enum ProfileActionType {
   SET_STATUS = "profile/SET_STATUS",
   SET_AVATAR = "profile/SET_AVATAR",
 }
+
+type ActionReturnType<T> = T extends {[key: string]: (...args: any[]) => infer R}  ? R : never;
+export type ProfileAction = ActionReturnType<typeof actions>;
 
 export interface ProfileInfo {
   id: number;

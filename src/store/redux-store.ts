@@ -3,7 +3,7 @@ import { composeWithDevTools } from "@redux-devtools/extension";
 
 import thunk  from "redux-thunk";
 import axios, { AxiosStatic } from "axios";
-import * as api from "../api/config";
+import * as api from "../api/api";
 
 import { reducer as formReducer } from "redux-form";
 import { profileReducer } from "./profile/profile-reducer";

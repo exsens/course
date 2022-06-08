@@ -1,15 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
-import {
-  followUser,
-  unFollowUser,
-  toggleFollowingProgress,
-} from "../../store/users/users-action";
+import { toggleFollowingProgress } from "../../store/users/users-action";
+import { toggleFollowUser } from "../../store/users/users-thunk";
 import { selectAuthData } from "../../store/auth/auth-select";
 
 import Flex from "../flex/flex";
 import { Link } from "react-router-dom";
 import Button from "../common/button/button";
-import { Users } from "../../store/types/users";
 
 import c from "./user-item.module.scss";
 
@@ -31,13 +27,9 @@ const UsersItem = ({
   const isSelfUser = userId === id;
 
   const handleToggleFollow = (id) => {
-    if (followed) {
-      dispatch(followUser(id));
-      dispatch(toggleFollowingProgress(id));
-    } else {
-      dispatch(unFollowUser(id));
-      dispatch(toggleFollowingProgress(id));
-    }
+    console.log(followed, 'item')
+    dispatch(toggleFollowUser(id, followed));
+    dispatch(toggleFollowingProgress(id));
   };
 
   return (

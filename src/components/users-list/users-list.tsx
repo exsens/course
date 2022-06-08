@@ -1,18 +1,19 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 
-import { loadUsers, selectUserPage } from "../../store/users/users-action";
+import { selectUserPage } from "../../store/users/users-action";
+import { loadUsers } from "../../store/users/users-thunk";
 import { selectUsers } from "../../store/users/users-selector";
 
 import UsersItem from "../users-item/users-item";
 import Preloader from "../preloader/preloader";
 import Pagination from "../common/pagination/pagination";
+import { useTypedDispatch } from "../../hooks/useAppDispatch";
 
 const UsersList: React.FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useTypedDispatch();
   const {pageSize, currentPage, totalUsersCount, users, status, followingInProgress} = useTypedSelector(selectUsers)
-  
+
   const onSelectPage = (id:number) => {
     dispatch(selectUserPage(id));
   }

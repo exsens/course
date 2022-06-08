@@ -1,4 +1,4 @@
-import { profileApi } from "../../api/config";
+import { profileApi } from "../../api/api";
 import { ProfileInfo } from "../types/profile";
 import { ThunkType } from "../types/common";
 import { setAvatar, setLoading, setProfile, setStatus } from "./profile-action";
