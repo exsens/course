@@ -10,24 +10,33 @@ const instance = axios.create({
   withCredentials: true,
 });
 
-function _transformAxiosData<T> (data: AxiosResponse<T> ): T {
-  return data.data
+function _transformAxiosData<T>(data: AxiosResponse<T>): T {
+  return data.data;
 }
 
 export const authApi = {
   getMyAuth: () => instance.get<AuthMe>(`auth/me`).then(_transformAxiosData),
   toggleLogin: (authdata?: AuthFormData) =>
     authdata
-      ? instance.post<ApiTypes>(`auth/login`, authdata).then(_transformAxiosData)
+      ? instance
+          .post<ApiTypes>(`auth/login`, authdata)
+          .then(_transformAxiosData)
       : instance.delete<ApiTypes>(`auth/login`).then(_transformAxiosData),
-  getCaptcha: () => instance.get<CaptchaResponseType>(`security/get-captcha-url`).then(_transformAxiosData),
+  getCaptcha: () =>
+    instance
+      .get<CaptchaResponseType>(`security/get-captcha-url`)
+      .then(_transformAxiosData),
 };
 
 export const usersApi = {
   getUsersPage: (page: number, count: number) =>
-    instance.get<getUserData>(`users?page=${page}&count=${count}`).then(_transformAxiosData),
+    instance
+      .get<getUserData>(`users?page=${page}&count=${count}`)
+      .then(_transformAxiosData),
   followUser: (id: number, followed: boolean) =>
-    followed ? instance.delete(`follow/${id}`) : instance.post(`follow/${id}`, id),
+    followed
+      ? instance.delete<ApiTypes>(`follow/${id}`).then(_transformAxiosData)
+      : instance.post<ApiTypes>(`follow/${id}`, id).then(_transformAxiosData),
 };
 
 export const profileApi = {
@@ -53,4 +62,3 @@ export const profileApi = {
     });
   },
 };
-

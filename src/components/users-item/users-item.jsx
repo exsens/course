@@ -27,7 +27,6 @@ const UsersItem = ({
   const isSelfUser = userId === id;
 
   const handleToggleFollow = (id) => {
-    console.log(followed, 'item')
     dispatch(toggleFollowUser(id, followed));
     dispatch(toggleFollowingProgress(id));
   };

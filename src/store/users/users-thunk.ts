@@ -1,4 +1,8 @@
 import { ThunkType } from "../types/common";
+import { ResultCodes } from "../../api/types";
+
+import { usersApi } from "../../api/api";
+
 import {
   setLoading,
   setTotalUsers,
@@ -6,18 +10,15 @@ import {
   toggleFollow,
   toggleFollowingProgress,
 } from "./users-action";
-import { usersApi } from "../../api/api";
 
 export const toggleFollowUser =
   (id: number, followed: boolean): ThunkType =>
   async (dispatch) => {
     try {
       dispatch(setLoading());
-      const { data } = followed
-        ? await usersApi.followUser(id, followed)
-        : await usersApi.followUser(id, followed);
+      const { resultCode } = await usersApi.followUser(id, followed);
 
-      if (data.resultCode === 0) {
+      if (resultCode === ResultCodes.Success) {
         dispatch(toggleFollow(id));
         dispatch(toggleFollowingProgress(id));
       }
@@ -31,7 +32,10 @@ export const loadUsers =
   async (dispatch) => {
     try {
       dispatch(setLoading());
-      const { error, items, totalCount } = await usersApi.getUsersPage(currentPage, pageSize);
+      const { error, items, totalCount } = await usersApi.getUsersPage(
+        currentPage,
+        pageSize
+      );
       if (!error) {
         dispatch(setUsers(items));
         dispatch(setTotalUsers(totalCount));
