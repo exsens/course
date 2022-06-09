@@ -12,11 +12,10 @@ export const toggleFollowUser =
   (id: number, followed: boolean): ThunkType =>
   async (dispatch) => {
     try {
-      console.log(followed, 'thunk')
       dispatch(setLoading());
       const { data } = followed
-        ? await usersApi.followUser(id, "delete")
-        : await usersApi.followUser(id, "post");
+        ? await usersApi.followUser(id, followed)
+        : await usersApi.followUser(id, followed);
 
       if (data.resultCode === 0) {
         dispatch(toggleFollow(id));
@@ -32,10 +31,10 @@ export const loadUsers =
   async (dispatch) => {
     try {
       dispatch(setLoading());
-      const { data } = await usersApi.getUsersPage(currentPage, pageSize);
-      if (!data.error) {
-        dispatch(setUsers(data.items));
-        dispatch(setTotalUsers(data.totalCount));
+      const { error, items, totalCount } = await usersApi.getUsersPage(currentPage, pageSize);
+      if (!error) {
+        dispatch(setUsers(items));
+        dispatch(setTotalUsers(totalCount));
       }
     } catch (error) {
       console.error(error);

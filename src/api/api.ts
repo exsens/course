@@ -1,35 +1,43 @@
-import axios from "axios";
-import { AuthFormData } from '../store/types/auth';
-import { ProfileFormData } from '../store/types/profile';
+import axios, { AxiosResponse } from "axios";
+import { AuthFormData } from "../store/types/auth";
+import { ProfileFormData } from "../store/types/profile";
+import { ApiTypes, AuthMe, CaptchaResponseType, getUserData } from "./types";
 
-const instance: any = axios.create({
+const instance = axios.create({
   baseURL: "https://social-network.samuraijs.com/api/1.0/",
   timeout: 1000,
   headers: { "API-KEY": "7a305640-b547-4a06-b77e-c4e9d81c2dbc" },
   withCredentials: true,
 });
 
+function _transformAxiosData<T> (data: AxiosResponse<T> ): T {
+  return data.data
+}
+
 export const authApi = {
-  getMyAuth: () =>  instance.get(`auth/me`),
-  toggleLogin: (method: string, authdata?: AuthFormData) => instance[method](`auth/login`, authdata),
-  getCaptcha: () => instance.get(`security/get-captcha-url`)
+  getMyAuth: () => instance.get<AuthMe>(`auth/me`).then(_transformAxiosData),
+  toggleLogin: (authdata?: AuthFormData) =>
+    authdata
+      ? instance.post<ApiTypes>(`auth/login`, authdata).then(_transformAxiosData)
+      : instance.delete<ApiTypes>(`auth/login`).then(_transformAxiosData),
+  getCaptcha: () => instance.get<CaptchaResponseType>(`security/get-captcha-url`).then(_transformAxiosData),
 };
 
 export const usersApi = {
-  getUsersPage: (page: number, count: number) => instance.get(`users?page=${page}&count=${count}`),
-  followUser: (id:number, method: string) =>{
-    return instance[method](`follow/${id}`)
-  }, 
+  getUsersPage: (page: number, count: number) =>
+    instance.get<getUserData>(`users?page=${page}&count=${count}`).then(_transformAxiosData),
+  followUser: (id: number, followed: boolean) =>
+    followed ? instance.delete(`follow/${id}`) : instance.post(`follow/${id}`, id),
 };
 
 export const profileApi = {
-  getProfileById(id:number) {
+  getProfileById(id: number) {
     return instance.get(`profile/${id}`);
   },
-  getProfileStatusById(id:number) {
+  getProfileStatusById(id: number) {
     return instance.get(`profile/status/${id}`);
   },
-  updateUserStatus(status:string) {
+  updateUserStatus(status: string) {
     return instance.put(`profile/status`, { status });
   },
   updateProfileInfo(formData: ProfileFormData) {
@@ -45,3 +53,4 @@ export const profileApi = {
     });
   },
 };
+

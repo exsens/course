@@ -1,15 +1,19 @@
 import { stopSubmit } from "redux-form";
 
 import { authApi } from "../../api/api";
+import { ResultCodes, ResultCodeForCaptcha } from "../../api/types";
 
 import { ThunkType } from "../types/common";
 import { resetAuthData, setAuthData, setCaptchaUrl } from "./auth-action";
 
 export const getAuth = (): ThunkType => async (dispatch) => {
   try {
-    const { data } = await authApi.getMyAuth();
-    if (data.resultCode === 0) {
-      dispatch(setAuthData(data.data.id, data.data.email, data.data.login));
+    const {
+      resultCode,
+      data: { id, email, login },
+    } = await authApi.getMyAuth();
+    if (resultCode === ResultCodes.Success) {
+      dispatch(setAuthData(id, email, login));
     }
   } catch (error) {
     console.error(error);
@@ -25,23 +29,21 @@ export const logIn =
   ): ThunkType =>
   async (dispatch) => {
     try {
-      const { data } = await authApi.toggleLogin("post", {
+      const { resultCode, messages } = await authApi.toggleLogin({
         email,
         password,
         rememberMe,
         captcha,
       });
-      if (data.resultCode === 0) {
+      if (resultCode === ResultCodes.Success) {
         dispatch(getAuth());
-      } else if (data.resultCode === 10) {
-        const {
-          data: { messages = "send captcha", url },
-        } = await authApi.getCaptcha();
+      } else if (resultCode === ResultCodeForCaptcha.CaptchaIsRequired) {
+        const { url } = await authApi.getCaptcha();
         dispatch(setCaptchaUrl(url));
-        dispatch(stopSubmit("login", { _error: messages }));
+        dispatch(stopSubmit("login", { _error: "Send Captcha" }));
       } else {
-        let messages = data.messages.length ? data.messages[0] : "Some error";
-        dispatch(stopSubmit("login", { _error: messages }));
+        let messageError = messages?.length ? messages[0] : "Some error";
+        dispatch(stopSubmit("login", { _error: messageError }));
       }
     } catch (error) {
       console.log(error);
@@ -50,11 +52,9 @@ export const logIn =
 
 export const logOut = (): ThunkType => async (dispatch) => {
   try {
-    const {
-      data: { resultCode },
-    } = await authApi.toggleLogin("delete");
+    const { resultCode } = await authApi.toggleLogin();
 
-    if (!resultCode) {
+    if (resultCode === ResultCodes.Success) {
       dispatch(resetAuthData());
     }
   } catch (error) {

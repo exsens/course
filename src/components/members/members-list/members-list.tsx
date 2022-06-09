@@ -1,18 +1,14 @@
 import React from "react";
-import { connect } from "react-redux";
+import { connect, ConnectedProps } from "react-redux";
 
-import { RootState } from '../../../store/types/common';
+import { RootState } from "../../../store/types/common";
 
 import MembersItem from "../members-item/members-item.jsx";
 import { Users } from "../../../store/types/users";
 
 import c from "./members-list.module.scss";
 
-interface PropsType {
-  users: Users[];
-}
-
-class MembersList extends React.Component<PropsType> {
+class MembersList extends React.Component<PropsFromRedux> {
   render() {
     const { users } = this.props;
 
@@ -29,5 +25,15 @@ class MembersList extends React.Component<PropsType> {
 const mapStateToProps = (state: RootState) => ({
   users: state.dialogsData.users,
 });
+{
+  /* <TStateProps = {}, TDispatchProps = {}, TOwnProps = {}, State = DefaultState> type state, typeDispatch, typeOwn, rootState*/
+}
 
-export default connect(mapStateToProps, null)(MembersList);
+type PropsType = {
+  users: Users[];
+};
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+const connector = connect(mapStateToProps);
+export default connector(MembersList);
