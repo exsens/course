@@ -1,4 +1,4 @@
-import * as actions from '../auth/auth-action';
+import * as actions from "../auth/auth-action";
 
 export enum AuthActionType {
   SET_AUTH_DATA = "auth/SET_AUTH_DATA",
@@ -11,22 +11,23 @@ export type AuthData = {
   email: string;
   login: string;
   isAuth: boolean;
+  password?: string;
+  rememberMe?: boolean;
 };
 
-type ActionReturnType<T> = T extends {[key: string]: (...args: any[]) => infer R} ? R : never;
+export type AuthFormData = {
+  email: string;
+  password: string;
+  rememberMe: boolean;
+  captcha?: string;
+};
+
+type ActionReturnType<T> = T extends {
+  [key: string]: (...args: any[]) => infer R;
+}
+  ? R
+  : never;
 export type AuthAction = ActionReturnType<typeof actions>;
-
-
-
-
-
-
-
-
-
-
-
-
 
 // export type InitialState = {
 //   userId: number | null;

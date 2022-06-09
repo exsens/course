@@ -1,6 +1,11 @@
+import React, {FC} from 'react';
 import c from './banners.module.scss';
 
-const Banner = ({banner}) => {
+interface BannerPropsType {
+  banner: string
+}
+
+const Banner: FC<BannerPropsType> = ({banner}) => {
   return (
     <div className={c.banner}>
       <img src={banner} alt="banner" />

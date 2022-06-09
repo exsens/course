@@ -7,7 +7,7 @@ import { resetAuthData, setAuthData, setCaptchaUrl } from "./auth-action";
 
 export const getAuth = (): ThunkType => async (dispatch) => {
   try {
-    const { data } = await authApi.getAuthMe();
+    const { data } = await authApi.getMyAuth();
     if (data.resultCode === 0) {
       dispatch(setAuthData(data.data.id, data.data.email, data.data.login));
     }
@@ -25,7 +25,7 @@ export const logIn =
   ): ThunkType =>
   async (dispatch) => {
     try {
-      const { data } = await authApi.getAuthLogin({
+      const { data } = await authApi.toggleLogin("post", {
         email,
         password,
         rememberMe,
@@ -48,23 +48,16 @@ export const logIn =
     }
   };
 
-export const logOut =
-  (): ThunkType =>
-  async (dispatch: Function, _: any, { client, api }: any) => {
-    try {
-      const {
-        data: { resultCode },
-      } = await client.delete(api.getAuthLogin(), {
-        withCredentials: true,
-        headers: {
-          "API-KEY": "7a305640-b547-4a06-b77e-c4e9d81c2dbc",
-        },
-      });
+export const logOut = (): ThunkType => async (dispatch) => {
+  try {
+    const {
+      data: { resultCode },
+    } = await authApi.toggleLogin("delete");
 
-      if (!resultCode) {
-        dispatch(resetAuthData());
-      }
-    } catch (error) {
-      console.error(error);
+    if (!resultCode) {
+      dispatch(resetAuthData());
     }
-  };
+  } catch (error) {
+    console.error(error);
+  }
+};

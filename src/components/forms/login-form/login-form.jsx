@@ -1,13 +1,13 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
 
-import { Input } from "../../common/form-controls/form-controls.jsx";
+import { Input } from "../../common/form-controls/form-controls";
 import {
   required,
   minLength,
-} from "../../../utils/validation/validation.js";
+} from "../../../utils/validation/validation";
 
-import Button from "../../common/button/button.jsx";
+import Button from "../../common/button/button";
 
 import c from "./login-form.module.scss";
 

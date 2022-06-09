@@ -1,5 +1,5 @@
 import { profileApi } from "../../api/api";
-import { ProfileInfo } from "../types/profile";
+import { ProfileFormData } from "../types/profile";
 import { ThunkType } from "../types/common";
 import { setAvatar, setLoading, setProfile, setStatus } from "./profile-action";
 
@@ -47,7 +47,7 @@ export const updateStatus =
   };
 
 export const loadUserAvatar =
-  (img: object): ThunkType =>
+  (img: any): ThunkType =>
   async (dispatch) => {
     const { data } = await profileApi.setAvatar(img);
     try {
@@ -60,7 +60,7 @@ export const loadUserAvatar =
   };
 
 export const updateProfileInfo =
-  (formData: ProfileInfo): ThunkType =>
+  (formData: ProfileFormData): ThunkType =>
   async (dispatch, getState) => {
     const userId = getState().auth.userId as number;
     const { data } = await profileApi.updateProfileInfo(formData);

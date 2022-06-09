@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import Button from "../../common/button/button.jsx";
+import Button from "../../common/button/button";
 
 import c from "./profile-form.module.scss";
 

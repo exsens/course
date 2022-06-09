@@ -23,6 +23,14 @@ export interface ProfileInfo {
   photos: Photos;
 }
 
+export interface ProfileFormData {
+  userId: number;
+  lookingForAJob: boolean;
+  lookingForAJobDescription: string | null;
+  fullName: string;
+  contacts: Contacts;
+}
+
 export interface Photos {
   small: string | null;
   large: string | null;
