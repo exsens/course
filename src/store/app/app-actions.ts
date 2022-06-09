@@ -1,4 +1,4 @@
-import { getAuth } from "../auth/auth-action";
+import { getAuth } from "../auth/auth-thunk";
 
 export const INITIALIZED_SUCCESS = "app/INITIALIZED_SUCCESS";
 

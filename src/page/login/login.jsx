@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation, Navigate } from "react-router-dom";
 
 import LoginForm from "../../components/forms/login-form/login-form";
-import { logIn } from "../../store/auth/auth-action";
+import { logIn } from "../../store/auth/auth-thunk";
 import { selectAuthData } from "../../store/auth/auth-select";
 
 import c from "./login.module.scss";

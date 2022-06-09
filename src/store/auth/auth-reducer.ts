@@ -1,13 +1,4 @@
-import { SET_AUTH_DATA, RESET_AUTH_DATA, SET_CAPTCHA_URL } from "./auth-action";
-
-
-// export type InitialState = {
-//   userId: number | null;
-//   email: string | null;
-//   login: string | null;
-//   isAuth: boolean | false;
-//   captchaUrl: string | "";
-// };
+import { AuthAction, AuthActionType } from "../types/auth";
 
 const initialState = {
   userId: null as number | null,
@@ -21,21 +12,21 @@ export type InitialStateType = typeof initialState;
 
 export const authReducer = (
   state = initialState,
-  { type, payload }: any
+  action: AuthAction
 ): InitialStateType => {
-  switch (type) {
-    case SET_AUTH_DATA:
+  switch (action.type) {
+    case AuthActionType.SET_AUTH_DATA:
       return {
         ...state,
-        ...payload,
+        ...action.payload,
       };
 
-    case SET_CAPTCHA_URL:
+    case AuthActionType.SET_CAPTCHA_URL:
       return {
         ...state,
-        captchaUrl: payload,
+        captchaUrl: action.payload,
       };
-    case RESET_AUTH_DATA:
+    case AuthActionType.RESET_AUTH_DATA:
       return initialState;
 
     default:

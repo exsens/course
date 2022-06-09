@@ -18,7 +18,7 @@ export const followUser = (id) => `${BASE_URL}follow/${id}`;
 
 export const authApi = {
   getAuthMe: () =>  instance.get(`auth/me`),
-  getAuthLogin: () => instance.get(`auth/login`),
+  getAuthLogin: (authdata) => instance.post(`auth/login`, authdata),
   getCaptcha: () => instance.get(`security/get-captcha-url`)
 };
 
