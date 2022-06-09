@@ -1,23 +1,16 @@
-import React, {FC, ReactNode} from 'react';
-import { WrappedFieldsProps } from 'redux-form';
+import { FormControlsPropTypes, InputPropsType } from "./type";
 
 import c from "./form-control.module.scss";
 
-interface FormControlsPropTypes {
-  children: ReactNode,
-  label: string,
-  meta: {touched: boolean, error?: string}
-}
-
-const FormControls: FC<FormControlsPropTypes> = ({
-  meta: { touched, error},
+const FormControls: React.FC<FormControlsPropTypes> = ({
+  meta: { touched, error },
   children,
   label,
 }) => {
   const hasError = touched && error;
 
   return (
-    <div className={hasError ? c.warning : ''}>
+    <div className={hasError ? c.warning : ""}>
       {label && <label>{label}</label>}
       {children}
       {hasError && <span>{error}</span>}
@@ -25,15 +18,13 @@ const FormControls: FC<FormControlsPropTypes> = ({
   );
 };
 
-interface InputPropsType {
-  label: string,
-  placeholder: string,
-  type: string,
-  meta: {touched: boolean, error?: string},
-  input: FC<WrappedFieldsProps>
-}
-
-export const Input: FC<InputPropsType> = ({ input, meta, label, placeholder, type }) => {
+export const Input: React.FC<InputPropsType> = ({
+  input,
+  meta,
+  label,
+  placeholder,
+  type,
+}) => {
   return (
     <FormControls label={label} meta={meta}>
       <input

@@ -1,9 +1,6 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import { composeWithDevTools } from "@redux-devtools/extension";
-
 import thunk  from "redux-thunk";
-import axios, { AxiosStatic } from "axios";
-import * as api from "../api/api";
 
 import { reducer as formReducer } from "redux-form";
 import { profileReducer } from "./profile/profile-reducer";
@@ -27,17 +24,10 @@ const store = createStore(
   rootReducers,
   composeWithDevTools(
     applyMiddleware(
-      thunk.withExtraArgument({
-        client: axios,
-        api,
-      } as Extra)
+      thunk
     )
   )
 );
 
-export type Extra = {
-  client: AxiosStatic;
-  api: any;
-};
 
 export default store;
