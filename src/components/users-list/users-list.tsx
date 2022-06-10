@@ -22,9 +22,12 @@ const UsersList: React.FC = () => {
     dispatch(loadUsers(currentPage, pageSize))
   }, [currentPage, pageSize, dispatch])
   
+  if (status === "loading") {
+     return <Preloader />
+  }
+
   return (
     <>
-      {status === "loading" && <Preloader />}
       <Pagination onSelectPage={onSelectPage} pageInfo={{pageSize, currentPage, totalItemsCount: totalUsersCount}}/>
       {users.map((user) => (
         <UsersItem key={user.id} followingInProgress={followingInProgress} {...user} />

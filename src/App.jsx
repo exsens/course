@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 
-import { initializedApp } from "./store/app/app-actions";
+import { initializedApp } from "./store/app/app-thunk";
 import { selectInitialized } from "./store/app/app-selectors";
 import { selectIsAuth } from "./store/auth/auth-select";
 

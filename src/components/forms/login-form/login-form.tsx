@@ -1,19 +1,25 @@
 import React from "react";
-import { Field, reduxForm } from "redux-form";
+import { Field, reduxForm, InjectedFormProps } from "redux-form";
 
 import { Input } from "../../common/form-controls/form-controls";
-import {
-  required,
-  minLength,
-} from "../../../utils/validation/validation";
+import { required, minLength } from "../../../utils/validation/validation";
 
 import Button from "../../common/button/button";
 
 import c from "./login-form.module.scss";
 
-const LoginForm = (props) => {
-  const { handleSubmit, error, captchaUrl = null } = props;
+interface LoginFormPropsType {
+  error?: string;
+  handleSubmit: () => void;
+}
 
+interface LoginFormOwnProps {
+  captchaUrl: string | null;
+}
+
+const LoginForm: React.FC<
+  InjectedFormProps<LoginFormPropsType, LoginFormOwnProps> & LoginFormOwnProps
+> = ({ handleSubmit, error, captchaUrl = null }) => {
   return (
     <form className={c.form} onSubmit={handleSubmit}>
       <Field
@@ -61,6 +67,6 @@ const LoginForm = (props) => {
 
 const minLength5 = minLength(5);
 
-export default reduxForm({
+export default reduxForm<LoginFormPropsType, LoginFormOwnProps>({
   form: "login",
 })(LoginForm);

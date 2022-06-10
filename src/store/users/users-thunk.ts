@@ -1,8 +1,4 @@
-import { ThunkType } from "../types/common";
-import { ResultCodes } from "../../api/types";
-
 import { usersApi } from "../../api/api";
-
 import {
   setLoading,
   setTotalUsers,
@@ -11,8 +7,12 @@ import {
   toggleFollowingProgress,
 } from "./users-action";
 
+import { ThunkType1 } from "../types/common";
+import { ResultCodes } from "../../api/types";
+import { UserAction} from "../types/users"
+
 export const toggleFollowUser =
-  (id: number, followed: boolean): ThunkType =>
+  (id: number, followed: boolean): ThunkType1<UserAction> =>
   async (dispatch) => {
     try {
       dispatch(setLoading());
@@ -28,7 +28,7 @@ export const toggleFollowUser =
   };
 
 export const loadUsers =
-  (currentPage: number, pageSize: number): ThunkType =>
+  (currentPage: number, pageSize: number): ThunkType1<UserAction> =>
   async (dispatch) => {
     try {
       dispatch(setLoading());

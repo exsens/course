@@ -9,7 +9,7 @@ export interface FormControlsPropTypes {
 
 export interface InputPropsType {
   label: string;
-  placeholder: string;
+  placeholder?: string;
   type: string;
   meta: { touched: boolean; error?: string };
   input: FC<WrappedFieldsProps>;

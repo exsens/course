@@ -3,8 +3,8 @@ import React, {FC, ReactNode } from "react";
 import c from "./button.module.scss";
 
 interface ButtonPropTypes {
-  onClick: () => void;
-  disabled: boolean;
+  onClick?: () => void;
+  disabled?: boolean;
   children: ReactNode;
 }
 

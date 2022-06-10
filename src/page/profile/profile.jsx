@@ -35,9 +35,14 @@ const Profile = () => {
 
     [id, dispatch]
   );
+
+  if (status === "loading" ) {
+    return <Preloader />
+  }
+  
   return (
     <div className={c.profile}>
-      {status === "loading" && <Preloader />}
+      
       <ProfileInfo isOwner={isOwner} />
       <h3>My posts</h3>
       {isOwner && <PostForm />}
