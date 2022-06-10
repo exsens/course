@@ -1,11 +1,11 @@
-import React, {FC, ReactNode } from "react";
+import React, {FC, ReactElement, ReactNode } from "react";
 
 import c from "./button.module.scss";
 
 interface ButtonPropTypes {
   onClick?: () => void;
   disabled?: boolean;
-  children: ReactNode;
+  children: ReactNode ;
 }
 
 const Button: FC<ButtonPropTypes> = ({

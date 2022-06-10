@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { addMessageAction } from '../../../store/dialogs/dialogs-action.ts'
 
 
-const MessagesList = ({ messages, addMessage }) => {
+const MessagesList = ({ messages, addMessage, style }) => {
   const idDialog = useParams().id;
   const currentIdMessage = idDialog < messages.length ? idDialog : '';
   const userMessages = currentIdMessage ? messages[currentIdMessage].text : null;
@@ -13,7 +13,7 @@ const MessagesList = ({ messages, addMessage }) => {
     <>
       {userMessages ?
         <>
-          <ul style={{ marginBottom: '15px', display: 'flex', flexDirection: 'column' }}>
+          <ul style={{ marginBottom: '15px', display: 'flex', flexDirection: 'column', ...style }}>
             {userMessages.map((message, idx) => <MessagesItem key={idx} text={message} />)}
           </ul>
           <MessagesInput id={currentIdMessage} addMessage={addMessage} />

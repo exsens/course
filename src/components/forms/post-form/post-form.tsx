@@ -1,16 +1,16 @@
-import { useState } from "react";
+import { useState, FC, FocusEvent, ChangeEvent } from "react";
 import { useDispatch } from "react-redux";
 
 import { addPost } from "../../../store/profile/profile-action";
 
 import c from "./post-form.module.scss";
 
-const PostForm = () => {
+const PostForm: FC = () => {
   const [inputPost, setInputPost] = useState("");
 
   const dispatch = useDispatch();
 
-  const handleBlur = (e) => {
+  const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
     const value = e.target.value;
 
     if (value.length > 0) {
@@ -19,7 +19,7 @@ const PostForm = () => {
     }
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setInputPost(value);
   };

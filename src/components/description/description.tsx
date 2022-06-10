@@ -1,8 +1,11 @@
 import c from "./description.module.scss";
+import { ProfileDescriptionsType } from "../profile-actions/type";
 
+interface PropsType {
+  info: ProfileDescriptionsType[];
+}
 
-
-const Description = ({ info }) => {
+const Description: React.FC<PropsType> = ({ info }) => {
   return (
     <dl className={c.description}>
       {info.map((el) => {

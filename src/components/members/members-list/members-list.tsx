@@ -25,6 +25,7 @@ class MembersList extends React.Component<PropsFromRedux> {
 const mapStateToProps = (state: RootState) => ({
   users: state.dialogsData.users,
 });
+
 {
   /* <TStateProps = {}, TDispatchProps = {}, TOwnProps = {}, State = DefaultState> type state, typeDispatch, typeOwn, rootState*/
 }

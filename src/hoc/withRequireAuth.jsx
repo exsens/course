@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import { Navigate, useLocation } from "react-router-dom";
 import { selectIsAuth } from "../store/auth/auth-select";
 
+
 const WithRequireAuth = ({ children }) => {
   const auth = useSelector(selectIsAuth);
   const location = useLocation();

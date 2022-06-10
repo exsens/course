@@ -2,8 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import MessagesList from '../messages-list/messages-list';
 
-
-const MessagesContent = () => {
+const MessagesContent: React.FC = () => {
   return (
     <div style={{flex: '1', maxWidth: '600px'}}>
       <Routes>
