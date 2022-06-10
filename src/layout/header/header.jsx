@@ -1,5 +1,5 @@
 import Logo from '../../components/logo/logo';
-import LoginBar from '../../components/login-bar/login-bar.jsx';
+import LoginBar from '../../components/login-bar/login-bar';
 
 import c from './header.module.scss';
 

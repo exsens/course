@@ -12,21 +12,21 @@ type PageInfo = {
 
 type Props = {
   pageInfo: PageInfo;
-  onSelectPage: (paguNumber: number) => void;
+  onSelectPage: (pageNumber: number) => void;
 };
 
 export const Pagination: React.FC<Props> = ({
-  pageInfo: { totalItemsCount, pageSize, currentPage, portionSize = 10 },
+  pageInfo: { totalItemsCount, pageSize, currentPage = 1, portionSize = 10 },
   onSelectPage,
 }):JSX.Element => {
-  const [portionNumber, setPortionNumber] = useState(1);
+  const currentPortion = Math.ceil(currentPage / portionSize);
+  const [portionNumber, setPortionNumber] = useState(currentPortion);
   const pagesTotal = Math.ceil(totalItemsCount / pageSize);
   const portionTotal = Math.ceil(pagesTotal / portionSize);
   const leftPortionNumber = (portionNumber - 1) * portionSize + 1;
   const rightPortionNumber = portionNumber * portionSize;
   const paginations = getPagination(totalItemsCount);
-
-
+  console.log(portionNumber)
   return (
     <Flex style={{alignItems: 'center'}}>
       {leftPortionNumber > 1 && (

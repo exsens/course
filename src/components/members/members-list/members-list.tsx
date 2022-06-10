@@ -3,7 +3,7 @@ import { connect, ConnectedProps } from "react-redux";
 
 import { RootState } from "../../../store/types/common";
 
-import MembersItem from "../members-item/members-item.jsx";
+import MembersItem from "../members-item/members-item";
 import { Users } from "../../../store/types/users";
 
 import c from "./members-list.module.scss";
