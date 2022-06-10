@@ -7,7 +7,7 @@ import { selectProfileData } from "../../store/profile/profile-selector";
 import { getStatus, loadProfile } from "../../store/profile/profile-thunk";
 
 import PostList from "../../components/post-list/posts-list";
-import ProfileContent from "../../components/profile-content/profile-content";
+import ProfileInfo from "../../components/profile-info/profile-info";
 import PostForm from "../../components/forms/post-form/post-form";
 import Preloader from "../../components/preloader/preloader";
 
@@ -19,7 +19,7 @@ const Profile = () => {
   const userId = useSelector(selectUserId);
   const { posts, profileInfo, status } = profile;
   const id = useParams().id || userId;
-  const isSelfUser = userId === id;
+  const isOwner = userId === id;
 
   useEffect(
     function loadProfileInfo() {
@@ -38,12 +38,9 @@ const Profile = () => {
   return (
     <div className={c.profile}>
       {status === "loading" && <Preloader />}
-      <ProfileContent
-        profileInfo={{ ...profileInfo, id }}
-        isSelfUser={isSelfUser}
-      />
+      <ProfileInfo isOwner={isOwner} />
       <h3>My posts</h3>
-      {isSelfUser && <PostForm />}
+      {isOwner && <PostForm />}
       <PostList postsData={posts} avatar={profileInfo?.photos?.small} />
     </div>
   );

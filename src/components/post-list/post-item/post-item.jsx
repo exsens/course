@@ -1,18 +1,13 @@
+import ProfileAvatar from "../../profile-avatar/profile-avatar.jsx";
+
 import s from "./post-item.module.scss";
 
-const PostItem = ({ postsData, avatar }) => {
+const PostItem = ({ postsData, src }) => {
   const { text } = postsData;
 
   return (
     <li className={s.item}>
-      <img
-        src={
-          avatar
-            ? avatar
-            : "https://yur-info.ru/media/k2/items/cache/e02fde07d49ee258cc3f6d1b19207757_XL.jpg"
-        }
-        alt="avatar"
-      />
+      <ProfileAvatar src={src} width={'50px'} height={'50px'} />
       <span>{text}</span>
     </li>
   );

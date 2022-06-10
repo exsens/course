@@ -9,7 +9,7 @@ import Button from "../common/button/button";
 import Description from "../description/description";
 import ProfileForm from "../forms/profile-form/profile-form";
 
-const ProfileActions = ({ profileInfo, isSelfUser }) => {
+const ProfileActions = ({ profileInfo, isOwner }) => {
   const [editMode, setEditMode] = useState(false);
   const dispatch = useDispatch();
   const {
@@ -80,13 +80,13 @@ const ProfileActions = ({ profileInfo, isSelfUser }) => {
 
   return (
     <div>
-      {isSelfUser && <input type="file" onChange={handleChangeAvatar} />}
-      {editMode && isSelfUser ? (
+      {isOwner && <input type="file" onChange={handleChangeAvatar} />}
+      {editMode && isOwner ? (
         <ProfileForm fields={profileDescriptions} onSubmit={handleSubmitForm} />
       ) : (
         <>
           <Description info={profileDescriptions} />
-          {isSelfUser && <Button onClick={handleToggleEditMode}>Edit</Button>}
+          {isOwner && <Button onClick={handleToggleEditMode}>Edit</Button>}
         </>
       )}
     </div>

@@ -1,5 +1,7 @@
 import c from "./description.module.scss";
 
+
+
 const Description = ({ info }) => {
   return (
     <dl className={c.description}>
