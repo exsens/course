@@ -13,9 +13,8 @@ type ActionReturnType<T> = T extends {[key: string]: (...args: any[]) => infer R
 export type ProfileAction = ActionReturnType<typeof actions>;
 
 export interface ProfileInfo {
-  id: number;
   fullName: string;
-  status: string;
+  status?: string;
   userId: number;
   lookingForAJob: boolean;
   lookingForAJobDescription: string | null;

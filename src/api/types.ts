@@ -1,4 +1,6 @@
 import { Users } from "../store/types/users";
+import { Photos } from "../store/types/profile";
+
 // result codes
 export enum ResultCodes {
   Success = 0,
@@ -34,4 +36,10 @@ export interface getUserData {
   items: Users[];
   totalCount: number;
   error: string;
+}
+
+// profileApi
+
+export interface ProfileAvatar extends ApiTypes {
+  data: { photos: Photos };
 }

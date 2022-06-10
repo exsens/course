@@ -1,7 +1,8 @@
 import axios, { AxiosResponse } from "axios";
+
+import { ApiTypes, AuthMe, CaptchaResponseType, getUserData, ProfileAvatar } from "./types";
 import { AuthFormData } from "../store/types/auth";
-import { ProfileFormData } from "../store/types/profile";
-import { ApiTypes, AuthMe, CaptchaResponseType, getUserData } from "./types";
+import { ProfileFormData, ProfileInfo } from "../store/types/profile";
 
 const instance = axios.create({
   baseURL: "https://social-network.samuraijs.com/api/1.0/",
@@ -41,24 +42,27 @@ export const usersApi = {
 
 export const profileApi = {
   getProfileById(id: number) {
-    return instance.get(`profile/${id}`);
+    return instance.get<ProfileInfo>(`profile/${id}`);
   },
   getProfileStatusById(id: number) {
-    return instance.get(`profile/status/${id}`);
+    return instance.get<string>(`profile/status/${id}`);
   },
-  updateUserStatus(status: string) {
-    return instance.put(`profile/status`, { status });
+  async updateUserStatus(status: string) {
+    const data = await instance.put<ApiTypes>(`profile/status`, { status });
+    return _transformAxiosData(data);
   },
-  updateProfileInfo(formData: ProfileFormData) {
-    return instance.put(`profile`, formData);
+  async updateProfileInfo(formData: ProfileFormData) {
+    const data = await instance.put<ApiTypes>(`profile`, formData);
+    return _transformAxiosData(data);
   },
-  setAvatar(img: any) {
+  async setAvatar(img: any) {
     const newImg = new FormData();
     newImg.append("image", img);
-    return instance.post(`profile/photo`, newImg, {
+    const data = await instance.post<ProfileAvatar>(`profile/photo`, newImg, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
     });
+    return _transformAxiosData(data);
   },
 };

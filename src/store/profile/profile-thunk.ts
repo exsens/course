@@ -1,6 +1,8 @@
-import { profileApi } from "../../api/api";
+import { ResultCodes } from "../../api/types";
 import { ProfileFormData } from "../types/profile";
 import { ThunkType } from "../types/common";
+
+import { profileApi } from "../../api/api";
 import { setAvatar, setLoading, setProfile, setStatus } from "./profile-action";
 
 export const loadProfile =
@@ -8,9 +10,9 @@ export const loadProfile =
   async (dispatch) => {
     try {
       dispatch(setLoading());
-      const request = await profileApi.getProfileById(id);
-      if (request.status === 200) {
-        return dispatch(setProfile(request.data));
+      const { status, data } = await profileApi.getProfileById(id);
+      if (status === 200) {
+        return dispatch(setProfile(data));
       }
     } catch (error) {
       console.error(error);
@@ -34,10 +36,10 @@ export const updateStatus =
   (status: string): ThunkType =>
   async (dispatch) => {
     try {
-      const { data } = await profileApi.updateUserStatus(status);
-      if (data.resultCode === 0) {
+      const { resultCode } = await profileApi.updateUserStatus(status);
+      if (resultCode === ResultCodes.Success) {
         dispatch(setStatus(status));
-      } else if (data.resultCode === 1) {
+      } else if (resultCode === ResultCodes.Error) {
         status = status.slice(0, 50);
         dispatch(setStatus(status));
       }
@@ -49,10 +51,10 @@ export const updateStatus =
 export const loadUserAvatar =
   (img: any): ThunkType =>
   async (dispatch) => {
-    const { data } = await profileApi.setAvatar(img);
+    const { data, resultCode } = await profileApi.setAvatar(img);
     try {
-      if (data.resultCode === 0) {
-        dispatch(setAvatar(data.data.photos));
+      if (resultCode === ResultCodes.Success) {
+        dispatch(setAvatar(data.photos));
       }
     } catch (error) {
       console.log(error);
@@ -63,12 +65,12 @@ export const updateProfileInfo =
   (formData: ProfileFormData): ThunkType =>
   async (dispatch, getState) => {
     const userId = getState().auth.userId as number;
-    const { data } = await profileApi.updateProfileInfo(formData);
+    const { resultCode } = await profileApi.updateProfileInfo(formData);
     try {
-      if (data.resultCode === 0) {
+      if (resultCode === ResultCodes.Success) {
         dispatch(loadProfile(userId));
       } else {
-        console.error(data.resultCode);
+        console.error(resultCode);
       }
     } catch (error) {
       console.error(error);
