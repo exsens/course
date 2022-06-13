@@ -1,17 +1,13 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import {
-  loadUserAvatar,
-  updateProfileInfo,
-} from "../../store/profile/profile-thunk";
+import profile from "../../mobx/profile";
 
 import Button from "../common/button/button";
 import Description from "../description/description";
 import ProfileForm from "../forms/profile-form/profile-form";
 
 const ProfileActions = ({ profileInfo, isOwner }) => {
+  const { loadUserAvatar, updateProfileInfo } = profile;
   const [editMode, setEditMode] = useState(false);
-  const dispatch = useDispatch();
   const {
     userId,
     contacts = {},
@@ -37,7 +33,7 @@ const ProfileActions = ({ profileInfo, isOwner }) => {
 
   const handleChangeAvatar = (e) => {
     if (e.target.files.length) {
-      dispatch(loadUserAvatar(e.target.files[0]));
+      loadUserAvatar(e.target.files[0]);
     }
   };
 
@@ -71,7 +67,7 @@ const ProfileActions = ({ profileInfo, isOwner }) => {
         mainLink,
       },
     };
-    dispatch(updateProfileInfo(data)).then(() => setEditMode(!editMode));
+    updateProfileInfo(data).then(() => setEditMode(!editMode));
   };
 
   const handleToggleEditMode = () => {

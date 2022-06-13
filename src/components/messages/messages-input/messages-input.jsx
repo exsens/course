@@ -7,7 +7,7 @@ const MessagesInput = ({ id, addMessage }) => {
 
   const handleSubmit = () => {
     const text = inputRef.current.value;
-    addMessage({id, text})
+    addMessage(id, text)
     inputRef.current.value = '';
   }
 

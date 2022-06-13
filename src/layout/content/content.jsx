@@ -2,6 +2,7 @@ import React, { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 
 import Page404 from "../../page/page-404/page-404";
+import Profile from "../../page/profile/profile";
 import Dialogs from "../../page/dialogs/dialogs";
 import Users from "../../page/users/users";
 import Preloader from "../../components/preloader/preloader";
@@ -9,7 +10,6 @@ import WithRequireAuth from "../../hoc/withRequireAuth";
 
 import c from "./content.module.scss";
 
-const Profile = lazy(() => import("../../page/profile/profile"));
 const Login = lazy(() => import("../../page/login/login"));
 
 const Content = () => {
@@ -19,21 +19,17 @@ const Content = () => {
         <Route
           path="profile/*"
           element={
-            <Suspense fallback={<Preloader />}>
-              <WithRequireAuth>
-                <Profile />
-              </WithRequireAuth>
-            </Suspense>
+            <WithRequireAuth>
+              <Profile />
+            </WithRequireAuth>
           }
         />
         <Route
           path="profile/:id"
           element={
-            <Suspense fallback={<Preloader />}>
-              <WithRequireAuth>
-                <Profile />
-              </WithRequireAuth>
-            </Suspense>
+            <WithRequireAuth>
+              <Profile />
+            </WithRequireAuth>
           }
         />
         <Route

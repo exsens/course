@@ -1,9 +1,9 @@
+import { observer } from "mobx-react-lite";
 import { useState,useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { updateStatus } from "../../store/profile/profile-thunk";
+import profile from "../../mobx/profile";
 
-const ProfileStatus = ({status = ''}) => {
-  const dispatch = useDispatch();
+const ProfileStatus = observer(({status = ''}) => {
+  const { updateStatus } = profile
   const [statusValue, setStatusValue] = useState('');
   const [activeEditMode, setActiveEditMode] = useState(false);
 
@@ -18,7 +18,7 @@ const ProfileStatus = ({status = ''}) => {
 
   const handleUpdateStatus = (e) => {
     const value = e.target.value;
-    dispatch(updateStatus(value))
+    updateStatus(value)
     setActiveEditMode(!activeEditMode);
   };
 
@@ -42,6 +42,6 @@ const ProfileStatus = ({status = ''}) => {
       )}
     </div>
   );
-};
+});
 
 export default ProfileStatus;

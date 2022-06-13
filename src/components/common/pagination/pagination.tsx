@@ -1,6 +1,8 @@
 import { useState } from "react";
 import Flex from "../../flex/flex";
+
 import cn from "classnames";
+
 import c from "./pagination.module.scss";
 
 type PageInfo = {
@@ -18,7 +20,7 @@ type Props = {
 export const Pagination: React.FC<Props> = ({
   pageInfo: { totalItemsCount, pageSize, currentPage = 1, portionSize = 10 },
   onSelectPage,
-}):JSX.Element => {
+}): JSX.Element => {
   const currentPortion = Math.ceil(currentPage / portionSize);
   const [portionNumber, setPortionNumber] = useState(currentPortion);
   const pagesTotal = Math.ceil(totalItemsCount / pageSize);
@@ -26,9 +28,9 @@ export const Pagination: React.FC<Props> = ({
   const leftPortionNumber = (portionNumber - 1) * portionSize + 1;
   const rightPortionNumber = portionNumber * portionSize;
   const paginations = getPagination(totalItemsCount);
-  console.log(portionNumber)
+  
   return (
-    <Flex style={{alignItems: 'center'}}>
+    <Flex style={{ alignItems: "center" }}>
       {leftPortionNumber > 1 && (
         <button
           type="button"
@@ -67,8 +69,6 @@ export const Pagination: React.FC<Props> = ({
     </Flex>
   );
 };
-
-
 
 const getPagination = (totalItemsCount: number): Array<number> => {
   const pages = [];

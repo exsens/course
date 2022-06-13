@@ -1,36 +1,40 @@
-import { useParams } from 'react-router-dom'
-import MessagesInput from '../messages-input/messages-input.jsx';
-import MessagesItem from '../messages-item/messages-item'
-import { connect } from 'react-redux';
-import { addMessageAction } from '../../../store/dialogs/dialogs-action.ts'
+import { observer } from "mobx-react-lite";
+import { useParams } from "react-router-dom";
 
+import dialogs from "../../../mobx/dialogs";
 
-const MessagesList = ({ messages, addMessage, style }) => {
+import MessagesInput from "../messages-input/messages-input";
+import MessagesItem from "../messages-item/messages-item";
+
+export const MessagesList = observer(() => {
+  const { messages, addMessage } = dialogs;
+
   const idDialog = useParams().id;
-  const currentIdMessage = idDialog < messages.length ? idDialog : '';
-  const userMessages = currentIdMessage ? messages[currentIdMessage].text : null;
+  const currentIdMessage = idDialog < messages.length ? idDialog : "";
+  const userMessages = currentIdMessage
+    ? messages[currentIdMessage].text
+    : null;
   return (
     <>
-      {userMessages ?
+      {userMessages ? (
         <>
-          <ul style={{ marginBottom: '15px', display: 'flex', flexDirection: 'column', ...style }}>
-            {userMessages.map((message, idx) => <MessagesItem key={idx} text={message} />)}
+          <ul
+            style={{
+              marginBottom: "15px",
+              display: "flex",
+              flexDirection: "column",
+              flex: '1 1 auto'
+            }}
+          >
+            {userMessages.map((message, idx) => (
+              <MessagesItem key={idx} text={message} />
+            ))}
           </ul>
           <MessagesInput id={currentIdMessage} addMessage={addMessage} />
-        </> :
-        <h3>Select the friend</h3>}
+        </>
+      ) : (
+        <h3>Select the friend</h3>
+      )}
     </>
-  )
-};
-
-const mapStateToProps = (state) => ({
-  messages: state.dialogsData.messages,
+  );
 });
-
-const mapDispatchToProps = (dispatch) => ({
-  addMessage: ({ id, text }) => {
-    dispatch(addMessageAction({ id, text }))
-  }
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(MessagesList);

@@ -1,17 +1,16 @@
-import { useSelector } from "react-redux";
+import auth from "../mobx/auth";
 import { Navigate, useLocation } from "react-router-dom";
-import { selectIsAuth } from "../store/auth/auth-select";
+import { observer } from "mobx-react-lite";
 
-
-const WithRequireAuth = ({ children }) => {
-  const auth = useSelector(selectIsAuth);
+const WithRequireAuth = observer(({ children }) => {
   const location = useLocation();
+  const { isAuth } = auth;
 
-  if (!auth) {
+  if (!isAuth) {
     return <Navigate to="/login" state={{ from: location }} />;
   }
 
   return children;
-};
+});
 
 export default WithRequireAuth;

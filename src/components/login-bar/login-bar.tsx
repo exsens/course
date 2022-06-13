@@ -1,16 +1,17 @@
+import { observer } from "mobx-react-lite";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useTypedDispatch } from "../../hooks/useAppDispatch";
+import auth from "../../mobx/auth";
 
 import { selectIsAuth } from "../../store/auth/auth-select";
 import { logOut } from "../../store/auth/auth-thunk";
 
-const LoginBar: React.FC = () => {
-  const dispatch = useTypedDispatch();
-  const isAuth = useSelector(selectIsAuth);
+const LoginBar: React.FC = observer(() => {
+  const { isAuth, logOut } = auth;
 
   const handleLogOut = () => {
-    dispatch(logOut());
+    logOut();
   };
 
   return (
@@ -22,6 +23,6 @@ const LoginBar: React.FC = () => {
       )}
     </>
   );
-};
+});
 
 export default LoginBar;

@@ -7,6 +7,7 @@ import { required, minLength } from "../../../utils/validation/validation";
 import Button from "../../common/button/button";
 
 import c from "./login-form.module.scss";
+import { useForm } from "react-hook-form";
 
 interface LoginFormPropsType {
   error?: string;

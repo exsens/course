@@ -1,41 +1,54 @@
 import { useEffect } from "react";
-import { useTypedSelector } from "../../hooks/useTypedSelector";
 
-import { selectUserPage } from "../../store/users/users-action";
-import { loadUsers } from "../../store/users/users-thunk";
-import { selectUsers } from "../../store/users/users-selector";
+import users from "../../mobx/users";
 
 import UsersItem from "../users-item/users-item";
 import Preloader from "../preloader/preloader";
 import Pagination from "../common/pagination/pagination";
-import { useTypedDispatch } from "../../hooks/useAppDispatch";
+import { observer } from "mobx-react-lite";
 
-const UsersList: React.FC = () => {
-  const dispatch = useTypedDispatch();
-  const {pageSize, currentPage, totalUsersCount, users, status, followingInProgress} = useTypedSelector(selectUsers)
+const UsersList: React.FC = observer(() => {
+  const {
+    pageSize,
+    currentPage,
+    totalUsersCount,
+    usersList,
+    status,
+    followingInProgress,
+    setCurrentPage,
+    loadUsers,
+  } = users;
 
-  const onSelectPage = (id:number) => {
-    dispatch(selectUserPage(id));
-  }
+  const onSelectPage = (id: number) => {
+    setCurrentPage(id);
+  };
 
-  useEffect(function loadUsersToStore() {
-    dispatch(loadUsers(currentPage, pageSize))
-  }, [currentPage, pageSize, dispatch])
-  
+  useEffect(
+    function loadUsersToStore() {
+      loadUsers(currentPage, pageSize);
+    },
+    [currentPage, pageSize, loadUsers]
+  );
+
   if (status === "loading") {
-     return <Preloader />
+    return <Preloader />;
   }
 
   return (
     <>
-      <Pagination onSelectPage={onSelectPage} pageInfo={{pageSize, currentPage, totalItemsCount: totalUsersCount}}/>
-      {users.map((user) => (
-        <UsersItem key={user.id} followingInProgress={followingInProgress} {...user} />
+      <Pagination
+        onSelectPage={onSelectPage}
+        pageInfo={{ pageSize, currentPage, totalItemsCount: totalUsersCount }}
+      />
+      {usersList.map((user) => (
+        <UsersItem
+          key={user.id}
+          followingInProgress={followingInProgress}
+          {...user}
+        />
       ))}
     </>
   );
-};
-
-
+});
 
 export default UsersList;

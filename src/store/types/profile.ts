@@ -14,7 +14,7 @@ export type ProfileAction = ActionReturnType<typeof actions>;
 
 export interface ProfileInfo {
   fullName: string;
-  status?: string;
+  status: string;
   userId: number;
   lookingForAJob: boolean;
   lookingForAJobDescription: string | null;

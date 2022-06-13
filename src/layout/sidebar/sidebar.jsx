@@ -1,5 +1,5 @@
-import React from 'react';
-import Nav from '../../components/nav/nav';
+import { Nav } from '../../components/nav/nav';
+
 
 import c from './sidebar.module.scss'
 
