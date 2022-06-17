@@ -1,3 +1,3 @@
-import { RootState } from '../types/common';
+import { RootState } from '../types/common'
 
-export const selectInitialized = (state: RootState) => state.app.initialized;
+export const selectInitialized = (state: RootState) => state.app.initialized

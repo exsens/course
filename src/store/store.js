@@ -1,13 +1,12 @@
-import { dialogsReducer } from "./dialogs/dialogs-reducer.js";
-import { profileReducer } from "./profile/profile-reducer.js";
+import { dialogsReducer } from './dialogs/dialogs-reducer.js'
+import { profileReducer } from './profile/profile-reducer.js'
 
 const store = {
-  _callSubscriber() {
-  },
+  _callSubscriber() {},
 
   _state: {
     sidebar: {
-      navigation: ['Profile', 'Dialogs', 'News', 'Music', 'Setting']
+      navigation: ['Profile', 'Dialogs', 'News', 'Music', 'Setting'],
     },
 
     profileData: {
@@ -25,16 +24,19 @@ const store = {
 
       posts: [
         {
-          avatar: 'https://n1s2.starhit.ru/6a/46/ae/6a46aeed947a183d67d1bc48211151bf/445x460_0_6a5d57baf3fab914fdfcc2cc563ed893@480x496_0xac120003_4430520541578509619.jpg',
-          text: 'Lorem ipsum dolor sit amet.'
+          avatar:
+            'https://n1s2.starhit.ru/6a/46/ae/6a46aeed947a183d67d1bc48211151bf/445x460_0_6a5d57baf3fab914fdfcc2cc563ed893@480x496_0xac120003_4430520541578509619.jpg',
+          text: 'Lorem ipsum dolor sit amet.',
         },
         {
-          avatar: 'https://n1s2.starhit.ru/6a/46/ae/6a46aeed947a183d67d1bc48211151bf/445x460_0_6a5d57baf3fab914fdfcc2cc563ed893@480x496_0xac120003_4430520541578509619.jpg',
-          text: 'lor sit amet'
+          avatar:
+            'https://n1s2.starhit.ru/6a/46/ae/6a46aeed947a183d67d1bc48211151bf/445x460_0_6a5d57baf3fab914fdfcc2cc563ed893@480x496_0xac120003_4430520541578509619.jpg',
+          text: 'lor sit amet',
         },
         {
-          avatar: 'https://n1s2.starhit.ru/6a/46/ae/6a46aeed947a183d67d1bc48211151bf/445x460_0_6a5d57baf3fab914fdfcc2cc563ed893@480x496_0xac120003_4430520541578509619.jpg',
-          text: 'ipsum dolor'
+          avatar:
+            'https://n1s2.starhit.ru/6a/46/ae/6a46aeed947a183d67d1bc48211151bf/445x460_0_6a5d57baf3fab914fdfcc2cc563ed893@480x496_0xac120003_4430520541578509619.jpg',
+          text: 'ipsum dolor',
         },
       ],
 
@@ -52,26 +54,24 @@ const store = {
         { id: '0', text: ['Hi', 'Lorem, ipsum.'] },
         { id: '1', text: ['Lorem, ipsum dolor.', 'Lorem, ipsum dolor.', 'Lorem, ipsum dolor.'] },
         { id: '2', text: ['Hi', 'dolor ipsum .', 'Spasda', 'Lorem', 'ipsum dolor.'] },
-      ]
-    }
+      ],
+    },
   },
 
   getState() {
-    return this._state;
+    return this._state
   },
 
   subscribe(observer) {
-    this._callSubscriber = observer;
+    this._callSubscriber = observer
   },
 
   dispatch(action) {
-    this._state.dialogsData = dialogsReducer(this._state.dialogsData, action);
-    this._state.profileData = profileReducer(this._state.profileData, action);
+    this._state.dialogsData = dialogsReducer(this._state.dialogsData, action)
+    this._state.profileData = profileReducer(this._state.profileData, action)
 
-    this._callSubscriber(this._state);
-  }
-
+    this._callSubscriber(this._state)
+  },
 }
 
-
-export default store;
+export default store

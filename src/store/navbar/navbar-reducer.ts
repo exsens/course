@@ -1,14 +1,14 @@
 const initialState = {
-  navigation: ["Profile", "Dialogs", "News", "Users", "Music", "Setting"],
-};
+  navigation: ['Profile', 'Dialogs', 'News', 'Users', 'Music', 'Setting'],
+}
 
 type InitialState = {
-  navigation: Array<string>;
-};
+  navigation: Array<string>
+}
 
-export const navbarReducer = (state = initialState, { type, payload }: any): InitialState => {
+export const navbarReducer = (state = initialState, { type }: any): InitialState => {
   switch (type) {
     default:
-      return state;
+      return state
   }
-};
+}

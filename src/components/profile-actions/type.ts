@@ -1,4 +1,4 @@
 export interface ProfileDescriptionsType {
-  title: string;
-  info: string;
+  title: string
+  info: string
 }

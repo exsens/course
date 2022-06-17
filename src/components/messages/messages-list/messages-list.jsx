@@ -1,29 +1,25 @@
-import { observer } from "mobx-react-lite";
-import { useParams } from "react-router-dom";
-
-import dialogs from "../../../mobx/dialogs";
-
-import MessagesInput from "../messages-input/messages-input";
-import MessagesItem from "../messages-item/messages-item";
+import { useParams } from 'react-router-dom'
+import { observer } from 'mobx-react-lite'
+import dialogs from '../../../mobx/dialogs'
+import MessagesInput from '../messages-input/messages-input'
+import MessagesItem from '../messages-item/messages-item'
 
 export const MessagesList = observer(() => {
-  const { messages, addMessage } = dialogs;
+  const { messages, addMessage } = dialogs
 
-  const idDialog = useParams().id;
-  const currentIdMessage = idDialog < messages.length ? idDialog : "";
-  const userMessages = currentIdMessage
-    ? messages[currentIdMessage].text
-    : null;
+  const idDialog = useParams().id
+  const currentIdMessage = idDialog < messages.length ? idDialog : ''
+  const userMessages = currentIdMessage ? messages[currentIdMessage].text : null
   return (
     <>
       {userMessages ? (
         <>
           <ul
             style={{
-              marginBottom: "15px",
-              display: "flex",
-              flexDirection: "column",
-              flex: '1 1 auto'
+              marginBottom: '15px',
+              display: 'flex',
+              flexDirection: 'column',
+              flex: '1 1 auto',
             }}
           >
             {userMessages.map((message, idx) => (
@@ -36,5 +32,5 @@ export const MessagesList = observer(() => {
         <h3>Select the friend</h3>
       )}
     </>
-  );
-});
+  )
+})

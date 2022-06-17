@@ -1,5 +1,5 @@
-import { Users } from "../store/types/users";
-import { Photos } from "../store/types/profile";
+import { Photos } from '../store/types/profile'
+import { Users } from '../store/types/users'
 
 // result codes
 export enum ResultCodes {
@@ -12,34 +12,34 @@ export enum ResultCodeForCaptcha {
 }
 
 export interface ApiTypes {
-  resultCode: ResultCodes | ResultCodeForCaptcha;
-  messages?: string[];
+  resultCode: ResultCodes | ResultCodeForCaptcha
+  messages?: string[]
 }
 
 // auth types
 
 export interface AuthMe extends ApiTypes {
   data: {
-    id: number;
-    email: string;
-    login: string;
-  };
+    id: number
+    email: string
+    login: string
+  }
 }
 
 export interface CaptchaResponseType {
-  url: string;
+  url: string
 }
 
 // usersApi
 
 export interface getUserData {
-  items: Users[];
-  totalCount: number;
-  error: string;
+  items: Users[]
+  totalCount: number
+  error: string
 }
 
 // profileApi
 
 export interface ProfileAvatar extends ApiTypes {
-  data: { photos: Photos };
+  data: { photos: Photos }
 }

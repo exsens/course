@@ -1,15 +1,14 @@
-import Logo from '../../components/logo/logo';
-import LoginBar from '../../components/login-bar/login-bar';
-
-import c from './header.module.scss';
+import LoginBar from '../../components/login-bar/login-bar'
+import Logo from '../../components/logo/logo'
+import c from './header.module.scss'
 
 const Header = () => {
   return (
     <header className={c.header}>
       <Logo />
-      <LoginBar/>
+      <LoginBar />
     </header>
   )
 }
 
-export default Header;
+export default Header

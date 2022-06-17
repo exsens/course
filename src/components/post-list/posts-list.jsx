@@ -1,7 +1,6 @@
 import PostItem from './post-item/post-item.jsx'
 
 const PostList = ({ postsData, avatar }) => {
-
   return (
     <ul>
       {postsData.map((post, idx) => {
@@ -11,4 +10,4 @@ const PostList = ({ postsData, avatar }) => {
   )
 }
 
-export default PostList;
+export default PostList

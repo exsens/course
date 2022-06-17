@@ -1,4 +1,4 @@
-import UserList from "../../components/users-list/users-list"
+import UserList from '../../components/users-list/users-list'
 
 const Users = () => {
   return (

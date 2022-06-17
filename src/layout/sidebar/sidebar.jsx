@@ -1,6 +1,4 @@
-import { Nav } from '../../components/nav/nav';
-
-
+import { Nav } from '../../components/nav/nav'
 import c from './sidebar.module.scss'
 
 const Sidebar = () => {
@@ -11,7 +9,4 @@ const Sidebar = () => {
   )
 }
 
-
-
-
-export default Sidebar;
+export default Sidebar

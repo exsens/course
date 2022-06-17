@@ -1,35 +1,31 @@
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable } from 'mobx'
 
 class Dialogs {
   users = [
-    { id: 0, name: "JO" },
-    { id: 1, name: "WEL" },
-    { id: 2, name: "aaaaaaaaaaaaa" },
-  ];
+    { id: 0, name: 'JO' },
+    { id: 1, name: 'WEL' },
+    { id: 2, name: 'aaaaaaaaaaaaa' },
+  ]
 
   messages = [
-    { id: 0, text: ["Hi", "Lorem, ipsum."] },
+    { id: 0, text: ['Hi', 'Lorem, ipsum.'] },
     {
       id: 1,
-      text: [
-        "Lorem, ipsum dolor.",
-        "Lorem, ipsum dolor.",
-        "Lorem, ipsum dolor.",
-      ],
+      text: ['Lorem, ipsum dolor.', 'Lorem, ipsum dolor.', 'Lorem, ipsum dolor.'],
     },
     {
       id: 2,
-      text: ["Hi", "dolor ipsum .", "Spasda", "Lorem", "ipsum dolor."],
+      text: ['Hi', 'dolor ipsum .', 'Spasda', 'Lorem', 'ipsum dolor.'],
     },
-  ];
+  ]
 
   constructor() {
-    makeAutoObservable(this);
+    makeAutoObservable(this)
   }
 
   addMessage = (idMessage: number, textMessage: string) => {
-    this.messages = this.messages.map((message) => message.id === idMessage ? message.text.push(textMessage) : message.text)
-  };
+    this.messages.map((message) => (message.id === idMessage ? message.text.push(textMessage) : message.text))
+  }
 }
 
-export default new Dialogs();
+export default new Dialogs()

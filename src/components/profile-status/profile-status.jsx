@@ -1,30 +1,33 @@
-import { observer } from "mobx-react-lite";
-import { useState,useEffect } from "react";
-import profile from "../../mobx/profile";
+import { useEffect, useState } from 'react'
+import { observer } from 'mobx-react-lite'
+import profile from '../../mobx/profile'
 
-const ProfileStatus = observer(({status = ''}) => {
+const ProfileStatus = observer(({ status = '' }) => {
   const { updateStatus } = profile
-  const [statusValue, setStatusValue] = useState('');
-  const [activeEditMode, setActiveEditMode] = useState(false);
+  const [statusValue, setStatusValue] = useState('')
+  const [activeEditMode, setActiveEditMode] = useState(false)
 
   const handleToggleEditStatus = () => {
-    setActiveEditMode(!activeEditMode);
-  };
+    setActiveEditMode(!activeEditMode)
+  }
 
   const handleInputStatus = (e) => {
-    const value = e.target.value;
+    const value = e.target.value
     setStatusValue(value)
-  };
+  }
 
   const handleUpdateStatus = (e) => {
-    const value = e.target.value;
+    const value = e.target.value
     updateStatus(value)
-    setActiveEditMode(!activeEditMode);
-  };
+    setActiveEditMode(!activeEditMode)
+  }
 
-  useEffect(function getStatusValue() {
-    setStatusValue(status)
-  }, [status])
+  useEffect(
+    function getStatusValue() {
+      setStatusValue(status)
+    },
+    [status],
+  )
 
   return (
     <div>
@@ -41,7 +44,7 @@ const ProfileStatus = observer(({status = ''}) => {
         <span onDoubleClick={handleToggleEditStatus}>{status || 'your status'}</span>
       )}
     </div>
-  );
-});
+  )
+})
 
-export default ProfileStatus;
+export default ProfileStatus

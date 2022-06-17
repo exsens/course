@@ -1,29 +1,23 @@
-import { useForm } from "react-hook-form";
-import Button from "../../common/button/button";
-
-import { ProfileDescriptionsType } from "../../profile-actions/type";
-
-import c from "./profile-form.module.scss";
+import { useForm } from 'react-hook-form'
+import Button from '../../common/button/button'
+import { ProfileDescriptionsType } from '../../profile-actions/type'
+import c from './profile-form.module.scss'
 
 interface PropsType {
-  fields: ProfileDescriptionsType[];
-  onSubmit: () => void;
+  fields: ProfileDescriptionsType[]
+  onSubmit: () => void
 }
 
 const ProfileForm: React.FC<PropsType> = ({ fields, onSubmit }) => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm()
 
   return (
     <div>
       <form className={c.form} onSubmit={handleSubmit(onSubmit)}>
         {fields.map((field) => {
-          if (field.title === "lookingForAJob") {
+          if (field.title === 'lookingForAJob') {
             return (
-              <label
-                className={c.label}
-                htmlFor={`${field.title}`}
-                key={`${field.title}`}
-              >
+              <label className={c.label} htmlFor={`${field.title}`} key={`${field.title}`}>
                 <span className={c.span}>{field.title}</span>
                 <input
                   {...register(`${field.title}`)}
@@ -33,15 +27,11 @@ const ProfileForm: React.FC<PropsType> = ({ fields, onSubmit }) => {
                   type="checkbox"
                 />
               </label>
-            );
+            )
           }
 
           return (
-            <label
-              className={c.label}
-              htmlFor={`${field.title}`}
-              key={`${field.title}`}
-            >
+            <label className={c.label} htmlFor={`${field.title}`} key={`${field.title}`}>
               <span className={c.span}>{field.title}</span>
               <input
                 {...register(`${field.title}`)}
@@ -51,12 +41,12 @@ const ProfileForm: React.FC<PropsType> = ({ fields, onSubmit }) => {
                 type="text"
               />
             </label>
-          );
+          )
         })}
         <Button>Save</Button>
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default ProfileForm;
+export default ProfileForm

@@ -1,10 +1,9 @@
-import navbar from "../../mobx/navbar";
+import { NavLink } from 'react-router-dom'
+import { observer } from 'mobx-react-lite'
+import navbar from '../../mobx/navbar'
+import c from './nav.module.scss'
 
-import { NavLink } from "react-router-dom";
-import c from "./nav.module.scss";
-import { observer } from "mobx-react-lite";
-
-const setActive = ({ isActive }) => (isActive ? c.nav__item_active : "");
+const setActive = ({ isActive }) => (isActive ? c.nav__item_active : '')
 
 export const Nav = observer(() => {
   return (
@@ -17,9 +16,9 @@ export const Nav = observer(() => {
                 {item}
               </NavLink>
             </li>
-          );
+          )
         })}
       </ul>
     </nav>
-  );
-});
+  )
+})

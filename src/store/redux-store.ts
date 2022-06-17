@@ -1,14 +1,13 @@
-import { createStore, combineReducers, applyMiddleware } from "redux";
-import { composeWithDevTools } from "@redux-devtools/extension";
-import thunk  from "redux-thunk";
-
-import { reducer as formReducer } from "redux-form";
-import { profileReducer } from "./profile/profile-reducer";
-import { dialogsReducer } from "./dialogs/dialogs-reducer";
-import { navbarReducer } from "./navbar/navbar-reducer";
-import { usersReducer } from "./users/users-reducer";
-import { authReducer } from "./auth/auth-reducer";
-import { appReducer } from "./app/app-reducer";
+import { applyMiddleware, combineReducers, createStore } from 'redux'
+import { reducer as formReducer } from 'redux-form'
+import thunk from 'redux-thunk'
+import { composeWithDevTools } from '@redux-devtools/extension'
+import { appReducer } from './app/app-reducer'
+import { authReducer } from './auth/auth-reducer'
+import { dialogsReducer } from './dialogs/dialogs-reducer'
+import { navbarReducer } from './navbar/navbar-reducer'
+import { profileReducer } from './profile/profile-reducer'
+import { usersReducer } from './users/users-reducer'
 
 export const rootReducers = combineReducers({
   app: appReducer,
@@ -18,16 +17,8 @@ export const rootReducers = combineReducers({
   sidebar: navbarReducer,
   usersData: usersReducer,
   auth: authReducer,
-});
+})
 
-const store = createStore(
-  rootReducers,
-  composeWithDevTools(
-    applyMiddleware(
-      thunk
-    )
-  )
-);
+const store = createStore(rootReducers, composeWithDevTools(applyMiddleware(thunk)))
 
-
-export default store;
+export default store

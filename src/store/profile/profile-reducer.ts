@@ -1,29 +1,26 @@
-import { ProfileActionType, ProfileAction, ProfileInfo, Posts } from "../types/profile";
+import { Posts, ProfileAction, ProfileActionType, ProfileInfo } from '../types/profile'
 
 const initialState = {
   profileInfo: [] as ProfileInfo | [],
 
   posts: [
     {
-      text: "Lorem ipsum dolor sit amet.",
+      text: 'Lorem ipsum dolor sit amet.',
     },
     {
-      text: "lor sit amet",
+      text: 'lor sit amet',
     },
     {
-      text: "ipsum dolor",
+      text: 'ipsum dolor',
     },
   ] as Posts[] | [],
 
-  status: "",
-};
+  status: '',
+}
 
-type StateType = typeof initialState;
+type StateType = typeof initialState
 
-export const profileReducer = (
-  state = initialState,
-  action : ProfileAction
-): StateType => {
+export const profileReducer = (state = initialState, action: ProfileAction): StateType => {
   switch (action.type) {
     case ProfileActionType.ADD_POST: {
       return {
@@ -34,39 +31,39 @@ export const profileReducer = (
             text: action.payload,
           },
         ],
-      };
+      }
     }
 
     case ProfileActionType.SET_PROFILE: {
       return {
         ...state,
         profileInfo: { ...state.profileInfo, ...action.payload },
-        status: "fulfilled",
-      };
+        status: 'fulfilled',
+      }
     }
 
     case ProfileActionType.SET_STATUS: {
       return {
         ...state,
         profileInfo: { ...state.profileInfo, status: action.payload },
-      };
+      }
     }
 
     case ProfileActionType.SET_LOADING: {
       return {
         ...state,
-        status: "loading",
-      };
+        status: 'loading',
+      }
     }
 
     case ProfileActionType.SET_AVATAR: {
       return {
         ...state,
         profileInfo: { ...state.profileInfo, photos: action.payload },
-      };
+      }
     }
 
     default:
-      return state;
+      return state
   }
-};
+}
