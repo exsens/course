@@ -1,9 +1,9 @@
 import { makeAutoObservable } from 'mobx'
 import { profileApi } from '../api/api'
 import { ResultCodes } from '../api/types'
-import { Nullable } from '../store/types/common'
 import { Photos, ProfileFormData, ProfileInfo } from '../store/types/profile'
 import auth from './auth'
+
 class Profile {
   profileInfo = {} as ProfileInfo
 
@@ -18,7 +18,7 @@ class Profile {
       text: 'ipsum dolor',
     },
   ]
-  status = 'loading'
+  status = 'initial'
 
   constructor() {
     makeAutoObservable(this)

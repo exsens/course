@@ -8,7 +8,7 @@ class Users {
   totalUsersCount = 0
   pageSize = 5
   currentPage = 1
-  status = 'loading'
+  status = 'initial'
   followingInProgress = [] as any // users id
 
   constructor() {
@@ -27,6 +27,15 @@ class Users {
 
   setLoading() {
     this.status = 'loading'
+  }
+
+  clearUsers = () => {
+    this.usersList = []
+    this.totalUsersCount = 0
+    this.pageSize = 5
+    this.currentPage = 1
+    this.status = 'initial'
+    this.followingInProgress = []
   }
 
   toggleFollowingProgress(id: number) {

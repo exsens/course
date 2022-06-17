@@ -6,8 +6,17 @@ import Preloader from '../preloader/preloader'
 import UsersItem from '../users-item/users-item'
 
 const UsersList: React.FC = observer(() => {
-  const { pageSize, currentPage, totalUsersCount, usersList, status, followingInProgress, setCurrentPage, loadUsers } =
-    users
+  const {
+    pageSize,
+    currentPage,
+    totalUsersCount,
+    usersList,
+    status,
+    followingInProgress,
+    setCurrentPage,
+    loadUsers,
+    clearUsers,
+  } = users
 
   const onSelectPage = (id: number) => {
     setCurrentPage(id)
@@ -16,8 +25,9 @@ const UsersList: React.FC = observer(() => {
   useEffect(
     function loadUsersToStore() {
       loadUsers(currentPage, pageSize)
+      return () => clearUsers()
     },
-    [currentPage, pageSize, loadUsers],
+    [currentPage, pageSize, loadUsers, clearUsers],
   )
 
   if (status === 'loading') {

@@ -6,7 +6,7 @@ import { ApiTypes, AuthMe, CaptchaResponseType, getUserData, ProfileAvatar } fro
 const instance = axios.create({
   baseURL: 'https://social-network.samuraijs.com/api/1.0/',
   timeout: 3000,
-  headers: { 'API-KEY': process.env.API_KEY as string },
+  headers: { 'API-KEY': process.env.REACT_APP_API_KEY as string },
   withCredentials: true,
 })
 
