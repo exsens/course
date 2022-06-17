@@ -6,7 +6,6 @@ import MessagesItem from '../messages-item/messages-item'
 
 export const MessagesList = observer(() => {
   const { messages, addMessage } = dialogs
-
   const idDialog = useParams().id
   const currentIdMessage = idDialog < messages.length ? idDialog : ''
   const userMessages = currentIdMessage ? messages[currentIdMessage].text : null

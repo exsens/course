@@ -24,7 +24,7 @@ class Dialogs {
   }
 
   addMessage = (idMessage: number, textMessage: string) => {
-    this.messages.map((message) => (message.id === idMessage ? message.text.push(textMessage) : message.text))
+    this.messages.map(({ id, text }) => (id === idMessage ? text.push(textMessage) : text))
   }
 }
 
