@@ -1,6 +1,5 @@
 import { action, makeAutoObservable } from 'mobx'
 import auth from './auth'
-import profile from './profile'
 
 class App {
   initialized = false

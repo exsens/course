@@ -1,5 +1,5 @@
 import { applyMiddleware, combineReducers, createStore } from 'redux'
-import { reducer as formReducer } from 'redux-form'
+// import { reducer as formReducer } from 'redux-form'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from '@redux-devtools/extension'
 import { appReducer } from './app/app-reducer'
@@ -11,7 +11,6 @@ import { usersReducer } from './users/users-reducer'
 
 export const rootReducers = combineReducers({
   app: appReducer,
-  form: formReducer,
   profileData: profileReducer,
   dialogsData: dialogsReducer,
   sidebar: navbarReducer,

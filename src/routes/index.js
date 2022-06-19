@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect } from 'react'
-import { Layout, Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
+import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import Preloader from '../components/preloader/preloader'
 import auth from '../mobx/auth'
 
@@ -22,7 +22,7 @@ const Routing = () => {
     } else {
       return navigate('/login')
     }
-  }, [isAuth])
+  }, [])
 
   if (isAuth) {
     return (
@@ -32,6 +32,7 @@ const Routing = () => {
           <Route path="profile/:id" element={<Profile />} />
           <Route path="dialogs/*" element={<Dialogs />} />
           <Route path="users" element={<Users />} />
+          <Route path="news" element={<News />} />
           <Route path="*" element={<Page404 />} />
         </Routes>
       </>
@@ -49,6 +50,7 @@ const Profile = Loadable(lazy(() => import('../page/profile/profile')))
 const Page404 = Loadable(lazy(() => import('../page/page-404/page-404')))
 const Dialogs = Loadable(lazy(() => import('../page/dialogs/dialogs')))
 const Users = Loadable(lazy(() => import('../page/users/users')))
-const Login = Loadable(lazy(() => import('../page/login/login.jsx')))
+const Login = Loadable(lazy(() => import('../page/login/login')))
+const News = Loadable(lazy(() => import('../page/news/news')))
 
 export default Routing

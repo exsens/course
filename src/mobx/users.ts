@@ -33,7 +33,6 @@ class Users {
     this.usersList = []
     this.totalUsersCount = 0
     this.pageSize = 5
-    this.currentPage = 1
     this.status = 'initial'
     this.followingInProgress = []
   }
@@ -51,6 +50,8 @@ class Users {
 
   setCurrentPage = (page: number) => {
     this.currentPage = page
+    console.log('page', page)
+    console.log(this.currentPage, 'curr')
   }
 
   toggleFollowUser = async (id: number, followed: boolean) => {

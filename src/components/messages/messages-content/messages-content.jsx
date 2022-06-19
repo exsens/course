@@ -1,5 +1,4 @@
 import { Route, Routes } from 'react-router-dom'
-import { observer } from 'mobx-react-lite'
 import { MessagesList } from '../messages-list/messages-list'
 
 const MessagesContent = () => {

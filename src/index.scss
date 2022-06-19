@@ -11,7 +11,7 @@
 }
 
 html {
-overflow-y: scroll;
+  overflow-y: scroll;
 }
 
 body {
@@ -19,7 +19,6 @@ body {
 }
 
 body {
-  font-family: "Nunito Sans", Arial, sans-serif;
   overflow-x: hidden;
   margin: 0;
   font-size: 14px;
@@ -58,7 +57,7 @@ button {
   font-size: inherit;
 }
 
-input { 
+input {
   border: none;
 }
 
@@ -72,6 +71,7 @@ img {
   display: flex;
 }
 
-ul, li {
+ul,
+li {
   list-style-type: none;
 }

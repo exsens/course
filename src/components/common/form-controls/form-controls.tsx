@@ -13,7 +13,7 @@ const FormControls: React.FC<FormControlsPropTypes> = ({ meta: { touched, error 
   )
 }
 
-export const Input: React.FC<InputPropsType> = ({ input, meta, label, placeholder, type }) => {
+export const Input: React.FC<InputPropsType> = ({ input, meta, label, placeholder, type }: any) => {
   return (
     <FormControls label={label} meta={meta}>
       <input className={c.input} type={type} placeholder={placeholder} {...input} />

@@ -1,4 +1,4 @@
-import { stopSubmit } from 'redux-form'
+// import { stopSubmit } from 'redux-form'
 import { authApi } from '../../api/api'
 import { ResultCodeForCaptcha, ResultCodes } from '../../api/types'
 import { ThunkType } from '../types/common'
@@ -33,10 +33,10 @@ export const logIn =
       } else if (resultCode === ResultCodeForCaptcha.CaptchaIsRequired) {
         const { url } = await authApi.getCaptcha()
         dispatch(setCaptchaUrl(url))
-        dispatch(stopSubmit('login', { _error: 'Send Captcha' }))
+        // dispatch(stopSubmit('login', { _error: 'Send Captcha' }))
       } else {
         const messageError = messages?.length ? messages[0] : 'Some error'
-        dispatch(stopSubmit('login', { _error: messageError }))
+        // dispatch(stopSubmit('login', { _error: messageError }))
       }
     } catch (error) {
       console.log(error)
