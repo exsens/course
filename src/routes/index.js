@@ -39,10 +39,12 @@ const Routing = () => {
     )
   }
   return (
-    <Routes>
-      <Route path="/login" element={<Login />} />
-      <Route path="*" element={<Navigate to="/login" state={{ from: location }} />} />
-    </Routes>
+    <>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="*" element={<Navigate to="/login" state={{ from: location }} />} />
+      </Routes>
+    </>
   )
 }
 

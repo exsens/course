@@ -1,6 +1,7 @@
 import { ThemeType } from 'grommet'
 import getColorPresets from '../utils/styles/getColorPreset'
 import { button } from './button'
+import { heading } from './heading'
 import typography from './typography'
 
 export const theme: ThemeType = {
@@ -37,4 +38,5 @@ export const theme: ThemeType = {
   },
 
   button,
+  heading,
 }

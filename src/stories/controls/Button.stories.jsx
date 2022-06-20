@@ -1,14 +1,6 @@
-import { Box, Grommet } from 'grommet'
+import { Grommet } from 'grommet'
 import { theme } from '../../theme/theme'
 import MainButton from '../../ui/controls/main-button'
-
-// export const Basic = (props) => (
-//   <Grommet theme={theme}>
-//     <Box>
-//       <MainButton label={'Button'} primary size="medium" fixed />
-//     </Box>
-//   </Grommet>
-// )
 
 export default {
   title: 'Controls/Button',
@@ -47,6 +39,36 @@ Main.args = {
   theme: 'light',
   primary: true,
   secondary: false,
+  fixed: false,
+  type: 'button',
+  action: true,
+  a11yTitle: 'Кнопка',
+  disabled: false,
+  onClick: () => alert('medium btn'),
+}
+
+export const Primary = Button.bind({})
+
+Primary.args = {
+  label: 'Primary',
+  theme: 'light',
+  primary: true,
+  secondary: false,
+  fixed: false,
+  type: 'button',
+  action: false,
+  a11yTitle: 'Кнопка',
+  disabled: false,
+  onClick: () => alert('medium btn'),
+}
+
+export const Secondary = Button.bind({})
+
+Secondary.args = {
+  label: 'Secondary',
+  theme: 'light',
+  primary: false,
+  secondary: true,
   fixed: false,
   type: 'button',
   action: true,

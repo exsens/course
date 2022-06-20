@@ -9,6 +9,7 @@ const colorPresets = [
   // BLUE
   {
     name: 'blue',
+    blue200: '#3F8AE0',
     blue400: '#5181B8',
     blue420: '#4A76A8',
     blue600: '#2A5885',
@@ -61,6 +62,7 @@ const colorPresets = [
   {
     name: 'black',
     black: '#000000',
+    black10: '#2C2D2E',
   },
 
   // RED
