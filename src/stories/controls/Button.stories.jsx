@@ -1,78 +1,75 @@
-import { Grommet } from 'grommet'
-import { theme } from '../../theme/theme'
-import MainButton from '../../ui/controls/main-button'
+import { Button } from '@mui/material'
 
 export default {
   title: 'Controls/Button',
-  component: MainButton,
-  argTypes: {
-    size: {
-      type: 'string',
-      description: 'Размер кнопки',
-      defaultValue: 'small',
-      options: ['small', 'medium', 'large'],
-      control: {
-        type: 'radio',
-      },
-    },
-    theme: {
-      type: 'string',
-      description: 'Тема',
-      default: 'light',
-      options: ['light', 'dark'],
-      control: {
-        type: 'radio',
-      },
-    },
-  },
+  component: Button,
+  // argTypes: {
+  //   size: {
+  //     type: 'string',
+  //     description: 'Размер кнопки',
+  //     defaultValue: 'small',
+  //     options: ['small', 'medium', 'large'],
+  //     control: {
+  //       type: 'radio',
+  //     },
+  //   },
+  //   theme: {
+  //     type: 'string',
+  //     description: 'Тема',
+  //     default: 'light',
+  //     options: ['light', 'dark'],
+  //     control: {
+  //       type: 'radio',
+  //     },
+  //   },
+  // },
 }
 
-const Button = (arg) => (
-  <Grommet theme={theme} themeMode={arg.theme}>
-    <MainButton {...arg} />
-  </Grommet>
-)
-export const Main = Button.bind({})
+const Template = (arg) => <Button {...arg} />
+export const Default = Template.bind({})
 
-Main.args = {
-  label: 'Кнопка',
-  theme: 'light',
-  primary: true,
-  secondary: false,
-  fixed: false,
-  type: 'button',
-  action: true,
-  a11yTitle: 'Кнопка',
-  disabled: false,
-  onClick: () => alert('medium btn'),
+Default.args = {
+  children: 'Кнопка',
+  type: 'submit',
+  color: 'primary',
+  variant: 'contained',
+  // theme: 'light',
+  // primary: true,
+  // secondary: false,
+  // fixed: false,
+  // type: 'button',
+  // action: true,
+  // a11yTitle: 'Кнопка',
+  // disabled: false,
+  // onClick: () => alert('medium btn'),
 }
 
-export const Primary = Button.bind({})
+// export const Primary = Button.bind({})
 
-Primary.args = {
-  label: 'Primary',
-  theme: 'light',
-  primary: true,
-  secondary: false,
-  fixed: false,
-  type: 'button',
-  action: false,
-  a11yTitle: 'Кнопка',
-  disabled: false,
-  onClick: () => alert('medium btn'),
-}
+// Primary.args = {
+//   label: 'Primary',
+//   theme: 'light',
+//   primary: true,
+//   secondary: false,
+//   fixed: false,
+//   type: 'button',
+//   action: false,
+//   a11yTitle: 'Кнопка',
+//   disabled: false,
+//   onClick: () => alert('medium btn'),
+// }
 
-export const Secondary = Button.bind({})
+// export const Secondary = Button.bind({})
 
-Secondary.args = {
-  label: 'Secondary',
-  theme: 'light',
-  primary: false,
-  secondary: true,
-  fixed: false,
-  type: 'button',
-  action: true,
-  a11yTitle: 'Кнопка',
-  disabled: false,
-  onClick: () => alert('medium btn'),
-}
+// Secondary.args = {
+//   label: 'Secondary',
+//   theme: 'light',
+//   primary: false,
+//   secondary: true,
+//   fixed: false,
+//   type: 'button',
+//   action: true,
+//   a11yTitle: 'Кнопка',
+//   disabled: false,
+//   onClick: () => alert('medium btn'),
+// }

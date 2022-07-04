@@ -1,11 +1,13 @@
-import { Box } from 'grommet'
-import MainButton from '../../ui/controls/main-button'
+import React from 'react'
+import { FixedButton } from '../../ui/controls/FixedButton'
 
 const News = () => {
   return (
-    <Box>
-      <MainButton label="text" />
-    </Box>
+    <div>
+      <FixedButton color="primary" variant="contained">
+        Button
+      </FixedButton>
+    </div>
   )
 }
 

@@ -1,9 +1,5 @@
 @import-normalize;
 
-:root {
-  --bg-main: #838daa;
-}
-
 *,
 ::after,
 ::before {
@@ -21,9 +17,6 @@ body {
 body {
   overflow-x: hidden;
   margin: 0;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.4;
 }
 
 a {
