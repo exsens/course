@@ -1,75 +1,34 @@
-import { Button } from '@mui/material'
+import { ThemeProvider } from '../../context/theme'
+import { Button } from '../../ui/controls/Button'
 
 export default {
   title: 'Controls/Button',
   component: Button,
-  // argTypes: {
-  //   size: {
-  //     type: 'string',
-  //     description: 'Размер кнопки',
-  //     defaultValue: 'small',
-  //     options: ['small', 'medium', 'large'],
-  //     control: {
-  //       type: 'radio',
-  //     },
-  //   },
-  //   theme: {
-  //     type: 'string',
-  //     description: 'Тема',
-  //     default: 'light',
-  //     options: ['light', 'dark'],
-  //     control: {
-  //       type: 'radio',
-  //     },
-  //   },
-  // },
+  argTypes: {
+    color: {
+      type: 'string',
+      description: 'Цвет',
+      defaultValue: 'primary',
+      options: ['primary', 'secondary'],
+      control: {
+        type: 'radio',
+      },
+    },
+  },
 }
 
-const Template = (arg) => <Button {...arg} />
+const Template = (arg) => (
+  <ThemeProvider>
+    <Button {...arg} />
+  </ThemeProvider>
+)
 export const Default = Template.bind({})
 
 Default.args = {
   children: 'Кнопка',
   type: 'submit',
-  color: 'primary',
   variant: 'contained',
-  // theme: 'light',
-  // primary: true,
-  // secondary: false,
-  // fixed: false,
-  // type: 'button',
-  // action: true,
-  // a11yTitle: 'Кнопка',
-  // disabled: false,
-  // onClick: () => alert('medium btn'),
+  fixed: false,
+  action: true,
+  disabled: true,
 }
-
-// export const Primary = Button.bind({})
-
-// Primary.args = {
-//   label: 'Primary',
-//   theme: 'light',
-//   primary: true,
-//   secondary: false,
-//   fixed: false,
-//   type: 'button',
-//   action: false,
-//   a11yTitle: 'Кнопка',
-//   disabled: false,
-//   onClick: () => alert('medium btn'),
-// }
-
-// export const Secondary = Button.bind({})
-
-// Secondary.args = {
-//   label: 'Secondary',
-//   theme: 'light',
-//   primary: false,
-//   secondary: true,
-//   fixed: false,
-//   type: 'button',
-//   action: true,
-//   a11yTitle: 'Кнопка',
-//   disabled: false,
-//   onClick: () => alert('medium btn'),
-// }

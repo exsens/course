@@ -2,6 +2,7 @@ import { lazy, Suspense, useEffect } from 'react'
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import Preloader from '../components/preloader/preloader'
 import auth from '../mobx/auth'
+import News from '../page/news/news'
 
 // eslint-disable-next-line react/display-name
 const Loadable = (Component) => (props) => {
@@ -22,7 +23,7 @@ const Routing = () => {
     } else {
       return navigate('/login')
     }
-  }, [])
+  }, [isAuth])
 
   if (isAuth) {
     return (
@@ -53,6 +54,6 @@ const Page404 = Loadable(lazy(() => import('../page/page-404/page-404')))
 const Dialogs = Loadable(lazy(() => import('../page/dialogs/dialogs')))
 const Users = Loadable(lazy(() => import('../page/users/users')))
 const Login = Loadable(lazy(() => import('../page/login/login')))
-const News = Loadable(lazy(() => import('../page/news/news')))
+// const News = Loadable(lazy(() => import('../page/news/news')))
 
 export default Routing

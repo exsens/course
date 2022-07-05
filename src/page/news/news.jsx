@@ -1,12 +1,10 @@
-import React from 'react'
-import { FixedButton } from '../../ui/controls/FixedButton'
+import { InputUnstyled } from '@mui/base'
+import { TextField } from '@mui/material'
 
 const News = () => {
   return (
     <div>
-      <FixedButton color="primary" variant="contained">
-        Button
-      </FixedButton>
+      <TextField placeholder="text" variant="filled" />
     </div>
   )
 }
